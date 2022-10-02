@@ -14,6 +14,7 @@ public class GridSystem : MonoBehaviour
     public GridTile[,] gridTileArray; // Armazena todos os objetos das células do grid
     [HideInInspector] public int offsetX;
     [HideInInspector] public int offsetZ;
+    public LayerMask gridObjectLayerMask = new LayerMask();
 
     #region CommentedOldCodes
     //private GridEdgeObject[,] gridTopBotEdgeObjectArray; // Armazena todos os objetos dos cantos superiores e inferiroes das células do grid
@@ -59,6 +60,29 @@ public class GridSystem : MonoBehaviour
         gridTileArray = new GridTile[width, lenght];
         offsetX = (int)(width / 2);
         offsetZ = (int)(lenght / 2);
+    }
+
+    /// <summary>
+    /// Raycasts from camera to mouse position and (try to return) DELETES the grid object.
+    /// </summary>
+    /// 
+    private void Update()
+    {
+        if (Input.GetMouseButtonUp(1) == true) { GetGridObject();}
+    }
+    public void GetGridObject()
+    {
+        GridPosition gridPosition = GetGridGroundPosition(MouseSystem.Instance.GetWorldPosition());
+        GridTile gridTile = TryGetGridTile(gridPosition);
+        if (gridTile == null) { return; }
+        gridTile.gridObject.TryGetComponent<GridObject>(out GridObject gridObject);
+        if (gridObject != null) { DeleteGridObject(gridObject); }
+    }
+    private void DeleteGridObject(GridObject gridObject)
+    {
+        foreach(GridTile gridTile in gridObject.gridTileArray)
+        { gridTile.SetGridObject(null); }
+        Destroy(gridObject.gameObject);
     }
 
     /// <summary>

@@ -36,6 +36,7 @@ public class GridTile : MonoBehaviour
     public void SetGridObject(GameObject newGridObject)
     {
         this.gridObject = newGridObject;
-        gridVisual.SetColorToBlack();
+        if (this.gridObject == null) { gridVisual.SetColorToGreen(); }
+        else if (this.gridObject != null) { gridVisual.SetColorToRed(); }
     }
 }

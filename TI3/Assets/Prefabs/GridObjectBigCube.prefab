@@ -141,3 +141,4 @@ MonoBehaviour:
   gridObjectPrice: 0
   width: 2
   lenght: 2
+  gridTileArray: []

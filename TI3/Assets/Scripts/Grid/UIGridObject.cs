@@ -133,6 +133,8 @@ public class UIGridObject : MonoBehaviour, IPointerDownHandler, IPointerUpHandle
     /// <param name="pointerEventData"></param>
     public void OnDrag(PointerEventData pointerEventData)
     {
+        if (pointerEventData.button != PointerEventData.InputButton.Left) { return; }
+
         // This body of code returns the variables needed to the verification right below. It's maximum optimized, don't worry.
         Vector3 worldPosition = MouseSystem.Instance.GetWorldPosition(); // Gets the world position of the mouse
         GridEdgePosition gridFloatPosition = new GridEdgePosition(0,0); // Initializes gridEdgePosition
@@ -209,6 +211,8 @@ public class UIGridObject : MonoBehaviour, IPointerDownHandler, IPointerUpHandle
     /// <param name="pointerEventData"></param>
     public void OnPointerUp(PointerEventData pointerEventData)
     {
+        if (pointerEventData.button != PointerEventData.InputButton.Left) { return; }
+
         // This body of code deactivate some functions
         isDragging = false; // Deactivates the smooth in the FixedUpdate() and disables rotations in Update();
         Destroy(gridObjectPrefabPreviewInstance); // Get rid of the preview
@@ -244,17 +248,21 @@ public class UIGridObject : MonoBehaviour, IPointerDownHandler, IPointerUpHandle
             }
         }
 
-        GameObject newGridObject = Instantiate(gridObjectPrefab, worldPosition, worldRotation); // Creates and instance of the grid object
+        GameObject newGameObject = Instantiate(gridObjectPrefab, worldPosition, worldRotation); // Creates and instance of the grid object
+        GridObject newGridObject = newGameObject.GetComponent<GridObject>(); // Gets the reference of the GridObject script of the grid object
 
         // CONSUMIR OS RECURSOS AQUI
 
         // This "for" goes through all the tiles it occupies and sets their grid object to the previously instantiated grid object
+        int arrayPosition = 0;
         for (int x = 0; x < desiredWidth; x++) // Goes through each line
         {
             for (int z = 0; z < desiredLength; z++) // Goes through each column
             {
                 GridTile gridTile = GridSystem.Instance.TryGetGridTile(gridPosition + new GridPosition(x, z)); // Try to get the grid tile from the grid position considering line and column
-                gridTile.SetGridObject(newGridObject); // Sets the grid object to the grid tile and updates the grid visual
+                gridTile.SetGridObject(newGameObject); // Sets the grid object to the grid tile and updates the grid visual
+                newGridObject.SetGridTile(gridTile, arrayPosition); // Sets the grid tiles the grid object occupies (Mainly used to easily delete the grid object later)
+                arrayPosition += 1; // Increases the array position
             }
         }
 

@@ -5,7 +5,7 @@ using UnityEngine;
 public class MouseSystem : MonoBehaviour
 {
     public static MouseSystem Instance;
-    [SerializeField] private LayerMask mousePlaneLayerMask = new LayerMask();
+    [HideInInspector] public LayerMask mousePlaneLayerMask = new LayerMask();
     private void Awake()
     {
         if (Instance == null)

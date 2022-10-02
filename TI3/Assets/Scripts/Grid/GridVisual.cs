@@ -9,7 +9,7 @@ public class GridVisual : MonoBehaviour
     [HideInInspector] public SpriteRenderer spriteRenderer;
     private void Awake() { spriteRenderer = this.GetComponent<SpriteRenderer>(); }
 
-    private void Start() { SetColorToWhite(); }
+    private void Start() { SetColorToGreen(); }
 
     /// <summary>
     /// Enables the sprite renderer.
@@ -21,7 +21,7 @@ public class GridVisual : MonoBehaviour
     /// </summary>
     public void Hide() { spriteRenderer.enabled = false; }
 
-    public void SetColorToBlack() { spriteRenderer.color = new Color(1f, 0.5f, 0.5f); }
+    public void SetColorToRed() { spriteRenderer.color = new Color(1f, 0.5f, 0.5f); }
 
-    public void SetColorToWhite() { spriteRenderer.color = new Color(0.5f, 1f, 0.5f); }
+    public void SetColorToGreen() { spriteRenderer.color = new Color(0.5f, 1f, 0.5f); }
 }

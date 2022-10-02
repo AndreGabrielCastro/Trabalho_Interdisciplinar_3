@@ -48,6 +48,7 @@ MonoBehaviour:
   gridObjectPrice: 0
   width: 2
   lenght: 1
+  gridTileArray: []
 --- !u!1 &5515617106584458641
 GameObject:
   m_ObjectHideFlags: 0
