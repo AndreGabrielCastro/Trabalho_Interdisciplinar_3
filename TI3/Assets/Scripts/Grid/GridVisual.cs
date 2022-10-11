@@ -3,7 +3,6 @@ using System.Collections.Generic;
 using UnityEngine;
 
 // Esse script tem a função de representar a célula de grid por meio de um sprite simples e controlar seu comportamento.
-// Ou seja, ele deverá conter as funções de ativar, desativar e alterar a cor das imagens das células.
 public class GridVisual : MonoBehaviour
 {
     [HideInInspector] public SpriteRenderer spriteRenderer;

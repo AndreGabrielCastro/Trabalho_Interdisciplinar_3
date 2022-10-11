@@ -3,8 +3,6 @@ using System.Collections.Generic;
 using UnityEngine;
 
 // Esse script tem a função de executar e realizar todos os cálculos referentes ao grid.
-// Ou seja, ele deverá conter as funções de retornar a posição no grid da célula, a posição no mundo da céluda e a posição no grid do mouse.
-// Além de criar ao iniciar todas as células de grid em seu respectivo lugar e atribuir valores às suas GridPositions.
 public class GridSystem : MonoBehaviour
 {
     public static GridSystem Instance;
@@ -61,23 +59,25 @@ public class GridSystem : MonoBehaviour
         offsetX = (int)(width / 2);
         offsetZ = (int)(lenght / 2);
     }
-
-    /// <summary>
-    /// Raycasts from camera to mouse position and (try to return) DELETES the grid object.
-    /// </summary>
-    /// 
     private void Update()
     {
         if (Input.GetMouseButtonUp(1) == true) { GetGridObject();}
     }
+
+    /// <summary>
+    /// INCOMPLETE Raycasts from camera to mouse position and (try to return) DELETES the grid object.
+    /// </summary>
+    /// 
     public void GetGridObject()
     {
         GridPosition gridPosition = GetGridGroundPosition(MouseSystem.Instance.GetWorldPosition());
         GridTile gridTile = TryGetGridTile(gridPosition);
         if (gridTile == null) { return; }
-        gridTile.gridObject.TryGetComponent<GridObject>(out GridObject gridObject);
-        if (gridObject != null) { DeleteGridObject(gridObject); }
+        if (gridTile.gridObject == null) { return; }
+        if (gridTile.gridObject.TryGetComponent<GridObject>(out GridObject gridObject))
+        { DeleteGridObject(gridObject); }
     }
+
     private void DeleteGridObject(GridObject gridObject)
     {
         foreach(GridTile gridTile in gridObject.gridTileArray)
