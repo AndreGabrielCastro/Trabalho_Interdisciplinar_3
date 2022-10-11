@@ -26,7 +26,7 @@ public class UIUserInterface : MonoBehaviour
     }
 
     /// <summary>
-    /// Lerps the UI to UP
+    /// Lerps the UI to UP direction
     /// </summary>
     private void OnButtonLerpToUp()
     {
@@ -35,7 +35,7 @@ public class UIUserInterface : MonoBehaviour
     }
 
     /// <summary>
-    /// Lerps the UI to Down
+    /// Lerps the UI to Down direction
     /// </summary>
     private void OnButtonLerpToDown()
     {
@@ -44,7 +44,7 @@ public class UIUserInterface : MonoBehaviour
     }
 
     /// <summary>
-    /// Lerps the UI to Left
+    /// Lerps the UI to Left direction
     /// </summary>
     public void OnButtonLerpToLeft()
     {
@@ -53,7 +53,7 @@ public class UIUserInterface : MonoBehaviour
     }
 
     /// <summary>
-    /// Lerps the UI to Right
+    /// Lerps the UI to Right direction
     /// </summary>
     public void OnButtonLerpToRight()
     {

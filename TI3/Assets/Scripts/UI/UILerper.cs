@@ -18,11 +18,11 @@ public class UILerper : MonoBehaviour
     {
         if (isLerping == false) { return; }
         Vector3 distance = targetTransform.position - this.transform.position;
-        if (distance.magnitude > 1)
+        if (distance.magnitude > 0.5f)
         {
             this.transform.position = Vector3.Lerp(this.transform.position, targetTransform.position, Time.fixedDeltaTime * 5);
         }
-        else if (distance.magnitude <= 1)
+        else if (distance.magnitude <= 0.5f)
         {
             this.transform.position = targetTransform.position;
             isLerping = false;

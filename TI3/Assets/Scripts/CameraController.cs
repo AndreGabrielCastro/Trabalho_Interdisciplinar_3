@@ -5,26 +5,78 @@ using Cinemachine;
 
 public class CameraController : MonoBehaviour
 {
+    private Vector3 targetTransformPosition;
+    private Vector3 targetOffset;
+    private bool isLerping = false;
+
     private CinemachineTransposer cinemachineTransposer;
     private Vector3 targetFollowOffset;
     private float maxFollowOffsetY = 11.5f;
     private float maxFollowOffsetZ = -5f;
     private float minFollowOffsetY = 1.5f;
     private float minFollowOffsetZ = -10f;
-    [SerializeField] CinemachineVirtualCamera cinemachineVirtualCamera;
-    [SerializeField] int moveSpeed = 10;
-    [SerializeField] int rotateSpeed = 60;
-    [SerializeField] int zoomSpeed = 1;
+    [SerializeField] private CinemachineVirtualCamera cinemachineVirtualCamera;
+    [SerializeField] private int moveSpeed = 10;
+    [SerializeField] private int rotateSpeed = 60;
+    [SerializeField] private int zoomSpeed = 1;
     private void Start()
     {
         cinemachineTransposer = cinemachineVirtualCamera.GetCinemachineComponent<CinemachineTransposer>();
         targetFollowOffset = cinemachineTransposer.m_FollowOffset;
     }
-    void Update()
+    private void Update()
     {
         HandleMovement();
         HandleRotation();
-        HandleZoom();
+        //HandleZoom();
+    }
+    private void FixedUpdate()
+    {
+        if (isLerping == false) { return; }
+        float difference = (targetTransformPosition - this.transform.position).magnitude;
+        if (difference > 0.01f)
+        { 
+            this.transform.position = Vector3.Lerp(this.transform.position, targetTransformPosition, 5 * Time.fixedDeltaTime);
+            this.cinemachineTransposer.m_FollowOffset = Vector3.Lerp(this.cinemachineTransposer.m_FollowOffset, targetOffset, 5 * Time.fixedDeltaTime);
+        }
+        else if (difference <= 0.01f)
+        { 
+            isLerping = false;
+            this.transform.position = targetTransformPosition;
+            this.cinemachineTransposer.m_FollowOffset = targetOffset;
+        }
+    }
+
+    /// <summary>
+    /// Lerps the Camera Controller to the Colony position and adjusts the Cinemachine Transposer offset.
+    /// </summary>
+    /// <param name="colonyTransform"></param>
+    public void OnButtonLerpToColony(Transform colonyTransform)
+    {
+        targetOffset = new Vector3(0, 80, -64);
+        targetTransformPosition = colonyTransform.position;
+        isLerping = true;
+    }
+
+    /// <summary>
+    /// Lerps the Camera Controller to the Space Ship position and adjusts the Cinemachine Transposer offset.
+    /// </summary>
+    public void OnButtonLerpToSpaceShip()
+    {
+        targetOffset = new Vector3(0, 12, -2);
+        targetTransformPosition = Vector3.zero;
+        isLerping = true;
+    }
+
+    /// <summary>
+    /// Lerps the Camera Controller to the Space Ship position and adjusts the Cinemachine Transposer offset.
+    /// </summary>
+    /// <param name="upgradesTransform"></param>
+    public void OnButtonLerpToUpgrades(Transform upgradesTransform)
+    {
+        targetOffset = new Vector3(0, 12, -2);
+        targetTransformPosition = upgradesTransform.position;
+        isLerping = true;
     }
     private void HandleMovement()
     {
