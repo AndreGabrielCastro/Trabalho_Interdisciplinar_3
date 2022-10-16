@@ -4,6 +4,8 @@ using UnityEngine;
 
 public class UIUserInterface : MonoBehaviour
 {
+    [SerializeField] private GameObject userInterfaceUp;
+    [SerializeField] private GameObject userInterfaceDown;
     [SerializeField] private GameObject userInterfaceLeft;
     [SerializeField] private GameObject userInterfaceRight;
     private Vector3 targetPosition = Vector3.zero;
@@ -14,8 +16,10 @@ public class UIUserInterface : MonoBehaviour
     }
     void Start()
     {
-        userInterfaceLeft.transform.position += Vector3.left * Screen.width; // Set the transform of the left UI to the exact position on the left
-        userInterfaceRight.transform.position += Vector3.right * Screen.width; // Set the transform of the right UI to the exact position on the right
+        userInterfaceUp.transform.position = this.transform.position + Vector3.up * Screen.height; // Set the transform of the Up UI to the exact position on the up
+        userInterfaceDown.transform.position = this.transform.position + Vector3.down * Screen.height;// Set the transform of the Down UI to the exact position on the down
+        userInterfaceLeft.transform.position = this.transform.position + Vector3.left * Screen.width; // Set the transform of the Left UI to the exact position on the left
+        userInterfaceRight.transform.position = this.transform.position + Vector3.right * Screen.width; // Set the transform of the Right UI to the exact position on the right
     }
     public void FixedUpdate()
     {
@@ -28,7 +32,7 @@ public class UIUserInterface : MonoBehaviour
     /// <summary>
     /// Lerps the UI to UP direction
     /// </summary>
-    private void OnButtonLerpToUp()
+    public void OnButtonLerpToUp()
     {
         isLerping = true;
         targetPosition.y -= Screen.height; // For some unknown reason the sign must be inverse
@@ -37,7 +41,7 @@ public class UIUserInterface : MonoBehaviour
     /// <summary>
     /// Lerps the UI to Down direction
     /// </summary>
-    private void OnButtonLerpToDown()
+    public void OnButtonLerpToDown()
     {
         isLerping = true;
         targetPosition.y += Screen.height; // For some unknown reason the sign must be inverse
