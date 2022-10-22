@@ -4,7 +4,7 @@ using UnityEngine;
 
 public class GridTile : MonoBehaviour
 {
-    public GameObject gridObject;
+    [HideInInspector] public GameObject gridObject;
     [HideInInspector] public GridVisual gridVisual;
     private void Awake()
     {
