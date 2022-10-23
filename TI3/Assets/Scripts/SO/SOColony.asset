@@ -1,0 +1,29 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 9d26eb3754f83c44ca1b81c9b8f73bb0, type: 3}
+  m_Name: SOColony
+  m_EditorClassIdentifier: 
+  colonyName: 
+  taskLevel: 0
+  taskMaxAmount: 0
+  taskMinAmount: 0
+  workerLevel: 0
+  workerEngineerMinAmount: 0
+  workerEngineerMaxAmount: 0
+  workerEngineerHirePrice: 0
+  workerResearcherMaxAmount: 0
+  workerResearcherMinAmount: 0
+  workerResearcherHirePrice: 0
+  shopLevel: 0
+  shopBuyPrice: 0
+  shopSellPrice: 0
+  exploreLevel: 0
