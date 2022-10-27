@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.UI;
 using UnityEngine.EventSystems;
+using TMPro;
 
 // Esse script tem a função de armazenar as informações da instalação que será criada pelo jogador. Tudo isso é feito automaticamente no Awake().
 // A maioria dos códigos nesse script são para fins de Game Juice. Suavizar transição e evitar Z fight, por exemplo.
@@ -11,8 +12,14 @@ using UnityEngine.EventSystems;
 // Para fins de performance, esse método pode não ser o ideal se tivermos 20 instalações para serem criadas, pois todas elas "existiriam", de certa forma.
 public class UIGridObject : MonoBehaviour, IPointerDownHandler, IPointerUpHandler, IDragHandler
 {
-    public GameObject gridObjectPrefab;
+    [Tooltip("Must be a GridObject")]
+    public GameObject gridObjectPrefab; // This thing MUST be GameObject to work with Awake(), otherwise it will log error on the first line of Awake();
+    public int maxAmount = 1;
+    public int curAmount = 1;
+    public TMP_Text curAmountText;
 
+
+    // References to be setted on Awake() down below
     private GameObject gameObjectPreview;
     private GridObject gridObjectPrefabScript;
     private int gridObjectPrefabScriptWidth;
@@ -38,6 +45,12 @@ public class UIGridObject : MonoBehaviour, IPointerDownHandler, IPointerUpHandle
         ToEdgeCorner,
     }
 
+    public void UpdateCurrentAmount(int valueToIncreaseOrDecrease)
+    {
+        curAmount += valueToIncreaseOrDecrease;
+        curAmountText.text = curAmount.ToString();
+    }
+
     /// <summary>
     /// Switches the desired width value with the desired length value.
     /// </summary>
@@ -49,6 +62,8 @@ public class UIGridObject : MonoBehaviour, IPointerDownHandler, IPointerUpHandle
         this.gridObjectPrefabScriptLength = gridObjectPrefabScript.lenght; // Gets the grid object lenght and stores it
         this.gameObject.GetComponent<Image>().sprite = gridObjectPrefabScript.gridObjectIcon; // Gets the grid object icon and applies it
         this.gameObjectPreview = gridObjectPrefab.transform.Find("Mesh").gameObject; // Gets the grid object mesh game object and stores it
+
+        this.gridObjectPrefabScript.uiGridObject = this; // Sets the UIGridObject of the gridObject. This code is to make easier to recover
 
         if (gridObjectPrefabScriptWidth % 2 == 1 && gridObjectPrefabScriptLength % 2 == 1) { snap = Snap.ToGround; } // If width and length are both unpair, snap to ground
         else if (gridObjectPrefabScriptWidth % 2 == 0 && gridObjectPrefabScriptLength % 2 != 0) { snap = Snap.ToEdgeHorizontal; } // If width is pair and length unpair, snap to left or right edge
@@ -105,6 +120,9 @@ public class UIGridObject : MonoBehaviour, IPointerDownHandler, IPointerUpHandle
     {
         if (pointerEventData.button != PointerEventData.InputButton.Left) { return; } // If the click isn't from left mouse button, returns
 
+        if (curAmount == 0) { return; }
+        else if (curAmount < 0) { Debug.LogWarning("Current amount below zero, something is wrong!"); }
+
         // VERIFICAR A DISPONIBILIDADE DE RECURSO AQUI
 
         // This body of code avoids the object from being created in the sky.
@@ -134,6 +152,9 @@ public class UIGridObject : MonoBehaviour, IPointerDownHandler, IPointerUpHandle
     public void OnDrag(PointerEventData pointerEventData)
     {
         if (pointerEventData.button != PointerEventData.InputButton.Left) { return; }
+
+        if (curAmount == 0) { return; }
+        else if (curAmount < 0) { Debug.LogWarning("Current amount below zero, something is wrong!"); }
 
         // This body of code returns the variables needed to the verification right below. It's maximum optimized, don't worry.
         Vector3 worldPosition = MouseSystem.Instance.GetWorldPosition(); // Gets the world position of the mouse
@@ -213,6 +234,9 @@ public class UIGridObject : MonoBehaviour, IPointerDownHandler, IPointerUpHandle
     {
         if (pointerEventData.button != PointerEventData.InputButton.Left) { return; }
 
+        if (curAmount == 0) { return; }
+        else if (curAmount < 0) { Debug.LogWarning("Current amount below zero, something is wrong!"); }
+
         // This body of code deactivate some functions
         isDragging = false; // Deactivates the smooth in the FixedUpdate() and disables rotations in Update();
         Destroy(gridObjectPrefabPreviewInstance); // Get rid of the preview
@@ -260,11 +284,13 @@ public class UIGridObject : MonoBehaviour, IPointerDownHandler, IPointerUpHandle
             for (int z = 0; z < desiredLength; z++) // Goes through each column
             {
                 GridTile gridTile = GridSystem.Instance.TryGetGridTile(gridPosition + new GridPosition(x, z)); // Try to get the grid tile from the grid position considering line and column
-                gridTile.SetGridObject(newGameObject); // Sets the grid object to the grid tile and updates the grid visual
+                gridTile.SetGridObject(newGridObject); // Sets the grid object to the grid tile and updates the grid visual
                 newGridObject.SetGridTile(gridTile, arrayPosition); // Sets the grid tiles the grid object occupies (Mainly used to easily delete the grid object later)
                 arrayPosition += 1; // Increases the array position
             }
         }
+
+        UpdateCurrentAmount(-1);
 
         #region CommentedOldCodes
         // This body of code deactivate some functions

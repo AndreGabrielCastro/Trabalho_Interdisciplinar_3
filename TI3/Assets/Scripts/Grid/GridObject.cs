@@ -9,6 +9,7 @@ public class GridObject : MonoBehaviour
     public int width = 1;
     public int lenght = 1;
     public GridTile[] gridTileArray;
+    public UIGridObject uiGridObject;
 
     private void Awake()
     {

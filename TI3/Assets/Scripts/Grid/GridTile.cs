@@ -4,7 +4,7 @@ using UnityEngine;
 
 public class GridTile : MonoBehaviour
 {
-    [HideInInspector] public GameObject gridObject;
+    [HideInInspector] public GridObject gridObject;
     [HideInInspector] public GridVisual gridVisual;
     private void Awake()
     {
@@ -33,7 +33,7 @@ public class GridTile : MonoBehaviour
     /// <summary>
     /// Sets the grid object to this grid tile and updates the grid visual color.
     /// </summary>
-    public void SetGridObject(GameObject newGridObject)
+    public void SetGridObject(GridObject newGridObject)
     {
         this.gridObject = newGridObject;
         if (this.gridObject == null) { gridVisual.SetColorToGreen(); }

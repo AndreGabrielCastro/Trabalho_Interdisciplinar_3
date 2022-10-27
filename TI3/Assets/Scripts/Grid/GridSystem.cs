@@ -82,6 +82,7 @@ public class GridSystem : MonoBehaviour
     {
         foreach(GridTile gridTile in gridObject.gridTileArray)
         { gridTile.SetGridObject(null); }
+        gridObject.uiGridObject.UpdateCurrentAmount(+1);
         Destroy(gridObject.gameObject);
     }
 
