@@ -68,3 +68,4 @@ public class Colony
         //this.exploreLevel = exploreLevel;
     }
 }
+
