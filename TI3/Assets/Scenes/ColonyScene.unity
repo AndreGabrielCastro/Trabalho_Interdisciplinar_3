@@ -180,6 +180,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: a535574db5375014186dd3d519b0a4a9, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  uiFloatingTextPrefab: {fileID: 6709345602067005713, guid: 7d9e7ed64b2439f48ad54ec14cb615a2,
+    type: 3}
   userInterfaceUp: {fileID: 1348091892}
   userInterfaceDown: {fileID: 2041928625}
   userInterfaceLeft: {fileID: 175354450}
@@ -974,7 +976,7 @@ RectTransform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 107978464}
   m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
-  m_LocalPosition: {x: 0, y: 0, z: 12.299999}
+  m_LocalPosition: {x: 0, y: 0, z: -4.1000004}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children:
   - {fileID: 1280627398}
@@ -1752,7 +1754,7 @@ RectTransform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 185534922}
   m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
-  m_LocalPosition: {x: 0, y: 0, z: -2.6}
+  m_LocalPosition: {x: 0, y: 0, z: -19}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children:
   - {fileID: 1856432105}
@@ -1826,7 +1828,7 @@ MonoBehaviour:
   m_OnCullStateChanged:
     m_PersistentCalls:
       m_Calls: []
-  m_text: Earth
+  m_text: Undefined
   m_isRightToLeft: 0
   m_fontAsset: {fileID: 11400000, guid: 8f586378b4e144a9851e7b34d9b748ee, type: 2}
   m_sharedMaterial: {fileID: 2180264, guid: 8f586378b4e144a9851e7b34d9b748ee, type: 2}
@@ -1895,7 +1897,7 @@ MonoBehaviour:
   m_margin: {x: 0, y: 0, z: 0, w: 0}
   m_textInfo:
     textComponent: {fileID: 196218059}
-    characterCount: 5
+    characterCount: 9
     spriteCount: 0
     spaceCount: 0
     wordCount: 1
@@ -2023,7 +2025,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 0
+  m_IsActive: 1
 --- !u!224 &202813065
 RectTransform:
   m_ObjectHideFlags: 0
@@ -2577,6 +2579,25 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   image: {fileID: 0}
+--- !u!1 &229320682 stripped
+GameObject:
+  m_CorrespondingSourceObject: {fileID: 2253906468528587032, guid: 1cc91252bb228d048adc1606a12888d0,
+    type: 3}
+  m_PrefabInstance: {fileID: 1194497122}
+  m_PrefabAsset: {fileID: 0}
+--- !u!114 &229320683
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 229320682}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 99f4814a9a7c2944dbebb042dd8af5b6, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  image: {fileID: 0}
 --- !u!1 &239314121
 GameObject:
   m_ObjectHideFlags: 0
@@ -2594,7 +2615,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 0
+  m_IsActive: 1
 --- !u!224 &239314122
 RectTransform:
   m_ObjectHideFlags: 0
@@ -2919,11 +2940,7 @@ MonoBehaviour:
   m_OnCullStateChanged:
     m_PersistentCalls:
       m_Calls: []
-  m_text: '50 gearcoins
-
-    20 information
-
-    1 facility blueprint'
+  m_text: Undefined
   m_isRightToLeft: 0
   m_fontAsset: {fileID: 11400000, guid: 8f586378b4e144a9851e7b34d9b748ee, type: 2}
   m_sharedMaterial: {fileID: 2180264, guid: 8f586378b4e144a9851e7b34d9b748ee, type: 2}
@@ -2992,12 +3009,12 @@ MonoBehaviour:
   m_margin: {x: 0, y: 0, z: 0, w: 0}
   m_textInfo:
     textComponent: {fileID: 255850451}
-    characterCount: 48
+    characterCount: 9
     spriteCount: 0
-    spaceCount: 6
-    wordCount: 7
+    spaceCount: 0
+    wordCount: 1
     linkCount: 0
-    lineCount: 3
+    lineCount: 1
     pageCount: 1
     materialCount: 1
   m_isUsingLegacyAnimationComponent: 0
@@ -4205,7 +4222,7 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 348836132}
   m_LocalRotation: {x: 0, y: -0.93755543, z: 0, w: 0.34783596}
-  m_LocalPosition: {x: -8.5, y: 3.4, z: 6.5}
+  m_LocalPosition: {x: -8.5, y: 3.4, z: -9.9}
   m_LocalScale: {x: 2.5, y: 10.42, z: 5.04}
   m_Children: []
   m_Father: {fileID: 1245282714}
@@ -4298,7 +4315,7 @@ RectTransform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 349020365}
   m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
-  m_LocalPosition: {x: 0, y: 0, z: 27}
+  m_LocalPosition: {x: 0, y: 0, z: 10.6}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children:
   - {fileID: 1739929077}
@@ -6183,7 +6200,6 @@ MonoBehaviour:
     type: 3}
   uiFader: {fileID: 227927919}
   activeRoute: {fileID: 0}
-  selectedRoute: {fileID: 0}
 --- !u!1 &525485716
 GameObject:
   m_ObjectHideFlags: 0
@@ -6261,7 +6277,7 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 532195420}
   m_LocalRotation: {x: 0, y: -0.35885668, z: 0, w: 0.93339264}
-  m_LocalPosition: {x: 9.3, y: 5.1, z: 5.26}
+  m_LocalPosition: {x: 9.3, y: 5.1, z: -11.139999}
   m_LocalScale: {x: 2.39, y: 12.59, z: 4.7}
   m_Children: []
   m_Father: {fileID: 1245282714}
@@ -6938,7 +6954,7 @@ MonoBehaviour:
   m_OnCullStateChanged:
     m_PersistentCalls:
       m_Calls: []
-  m_text: Mars
+  m_text: Undefined
   m_isRightToLeft: 0
   m_fontAsset: {fileID: 11400000, guid: 8f586378b4e144a9851e7b34d9b748ee, type: 2}
   m_sharedMaterial: {fileID: 2180264, guid: 8f586378b4e144a9851e7b34d9b748ee, type: 2}
@@ -7007,7 +7023,7 @@ MonoBehaviour:
   m_margin: {x: 0, y: 0, z: 0, w: 0}
   m_textInfo:
     textComponent: {fileID: 635270739}
-    characterCount: 4
+    characterCount: 9
     spriteCount: 0
     spaceCount: 0
     wordCount: 1
@@ -8084,7 +8100,7 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0, y: 1}
   m_AnchorMax: {x: 0.4, y: 1}
-  m_AnchoredPosition: {x: 5.000004, y: -60}
+  m_AnchoredPosition: {x: 4.999996, y: -60}
   m_SizeDelta: {x: -10.000004, y: 100}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!114 &735702633
@@ -8945,7 +8961,7 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 807274477}
   m_LocalRotation: {x: 0, y: -0.258819, z: 0, w: 0.9659259}
-  m_LocalPosition: {x: 32.1, y: 4.57, z: 12.2}
+  m_LocalPosition: {x: 32.1, y: 4.57, z: -4.2}
   m_LocalScale: {x: 1.96, y: 15.23, z: 12.52}
   m_Children: []
   m_Father: {fileID: 1245282714}
@@ -9220,7 +9236,7 @@ MonoBehaviour:
   m_OnCullStateChanged:
     m_PersistentCalls:
       m_Calls: []
-  m_text: Deliveries at 50% integrity or more
+  m_text: Undefined
   m_isRightToLeft: 0
   m_fontAsset: {fileID: 11400000, guid: 8f586378b4e144a9851e7b34d9b748ee, type: 2}
   m_sharedMaterial: {fileID: 2180264, guid: 8f586378b4e144a9851e7b34d9b748ee, type: 2}
@@ -9289,12 +9305,12 @@ MonoBehaviour:
   m_margin: {x: 0, y: 0, z: 0, w: 0}
   m_textInfo:
     textComponent: {fileID: 822970915}
-    characterCount: 35
+    characterCount: 9
     spriteCount: 0
-    spaceCount: 5
-    wordCount: 6
+    spaceCount: 0
+    wordCount: 1
     linkCount: 0
-    lineCount: 2
+    lineCount: 1
     pageCount: 1
     materialCount: 1
   m_isUsingLegacyAnimationComponent: 0
@@ -9638,7 +9654,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 0
+  m_IsActive: 1
 --- !u!224 &859367008
 RectTransform:
   m_ObjectHideFlags: 0
@@ -10309,7 +10325,7 @@ RectTransform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 882866068}
   m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
-  m_LocalPosition: {x: 0, y: 0, z: 50}
+  m_LocalPosition: {x: 0, y: 0, z: 30}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children:
   - {fileID: 152186632}
@@ -10438,7 +10454,7 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 898919624}
   m_LocalRotation: {x: -0, y: -0.89148164, z: 0, w: -0.45305702}
-  m_LocalPosition: {x: -5.32, y: -1.7, z: -7.73}
+  m_LocalPosition: {x: -5.32, y: -1.7, z: -24.13}
   m_LocalScale: {x: 2.23, y: 7.74, z: 2.92}
   m_Children: []
   m_Father: {fileID: 1245282714}
@@ -11425,7 +11441,7 @@ MonoBehaviour:
   m_OnCullStateChanged:
     m_PersistentCalls:
       m_Calls: []
-  m_text: 10 days
+  m_text: Undefined
   m_isRightToLeft: 0
   m_fontAsset: {fileID: 11400000, guid: 8f586378b4e144a9851e7b34d9b748ee, type: 2}
   m_sharedMaterial: {fileID: 2180264, guid: 8f586378b4e144a9851e7b34d9b748ee, type: 2}
@@ -11494,10 +11510,10 @@ MonoBehaviour:
   m_margin: {x: 0, y: 0, z: 0, w: 0}
   m_textInfo:
     textComponent: {fileID: 960388298}
-    characterCount: 7
+    characterCount: 9
     spriteCount: 0
-    spaceCount: 1
-    wordCount: 2
+    spaceCount: 0
+    wordCount: 1
     linkCount: 0
     lineCount: 1
     pageCount: 1
@@ -12026,7 +12042,7 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1000398290}
   m_LocalRotation: {x: -0, y: -0.35020763, z: 0, w: -0.9366721}
-  m_LocalPosition: {x: 20.1, y: -1.7, z: -2.9}
+  m_LocalPosition: {x: 20.1, y: -1.7, z: -19.3}
   m_LocalScale: {x: 2.23, y: 7.74, z: 2.92}
   m_Children: []
   m_Father: {fileID: 1245282714}
@@ -12119,7 +12135,7 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1003248515}
   m_LocalRotation: {x: -0, y: -0.96432686, z: 0, w: -0.2647146}
-  m_LocalPosition: {x: -14.6, y: -1.7, z: -4.3}
+  m_LocalPosition: {x: -14.6, y: -1.7, z: -20.7}
   m_LocalScale: {x: 2.23, y: 7.74, z: 2.92}
   m_Children: []
   m_Father: {fileID: 1245282714}
@@ -13744,7 +13760,7 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1207885074}
   m_LocalRotation: {x: 0, y: -0.9942448, z: 0, w: 0.10713183}
-  m_LocalPosition: {x: -21.2, y: 3.4, z: 11.5}
+  m_LocalPosition: {x: -21.2, y: 3.4, z: -4.8999996}
   m_LocalScale: {x: 2.5, y: 10.42, z: 5.04}
   m_Children: []
   m_Father: {fileID: 1245282714}
@@ -14268,7 +14284,7 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1228825503}
   m_LocalRotation: {x: 0, y: -0.258819, z: 0, w: 0.9659259}
-  m_LocalPosition: {x: -21.9, y: 4.1, z: 25.3}
+  m_LocalPosition: {x: -21.9, y: 4.1, z: 8.9}
   m_LocalScale: {x: 17.9, y: 19.46, z: 5.48}
   m_Children: []
   m_Father: {fileID: 1245282714}
@@ -15323,7 +15339,7 @@ Transform:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1329615247}
-  m_LocalRotation: {x: 0.6463749, y: -0.000000013128814, z: 0.000000011121775, w: 0.76302}
+  m_LocalRotation: {x: 0.6463749, y: 0.000000013128814, z: -0.000000011121775, w: 0.76302}
   m_LocalPosition: {x: 0, y: 12, z: -2}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children:
@@ -16386,7 +16402,7 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1369719735}
   m_LocalRotation: {x: 0, y: -0.5, z: 0, w: 0.8660254}
-  m_LocalPosition: {x: 15.899998, y: 4.57, z: 26.8}
+  m_LocalPosition: {x: 15.899998, y: 4.57, z: 10.4}
   m_LocalScale: {x: 1.96, y: 15.23, z: 12.52}
   m_Children: []
   m_Father: {fileID: 1245282714}
@@ -16761,7 +16777,7 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1412609269}
   m_LocalRotation: {x: 0, y: -0.79186356, z: 0, w: 0.61069816}
-  m_LocalPosition: {x: -5.6, y: 3.4, z: 19.1}
+  m_LocalPosition: {x: -5.6, y: 3.4, z: 2.7000008}
   m_LocalScale: {x: 2.5, y: 10.42, z: 5.04}
   m_Children: []
   m_Father: {fileID: 1245282714}
@@ -18823,9 +18839,6 @@ MonoBehaviour:
   cellsize: 1
   offsetX: 4
   offsetZ: 4
-  gridObjectLayerMask:
-    serializedVersion: 2
-    m_Bits: 257
 --- !u!4 &1562754875
 Transform:
   m_ObjectHideFlags: 0
@@ -19186,7 +19199,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 1
+  m_IsActive: 0
 --- !u!224 &1596852826
 RectTransform:
   m_ObjectHideFlags: 0
@@ -19597,7 +19610,7 @@ RectTransform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1669584077}
   m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
-  m_LocalPosition: {x: 0, y: 0, z: 25}
+  m_LocalPosition: {x: 0, y: 0, z: 8.6}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children:
   - {fileID: 400507097}
@@ -19941,7 +19954,7 @@ Transform:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1687258581}
-  m_LocalRotation: {x: 0.6463749, y: -0.000000013128814, z: 0.000000011121775, w: 0.76302}
+  m_LocalRotation: {x: 0.6463749, y: 0.000000013128814, z: -0.000000011121775, w: 0.76302}
   m_LocalPosition: {x: 0, y: 12, z: -2}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children: []
@@ -20475,6 +20488,18 @@ PrefabInstance:
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 1cc91252bb228d048adc1606a12888d0, type: 3}
+--- !u!114 &1739524641 stripped
+MonoBehaviour:
+  m_CorrespondingSourceObject: {fileID: 1739524641, guid: 1cc91252bb228d048adc1606a12888d0,
+    type: 3}
+  m_PrefabInstance: {fileID: 2253906467318351387}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 99f4814a9a7c2944dbebb042dd8af5b6, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!1 &1739929076
 GameObject:
   m_ObjectHideFlags: 0
@@ -21198,7 +21223,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 1
+  m_IsActive: 0
 --- !u!224 &1802766452
 RectTransform:
   m_ObjectHideFlags: 0
@@ -21311,6 +21336,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 1838403061}
+  - component: {fileID: 1838403062}
   m_Layer: 0
   m_Name: PlayerData
   m_TagString: Untagged
@@ -21332,6 +21358,20 @@ Transform:
   m_Father: {fileID: 0}
   m_RootOrder: 7
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!114 &1838403062
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1838403060}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 272b6d63247e0684c9eaec0ff58c2b99, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  currentColonyIndex: 0
+  currentColonyName: Earth
 --- !u!1 &1848295676
 GameObject:
   m_ObjectHideFlags: 0
@@ -21631,7 +21671,7 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1866585052}
   m_LocalRotation: {x: -0, y: -0.35020763, z: 0, w: -0.9366721}
-  m_LocalPosition: {x: 10.1, y: -1.7, z: -8.4}
+  m_LocalPosition: {x: 10.1, y: -1.7, z: -24.8}
   m_LocalScale: {x: 2.23, y: 7.74, z: 2.92}
   m_Children: []
   m_Father: {fileID: 1245282714}
@@ -22080,7 +22120,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 1
+  m_IsActive: 0
 --- !u!224 &1925097342
 RectTransform:
   m_ObjectHideFlags: 0
@@ -22387,7 +22427,7 @@ RectTransform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1943504161}
   m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
-  m_LocalPosition: {x: 0, y: 0, z: 23.7}
+  m_LocalPosition: {x: 0, y: 0, z: 7.300001}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children:
   - {fileID: 1476802968}
@@ -22515,10 +22555,7 @@ MonoBehaviour:
   m_OnCullStateChanged:
     m_PersistentCalls:
       m_Calls: []
-  m_text: '2 small boxes containing rare resources
-
-    1 large box containing inflamable
-    liquid'
+  m_text: Undefined
   m_isRightToLeft: 0
   m_fontAsset: {fileID: 11400000, guid: 8f586378b4e144a9851e7b34d9b748ee, type: 2}
   m_sharedMaterial: {fileID: 2180264, guid: 8f586378b4e144a9851e7b34d9b748ee, type: 2}
@@ -22587,12 +22624,12 @@ MonoBehaviour:
   m_margin: {x: 0, y: 0, z: 0, w: 0}
   m_textInfo:
     textComponent: {fileID: 1944170398}
-    characterCount: 80
+    characterCount: 9
     spriteCount: 0
-    spaceCount: 11
-    wordCount: 12
+    spaceCount: 0
+    wordCount: 1
     linkCount: 0
-    lineCount: 2
+    lineCount: 1
     pageCount: 1
     materialCount: 1
   m_isUsingLegacyAnimationComponent: 0
@@ -22801,7 +22838,7 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1953003180}
   m_LocalRotation: {x: 0, y: -0.048849784, z: 0, w: 0.9988062}
-  m_LocalPosition: {x: 22.4, y: 3.4, z: 9.8}
+  m_LocalPosition: {x: 22.4, y: 3.4, z: -6.5999994}
   m_LocalScale: {x: 2.5, y: 10.42, z: 5.04}
   m_Children: []
   m_Father: {fileID: 1245282714}
@@ -23861,13 +23898,14 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 4cd33d9e182f9c142a651b3cca08c2e6, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  currentColonyIndexPosition: 0
-  currentColonyName: Earth
-  colonyArray:
+  currentColonyIndex: 999
+  currentColonyName: abcde
+  colonyNameText: {fileID: 741847011}
+  allColoniesArray:
   - colonyName: Earth
     associatedColonyArray:
     - Mars
-    taskLevel: 0
+    taskLevel: 1
     taskMaxAmount: 1
     taskMinAmount: 1
     contentMaxAmountPerTask: 1
@@ -23875,23 +23913,29 @@ MonoBehaviour:
   - colonyName: Mars
     associatedColonyArray:
     - Earth
-    taskLevel: 0
+    - Saturn
+    taskLevel: 1
     taskMaxAmount: 2
     taskMinAmount: 1
-    contentMaxAmountPerTask: 1
+    contentMaxAmountPerTask: 2
     contentMinAmountPerTask: 1
   - colonyName: Saturn
-    associatedColonyArray: []
-    taskLevel: 0
-    taskMaxAmount: 2
+    associatedColonyArray:
+    - Mars
+    taskLevel: 1
+    taskMaxAmount: 1
     taskMinAmount: 1
     contentMaxAmountPerTask: 1
     contentMinAmountPerTask: 1
+  allUIColoniesArray:
+  - {fileID: 1739524641}
+  - {fileID: 2078070880}
+  - {fileID: 229320683}
   tasksContainer: {fileID: 1140300332}
   uiTaskPrefab: {fileID: -2874232537688439950, guid: 3cbc5111b37e18c4492752521a92f6e9,
     type: 3}
   uiTaskArray: []
-  gridObjectDeliveryArray:
+  allGridObjectDeliveriesArray:
   - {fileID: 446000831588728786, guid: 78d1cf7863aabfb43a80adb5475b626d, type: 3}
 --- !u!1 &2041928625
 GameObject:
@@ -24031,7 +24075,7 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 2048074160}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 0, y: 7.34, z: 0}
+  m_LocalPosition: {x: 0, y: 7.34, z: -16.4}
   m_LocalScale: {x: 12, y: 20, z: 5}
   m_Children: []
   m_Father: {fileID: 1245282714}
@@ -24114,7 +24158,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 1
+  m_IsActive: 0
 --- !u!224 &2064271382
 RectTransform:
   m_ObjectHideFlags: 0
@@ -24253,6 +24297,25 @@ CanvasRenderer:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 2064271381}
   m_CullTransparentMesh: 0
+--- !u!1 &2078070879 stripped
+GameObject:
+  m_CorrespondingSourceObject: {fileID: 2253906468528587032, guid: 1cc91252bb228d048adc1606a12888d0,
+    type: 3}
+  m_PrefabInstance: {fileID: 797604520}
+  m_PrefabAsset: {fileID: 0}
+--- !u!114 &2078070880
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 2078070879}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 99f4814a9a7c2944dbebb042dd8af5b6, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  image: {fileID: 0}
 --- !u!1 &2078345202
 GameObject:
   m_ObjectHideFlags: 0
@@ -24970,7 +25033,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 0
+  m_IsActive: 1
 --- !u!224 &2131264665
 RectTransform:
   m_ObjectHideFlags: 0
@@ -25476,21 +25539,6 @@ PrefabInstance:
         type: 3}
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 2253906469114683488, guid: 1cc91252bb228d048adc1606a12888d0,
-        type: 3}
-      propertyPath: m_Color.b
-      value: 0.6603774
-      objectReference: {fileID: 0}
-    - target: {fileID: 2253906469114683488, guid: 1cc91252bb228d048adc1606a12888d0,
-        type: 3}
-      propertyPath: m_Color.g
-      value: 0.6603774
-      objectReference: {fileID: 0}
-    - target: {fileID: 2253906469114683488, guid: 1cc91252bb228d048adc1606a12888d0,
-        type: 3}
-      propertyPath: m_Color.r
-      value: 0.6603774
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 1cc91252bb228d048adc1606a12888d0, type: 3}

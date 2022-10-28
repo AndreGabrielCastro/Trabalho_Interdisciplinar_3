@@ -12,7 +12,7 @@ public class GridSystem : MonoBehaviour
     public GridTile[,] gridTileArray; // Armazena todos os objetos das células do grid
     [HideInInspector] public int offsetX;
     [HideInInspector] public int offsetZ;
-    public LayerMask gridObjectLayerMask = new LayerMask();
+    //public LayerMask gridObjectLayerMask = new LayerMask(); // Não sei q q isso tá fazendo cara.....
 
     #region CommentedOldCodes
     //private GridEdgeObject[,] gridTopBotEdgeObjectArray; // Armazena todos os objetos dos cantos superiores e inferiroes das células do grid
@@ -40,6 +40,7 @@ public class GridSystem : MonoBehaviour
     }
     private void Awake()
     {
+        DontDestroyOnLoad(this);
         #region ErrorTreatment
         if (Instance == null)
         {
@@ -82,7 +83,7 @@ public class GridSystem : MonoBehaviour
     {
         foreach(GridTile gridTile in gridObject.gridTileArray)
         { gridTile.SetGridObject(null); }
-        gridObject.uiGridObject.UpdateCurrentAmount(+1);
+        gridObject.uiGridObject.UpdateCurrentAmount(+1); // FAZER UM TRATAMENTO DE ERRO AQUI
         Destroy(gridObject.gameObject);
     }
 
@@ -229,7 +230,7 @@ public class GridSystem : MonoBehaviour
         int z = Mathf.RoundToInt(gridTile.transform.position.z - this.transform.position.x) + offsetZ;
         if (gridTileArray[x, z] != null)
         {
-            Debug.LogWarning("This position already exists in the array. We overwrote it.");
+            Debug.LogWarning("This position already exists in the array. We did not overwrote it"); return;
         }
         #endregion
 

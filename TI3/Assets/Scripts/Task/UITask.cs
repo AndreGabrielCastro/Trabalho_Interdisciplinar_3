@@ -14,25 +14,27 @@ public class UITask : MonoBehaviour
     public UIGridObject[] uiGridObjectContentArray;
     public void SetTask(Colony currentColony)
     {
-        origin = currentColony.colonyName; // Sets the origin of the tasks posteriorly created
+        origin = currentColony.colonyName; // Sets the origin of the UI tasks posteriorly created
         int random = Random.Range(0, currentColony.associatedColonyArray.Length); // Gets the associated colonies of the current colony
         destination = currentColony.associatedColonyArray[random]; // Sets the destination of the task based on the amount of associated colonies
-        random = Random.Range(currentColony.contentMinAmountPerTask, currentColony.contentMaxAmountPerTask + 1); // Determines the amount of tasks to be created
-        gridObjectContentArray = new GridObject[random]; // Sets the array size
-        uiGridObjectContentArray = new UIGridObject[random]; // Sets the array size
+        random = Random.Range(currentColony.contentMinAmountPerTask, currentColony.contentMaxAmountPerTask + 1); // Determines the amount of content to be created
+        gridObjectContentArray = new GridObject[random]; // Sets the content array size
+        uiGridObjectContentArray = new UIGridObject[random]; // Sets the UI content array size
 
         for (int i = 0; i < gridObjectContentArray.Length; i++)
         {
-            random = Random.Range(0, ColonySystem.Instance.gridObjectDeliveryArray.Length); // Choose one over all the gridObjectDeliveries available
-            GridObject gridObject = ColonySystem.Instance.gridObjectDeliveryArray[random]; // Gets the gridObject
-            gridObjectContentArray[i] = gridObject; // Stores the gridObject on the array
+            random = Random.Range(0, ColonySystem.Instance.allGridObjectDeliveriesArray.Length); // Choose one over all of the grid object deliveries available
+            GridObject gridObject = ColonySystem.Instance.allGridObjectDeliveriesArray[random]; // Gets the grid object
+            Delivery delivery = gridObject.GetComponent<Delivery>(); // Gets the delivery script
+            delivery.destinationColony = destination; // Sets the destination
+            gridObjectContentArray[i] = gridObject; // Stores the grid object on the array
 
             UIGridObject uiGridObject = Instantiate(UITaskMenuSystem.Instance.uiDeliveryPrefab, Vector3.zero, Quaternion.identity); // Instantiates the UI of the gridObject
-            uiGridObject.gridObjectPrefab = gridObjectContentArray[i].gameObject; // Sets the prefab of the UIGridObject
-            uiGridObject.transform.SetParent(UITaskMenuSystem.Instance.uiDeliveriesContainer); // Sets the transform of the UIGridObject
-            uiGridObject.transform.localScale = Vector3.one; // Resets the localScale of the UIGridObject
-            uiGridObject.gameObject.SetActive(false); // Deactivates the UIGridObject
-            uiGridObjectContentArray[i] = uiGridObject; // Stores the UIGridObject
+            uiGridObject.gridObjectPrefab = gridObjectContentArray[i].gameObject; // Sets the prefab of the UI grid object
+            uiGridObject.transform.SetParent(UITaskMenuSystem.Instance.uiDeliveriesContainer); // Sets the transform of the UI grid object
+            uiGridObject.transform.localScale = Vector3.one; // Resets the scale of the UI grid object
+            uiGridObject.gameObject.SetActive(false); // Deactivates the UI grid object
+            uiGridObjectContentArray[i] = uiGridObject; // Stores the UI grid object
         }
     }
     public void ActivateDeliveries()
@@ -49,7 +51,7 @@ public class UITask : MonoBehaviour
         {
             if (uiGridObjectContentArray[i].curAmount != uiGridObjectContentArray[i].maxAmount)
             {
-                UITaskMenuSystem.Instance.PopResult(false); return;
+                UIUserInterface.Instance.PopResult("Remove the task's deliveries first!", Color.red); return;
             }
         }
         DeactivateDeliveries();
@@ -61,7 +63,7 @@ public class UITask : MonoBehaviour
             uiGridObjectContentArray[i].gameObject.SetActive(false);
         }
         imageState.color = new Color(1f, 0.4f, 0.5f, 0.8f);
-        UITaskMenuSystem.Instance.PopResult(true); return;
+        UIUserInterface.Instance.PopResult("Successfully refused!", Color.green); return;
     }
     public void OnClickRequestTaskDescriptionUpdate()
     {

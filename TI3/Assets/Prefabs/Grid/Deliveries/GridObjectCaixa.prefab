@@ -41,6 +41,7 @@ GameObject:
   m_Component:
   - component: {fileID: 5293245095426640068}
   - component: {fileID: 446000831588728786}
+  - component: {fileID: -8480201045876931948}
   m_Layer: 0
   m_Name: GridObjectCaixa
   m_TagString: Untagged
@@ -80,6 +81,19 @@ MonoBehaviour:
   width: 2
   lenght: 1
   gridTileArray: []
+  uiGridObject: {fileID: 0}
+--- !u!114 &-8480201045876931948
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 7453630684437691494}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 3ca150d7959226c49aafff4a33d3e96d, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!1001 &5834681914555274359
 PrefabInstance:
   m_ObjectHideFlags: 0

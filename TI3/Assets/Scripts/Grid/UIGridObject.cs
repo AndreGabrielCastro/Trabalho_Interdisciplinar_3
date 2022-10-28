@@ -274,6 +274,7 @@ public class UIGridObject : MonoBehaviour, IPointerDownHandler, IPointerUpHandle
 
         GameObject newGameObject = Instantiate(gridObjectPrefab, worldPosition, worldRotation); // Creates and instance of the grid object
         GridObject newGridObject = newGameObject.GetComponent<GridObject>(); // Gets the reference of the GridObject script of the grid object
+        newGridObject.transform.SetParent(GridSystem.Instance.transform); // Sets this object as the parent of the GridObject
 
         // CONSUMIR OS RECURSOS AQUI
 

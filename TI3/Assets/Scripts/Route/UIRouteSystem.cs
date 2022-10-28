@@ -13,9 +13,12 @@ public class UIRouteSystem : MonoBehaviour
     public UIFader uiFader;
 
     public UIRoute activeRoute;
-    public UIRoute selectedRoute;
 
-    private int currentColonyIndexPosition;
+    private int currentColonyIndex;
+    private int destinationColonyIndex;
+
+    private bool isLoading = false;
+    private float timer = 1;
     private void Awake()
     {
         #region ErrorTreatment
@@ -31,29 +34,36 @@ public class UIRouteSystem : MonoBehaviour
         }
         #endregion
     }
-    private void Start() { currentColonyIndexPosition = ColonySystem.Instance.currentColonyIndexPosition; }
+    private void Start() { currentColonyIndex = ColonySystem.Instance.currentColonyIndex; }
+    private void FixedUpdate()
+    {
+        if (isLoading == false) { return; }
+        timer -= Time.fixedDeltaTime;
+        if (timer <= 0) { UnityEngine.SceneManagement.SceneManager.LoadScene("ColonyScene"); }
+    }
     public void UpdateSelectedRoute(UIRoute uiRoute)
     {
-        this.selectedRoute = uiRoute;
-        if (currentColonyIndexPosition != uiRoute.firstColonyIndex && currentColonyIndexPosition != uiRoute.secondColonyIndex)
+        if (currentColonyIndex != uiRoute.firstColonyIndex && currentColonyIndex != uiRoute.secondColonyIndex) // If route is out of range...
         {
-            selectedRoute.image.color = new Color(1f, 0.4f, 0.5f, 0.7f);
+            uiRoute.image.color = new Color(1f, 0.4f, 0.5f, 0.7f); // Sets the color of the route to red
         }
-        else if (currentColonyIndexPosition != uiRoute.firstColonyIndex && currentColonyIndexPosition == uiRoute.secondColonyIndex)
+        else if (currentColonyIndex != uiRoute.firstColonyIndex && currentColonyIndex == uiRoute.secondColonyIndex)
         {
-            if (activeRoute != null) { activeRoute.image.color = new Color(0.3f, 1f, 0.6f, 0.7f); }
-            selectedRoute.image.color = new Color(0.3f, 1f, 1f, 0.7f);
-            activeRoute = selectedRoute;
+            if (activeRoute != null) { activeRoute.image.color = new Color(0.3f, 1f, 0.6f, 0.7f); } // Sets the color of the previous active route to green
+            uiRoute.image.color = new Color(0.3f, 1f, 1f, 0.7f); // Sets the color of the route to cyan
+            activeRoute = uiRoute; // Sets the route as the new active route
+            destinationColonyIndex = uiRoute.firstColonyIndex; // Stores the route's destination index
         }
-        else if (currentColonyIndexPosition == uiRoute.firstColonyIndex && currentColonyIndexPosition != uiRoute.secondColonyIndex)
+        else if (currentColonyIndex == uiRoute.firstColonyIndex && currentColonyIndex != uiRoute.secondColonyIndex)
         {
-            if (activeRoute != null) { activeRoute.image.color = new Color(0.3f, 1f, 0.6f, 0.7f); }
-            selectedRoute.image.color = new Color(0.3f, 1f, 1f, 0.7f);
-            activeRoute = selectedRoute;
+            if (activeRoute != null) { activeRoute.image.color = new Color(0.3f, 1f, 0.6f, 0.7f); } // Sets the color of the previous active route to green
+            uiRoute.image.color = new Color(0.3f, 1f, 1f, 0.7f); // Sets the color of the route to cyan
+            activeRoute = uiRoute; // Sets the route as the new active route
+            destinationColonyIndex = uiRoute.secondColonyIndex; // Stores the route's destination index
         }
-        else if (currentColonyIndexPosition == uiRoute.firstColonyIndex && currentColonyIndexPosition == uiRoute.secondColonyIndex)
+        else if (currentColonyIndex == uiRoute.firstColonyIndex && currentColonyIndex == uiRoute.secondColonyIndex) // If route has same indexes...
         {
-            Debug.LogError($"One UIRoute got 2 equal colony index!!!!! ----- {selectedRoute.transform.position} -----"); return;
+            Debug.LogError($"One UIRoute got 2 equal colony index!!!!! ----- {uiRoute.transform.position} -----"); return;
         }
     }
     public void OnButtonTravel()
@@ -69,9 +79,10 @@ public class UIRouteSystem : MonoBehaviour
         }
         else if (activeRoute != null)
         {
-            uiFader.FadeIn();
-            uiUserInterfaceMain.OnButtonLerpToDown();
-            // VIAJAR AQUI
+            uiUserInterfaceMain.OnButtonLerpToDown(); // Lerps the screen back to the SpaceShip
+            uiFader.FadeIn(); // Activates the fade in
+            isLoading = true; // Activates the timer
+            PlayerData.Instance.SetCurrentColony(destinationColonyIndex); // Sets the current colony of the player
         }
     }
 }

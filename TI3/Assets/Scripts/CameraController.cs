@@ -53,7 +53,7 @@ public class CameraController : MonoBehaviour
     /// <param name="colonyTransform"></param>
     public void OnButtonLerpToColony(Transform colonyTransform)
     {
-        targetOffset = new Vector3(0, 80, -64);
+        targetOffset = new Vector3(0, 50, -100);
         targetTransformPosition = colonyTransform.position;
         isLerping = true;
     }
@@ -63,7 +63,7 @@ public class CameraController : MonoBehaviour
     /// </summary>
     public void OnButtonLerpToSpaceShip()
     {
-        targetOffset = new Vector3(0, 12, -2);
+        targetOffset = new Vector3(0, 12, -4);
         targetTransformPosition = Vector3.zero;
         isLerping = true;
     }
@@ -74,7 +74,7 @@ public class CameraController : MonoBehaviour
     /// <param name="upgradesTransform"></param>
     public void OnButtonLerpToUpgrades(Transform upgradesTransform)
     {
-        targetOffset = new Vector3(0, 12, -2);
+        targetOffset = new Vector3(0, 4, -4);
         targetTransformPosition = upgradesTransform.position;
         isLerping = true;
     }

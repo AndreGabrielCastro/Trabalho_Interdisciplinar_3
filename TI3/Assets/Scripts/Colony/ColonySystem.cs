@@ -1,25 +1,31 @@
 ﻿using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.UI;
+using TMPro;
 
 public class ColonySystem : MonoBehaviour
 {
     public static ColonySystem Instance;
 
     [Header("Current Colony")]
-    public int currentColonyIndexPosition;
+    public int currentColonyIndex;
     public string currentColonyName;
 
-    [Header("Colony Related")]
-    public Colony[] colonyArray;
+    [Header("Colony Structure")]
+    public TMP_Text colonyNameText;
 
-    [Header("Task Related")]
+    [Header("All Colonies Related")]
+    public Colony[] allColoniesArray;
+    public UIColony[] allUIColoniesArray; // Each of there means the image representation of the colonies above in the galaxy map
+
+    [Header("UI Task Related")]
     public Transform tasksContainer;
     public UITask uiTaskPrefab;
     public UITask[] uiTaskArray;
 
-    [Header("Content Related")]
-    public GridObject[] gridObjectDeliveryArray;
+    [Header("All Contents Related")]
+    public GridObject[] allGridObjectDeliveriesArray;
 
     private void Awake()
     {
@@ -36,31 +42,30 @@ public class ColonySystem : MonoBehaviour
         }
         #endregion
     }
-    private void OnLevelWasLoaded(int level)
+    public void UpdateCurrentColony(int colonyIndex) 
     {
-        if (UnityEngine.SceneManagement.SceneManager.GetActiveScene().name.Contains("Colony") == true)
-        {
-            Debug.Log("Chegou à Colônia. -- Aqui caberia uma Action fácil -- André -- ColonySystemScript --");
-        }
-    }
+        this.currentColonyIndex = colonyIndex;
+        this.currentColonyName = allColoniesArray[colonyIndex].colonyName;
+        this.colonyNameText.text = currentColonyName;
 
-    private void Start()
-    {
+        allUIColoniesArray[colonyIndex].image.color = new Color(0.3f, 1f, 1f, 1f); // Sets the color of the route to cyan
+
         GenerateTasks(); // Generate tasks based on the current colony
     }
     public void GenerateTasks()
     {
-        Colony currentColony = colonyArray[currentColonyIndexPosition];
-        int taskAmount = Random.Range(currentColony.taskMinAmount, currentColony.taskMaxAmount + 1);
-        this.uiTaskArray = new UITask[taskAmount];
+        Colony currentColony = allColoniesArray[currentColonyIndex]; // Gets the current colony from the All Colonies Array
+        int taskAmount = Random.Range(currentColony.taskMinAmount, currentColony.taskMaxAmount + 1); // Determines the new size of the UI task array
+        this.uiTaskArray = new UITask[taskAmount]; // Sets the new size of the UI task array
+
+        Debug.Log(taskAmount);
+
         for (int i = 0; i < taskAmount; i++)
         {
-            
-            UITask uiTask = Instantiate(uiTaskPrefab, Vector3.zero, Quaternion.identity);
-            uiTask.transform.SetParent(tasksContainer);
-            uiTask.transform.localScale = Vector3.one;
-            uiTask.SetTask(currentColony);
-            //taskArray[i] = uiTask.GetComponent<Task>();
+            UITask uiTask = Instantiate(uiTaskPrefab, Vector3.zero, Quaternion.identity); // Creates the UI task
+            uiTask.transform.SetParent(tasksContainer); // Sets it as child of the UI task container
+            uiTask.transform.localScale = Vector3.one; // Sets it's scale to 1
+            uiTask.SetTask(currentColony); // Sets the atributes to the UI task
         }
     }
 }

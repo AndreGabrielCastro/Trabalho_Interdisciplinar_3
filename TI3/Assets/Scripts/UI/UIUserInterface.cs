@@ -1,17 +1,35 @@
 ﻿using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using TMPro;
 
 public class UIUserInterface : MonoBehaviour
 {
+    public static UIUserInterface Instance;
+
+    public UIFloatingText uiFloatingTextPrefab;
+
     [SerializeField] private GameObject userInterfaceUp;
     [SerializeField] private GameObject userInterfaceDown;
     [SerializeField] private GameObject userInterfaceLeft;
     [SerializeField] private GameObject userInterfaceRight;
+
     private Vector3 targetPosition = Vector3.zero;
     bool isLerping;
     private void Awake()
     {
+        #region ErrorTreatment
+        if (Instance == null)
+        {
+            Instance = this;
+        }
+        else if (Instance != null)
+        {
+            Debug.LogError($" ----- There is more than one UIUserInterface!!! ----- {this.transform.position} ----- {this.gameObject} -----");
+            Destroy(this.gameObject);
+            return;
+        }
+        #endregion
         targetPosition = this.transform.position;
     }
     void Start()
@@ -63,5 +81,14 @@ public class UIUserInterface : MonoBehaviour
     {
         isLerping = true;
         targetPosition.x -= Screen.width; // For some unknown reason the sign must be inverse
+    }
+    public void PopResult(string text, Color color)
+    {
+        UIFloatingText uiFloatingText = Instantiate(uiFloatingTextPrefab, Input.mousePosition, Quaternion.identity);
+        uiFloatingText.transform.SetParent(this.transform);
+        uiFloatingText.transform.localScale = Vector3.one;
+        TMP_Text floatingText = uiFloatingText.GetComponent<TMP_Text>();
+        floatingText.color = color;
+        floatingText.text = text;
     }
 }

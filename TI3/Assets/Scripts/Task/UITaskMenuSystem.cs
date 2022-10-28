@@ -56,7 +56,7 @@ public class UITaskMenuSystem : MonoBehaviour
     /// </summary>
     public void OnButtonAcceptTask()
     {
-        if (selectedTask == null) { Debug.LogError("No Task Selected to Accept"); return; }
+        if (selectedTask == null) { UIUserInterface.Instance.PopResult("Select a task first!", Color.red); return; }
         selectedTask.ActivateDeliveries();
     }
 
@@ -65,7 +65,7 @@ public class UITaskMenuSystem : MonoBehaviour
     /// </summary>
     public void OnButtonRefuseTask()
     {
-        if (selectedTask == null) { Debug.LogError("No Task Selected to Refuse"); }
+        if (selectedTask == null) { UIUserInterface.Instance.PopResult("Select a task first!", Color.red); return; }
         selectedTask.TryDeactivateDeliveries();
     }
 
@@ -73,22 +73,13 @@ public class UITaskMenuSystem : MonoBehaviour
     /// Pops the result if the task was accepted or refused
     /// </summary>
     /// <param name="result"></param>
-    public void PopResult(bool result)
+    public void PopResult(string text, Color color)
     {
         UIFloatingText uiFloatingText = Instantiate(uiFloatingTextPrefab, Input.mousePosition, Quaternion.identity);
         uiFloatingText.transform.SetParent(uiUserInterface);
         uiFloatingText.transform.localScale = Vector3.one;
-        TMP_Text text = uiFloatingText.GetComponent<TMP_Text>();
-
-        if (result == false)
-        {
-            text.color = Color.red;
-            text.text = "Remove the deliveries first!";
-        }
-        else if (result == true)
-        {
-            text.color = Color.green;
-            text.text = "Sucessfully refused!";
-        }
+        TMP_Text floatingText = uiFloatingText.GetComponent<TMP_Text>();
+        floatingText.color = color;
+        floatingText.text = text;
     }
 }
