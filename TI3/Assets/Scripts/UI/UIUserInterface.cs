@@ -9,6 +9,16 @@ public class UIUserInterface : MonoBehaviour
 
     public UIFloatingText uiFloatingTextPrefab;
 
+    public TMP_Text gearcoinText;
+    public TMP_Text workingEngineerText;
+    public TMP_Text standbyEngineerText;
+    public TMP_Text informationText;
+    //public TMP_Text workingResearcherAmount;
+    //public TMP_Text standbyResearcherAmount;
+    public Transform gearcoinPopUpTransform;
+    public Transform informationPopUpTransform;
+    public UIFader uiFader;
+
     [SerializeField] private GameObject userInterfaceUp;
     [SerializeField] private GameObject userInterfaceDown;
     [SerializeField] private GameObject userInterfaceLeft;
@@ -82,11 +92,15 @@ public class UIUserInterface : MonoBehaviour
         isLerping = true;
         targetPosition.x -= Screen.width; // For some unknown reason the sign must be inverse
     }
-    public void PopResult(string text, Color color)
+    public void PopResult(string text, Color color, int fadeTime = 2, Transform transform = null)
     {
-        UIFloatingText uiFloatingText = Instantiate(uiFloatingTextPrefab, Input.mousePosition, Quaternion.identity);
+        Vector3 position = Vector3.zero;
+        if (transform == null) { position = Input.mousePosition; }
+        else if (transform != null) { position = transform.position; }
+        UIFloatingText uiFloatingText = Instantiate(uiFloatingTextPrefab, position, Quaternion.identity);
         uiFloatingText.transform.SetParent(this.transform);
         uiFloatingText.transform.localScale = Vector3.one;
+        uiFloatingText.fadeTime = fadeTime;
         TMP_Text floatingText = uiFloatingText.GetComponent<TMP_Text>();
         floatingText.color = color;
         floatingText.text = text;

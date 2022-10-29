@@ -7,15 +7,13 @@ public class UIRouteSystem : MonoBehaviour
 {
     public static UIRouteSystem Instance;
 
-    public Transform uiUserInterface;
-    public UIUserInterface uiUserInterfaceMain;
-    public UIFloatingText uiFloatingTextPrefab;
     public UIFader uiFader;
 
+    [Header("Setted during playtime")]
     public UIRoute activeRoute;
 
-    private int currentColonyIndex;
-    private int destinationColonyIndex;
+    [SerializeField] private int currentColonyIndex;
+    [SerializeField] private int destinationColonyIndex;
 
     private bool isLoading = false;
     private float timer = 1;
@@ -34,7 +32,12 @@ public class UIRouteSystem : MonoBehaviour
         }
         #endregion
     }
-    private void Start() { currentColonyIndex = ColonySystem.Instance.currentColonyIndex; }
+    private void Start() { Invoke(nameof(LateStart), 0.25f); }
+
+    /// <summary>
+    /// Called after 0.25 seconds.
+    /// </summary>
+    private void LateStart() { currentColonyIndex = ColonySystem.Instance.currentColonyIndex; }
     private void FixedUpdate()
     {
         if (isLoading == false) { return; }
@@ -70,17 +73,23 @@ public class UIRouteSystem : MonoBehaviour
     {
         if (activeRoute == null)
         {
-            UIFloatingText uiFloatingText = Instantiate(uiFloatingTextPrefab, Input.mousePosition, Quaternion.identity);
-            uiFloatingText.transform.SetParent(uiUserInterface);
-            uiFloatingText.transform.localScale = Vector3.one;
-            TMP_Text text = uiFloatingText.GetComponent<TMP_Text>();
-            text.color = Color.red;
-            text.text = "Select a valid route first!";
+            UIUserInterface.Instance.PopResult("Select a valid route first!", Color.red);
         }
         else if (activeRoute != null)
         {
-            uiUserInterfaceMain.OnButtonLerpToDown(); // Lerps the screen back to the SpaceShip
-            uiFader.FadeIn(); // Activates the fade in
+            foreach(Task task in PlayerData.Instance.taskList)
+            {
+                for (int i = 0; i < task.gridObjectDeliveryArray.Length; i++)
+                {
+                    if (task.gridObjectDeliveryArray[i].isPlaced == false)
+                    {
+                        UIUserInterface.Instance.PopResult("Place all task's deliveries first", Color.red); return;
+                    }
+                }
+            }
+
+            UIUserInterface.Instance.OnButtonLerpToDown(); // Lerps the screen back to the SpaceShip
+            UIUserInterface.Instance.uiFader.FadeIn(); // Activates the fade in
             isLoading = true; // Activates the timer
             PlayerData.Instance.SetCurrentColony(destinationColonyIndex); // Sets the current colony of the player
         }

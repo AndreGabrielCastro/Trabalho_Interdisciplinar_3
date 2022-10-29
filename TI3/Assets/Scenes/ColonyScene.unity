@@ -182,6 +182,13 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   uiFloatingTextPrefab: {fileID: 6709345602067005713, guid: 7d9e7ed64b2439f48ad54ec14cb615a2,
     type: 3}
+  gearcoinText: {fileID: 239314123}
+  workingEngineerText: {fileID: 75280234}
+  standbyEngineerText: {fileID: 1390988066}
+  informationText: {fileID: 2131264666}
+  gearcoinPopUpTransform: {fileID: 404682612}
+  informationPopUpTransform: {fileID: 478054521}
+  uiFader: {fileID: 227927919}
   userInterfaceUp: {fileID: 1348091892}
   userInterfaceDown: {fileID: 2041928625}
   userInterfaceLeft: {fileID: 175354450}
@@ -375,9 +382,9 @@ RectTransform:
   m_Father: {fileID: 602464696}
   m_RootOrder: 0
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
-  m_AnchorMin: {x: 0, y: 0}
-  m_AnchorMax: {x: 0, y: 0}
-  m_AnchoredPosition: {x: 149.99756, y: 50}
+  m_AnchorMin: {x: 0, y: 1}
+  m_AnchorMax: {x: 0, y: 1}
+  m_AnchoredPosition: {x: 149.99756, y: -50}
   m_SizeDelta: {x: 299.99512, y: 100}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!114 &72049380
@@ -585,7 +592,7 @@ GameObject:
   - component: {fileID: 75280235}
   - component: {fileID: 75280234}
   m_Layer: 5
-  m_Name: Text (TMP) Engineer
+  m_Name: Text (TMP) EngineerWorking
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -872,6 +879,12 @@ PrefabInstance:
       propertyPath: m_Name
       value: UIFacility (4)
       objectReference: {fileID: 0}
+    - target: {fileID: 3464657267243749117, guid: 78e7d8cf937b2504887569da1e559160,
+        type: 3}
+      propertyPath: gridObjectPrefab
+      value: 
+      objectReference: {fileID: 8019068750693726969, guid: 4f769f4a005fd554ab5b6cd3f2ebedd6,
+        type: 3}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 78e7d8cf937b2504887569da1e559160, type: 3}
 --- !u!1001 &98955387
@@ -1310,6 +1323,12 @@ PrefabInstance:
       propertyPath: m_Name
       value: UIFacility (3)
       objectReference: {fileID: 0}
+    - target: {fileID: 3464657267243749117, guid: 78e7d8cf937b2504887569da1e559160,
+        type: 3}
+      propertyPath: gridObjectPrefab
+      value: 
+      objectReference: {fileID: 1129755037873331854, guid: e0211930c17600640b036871160f1783,
+        type: 3}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 78e7d8cf937b2504887569da1e559160, type: 3}
 --- !u!224 &136760547 stripped
@@ -2117,7 +2136,7 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0, y: 0}
   m_AnchorMax: {x: 0.49, y: 0}
-  m_AnchoredPosition: {x: 11, y: 105}
+  m_AnchoredPosition: {x: 10.999939, y: 105}
   m_SizeDelta: {x: 2, y: 190}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!114 &205765406
@@ -4795,6 +4814,41 @@ CanvasRenderer:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 401372317}
   m_CullTransparentMesh: 0
+--- !u!1 &404682611
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 404682612}
+  m_Layer: 5
+  m_Name: PopUpTransform
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!224 &404682612
+RectTransform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 404682611}
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: 0, y: 0, z: 0}
+  m_LocalScale: {x: 1, y: 3, z: 1}
+  m_Children: []
+  m_Father: {fileID: 676919605}
+  m_RootOrder: 2
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+  m_AnchorMin: {x: 1, y: 0}
+  m_AnchorMax: {x: 1, y: 0}
+  m_AnchoredPosition: {x: -50, y: 39.999966}
+  m_SizeDelta: {x: 100, y: 26.666664}
+  m_Pivot: {x: 0.5, y: 0.5}
 --- !u!1001 &420888868
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -5485,6 +5539,41 @@ CanvasRenderer:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 474692617}
   m_CullTransparentMesh: 0
+--- !u!1 &478054520
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 478054521}
+  m_Layer: 5
+  m_Name: PopUpTransform
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!224 &478054521
+RectTransform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 478054520}
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: 0, y: 0, z: 0}
+  m_LocalScale: {x: 1, y: 3, z: 1}
+  m_Children: []
+  m_Father: {fileID: 1777717498}
+  m_RootOrder: 2
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+  m_AnchorMin: {x: 0, y: 0}
+  m_AnchorMax: {x: 0, y: 0}
+  m_AnchoredPosition: {x: 50.00038, y: 39.999966}
+  m_SizeDelta: {x: 99.99924, y: 26.666664}
+  m_Pivot: {x: 0.5, y: 0.5}
 --- !u!1 &488022108
 GameObject:
   m_ObjectHideFlags: 0
@@ -5592,9 +5681,9 @@ RectTransform:
   m_Father: {fileID: 602464696}
   m_RootOrder: 3
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
-  m_AnchorMin: {x: 1, y: 0}
-  m_AnchorMax: {x: 1, y: 0}
-  m_AnchoredPosition: {x: -149.9975, y: 50}
+  m_AnchorMin: {x: 1, y: 1}
+  m_AnchorMax: {x: 1, y: 1}
+  m_AnchoredPosition: {x: -149.9975, y: -50}
   m_SizeDelta: {x: 299.99512, y: 100}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!114 &490584003
@@ -6194,12 +6283,10 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: f4ce988c58e612b41bee7703701b651a, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  uiUserInterface: {fileID: 1202786216}
-  uiUserInterfaceMain: {fileID: 2541439}
-  uiFloatingTextPrefab: {fileID: 6709345602067005713, guid: 7d9e7ed64b2439f48ad54ec14cb615a2,
-    type: 3}
   uiFader: {fileID: 227927919}
   activeRoute: {fileID: 0}
+  currentColonyIndex: 0
+  destinationColonyIndex: 0
 --- !u!1 &525485716
 GameObject:
   m_ObjectHideFlags: 0
@@ -7139,7 +7226,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   m_BindingMode: 1
-  m_FollowOffset: {x: 0, y: 12, z: -2}
+  m_FollowOffset: {x: 0, y: 12, z: -4}
   m_XDamping: 0.25
   m_YDamping: 1
   m_ZDamping: 1
@@ -7464,6 +7551,7 @@ RectTransform:
   m_Children:
   - {fileID: 202813065}
   - {fileID: 239314122}
+  - {fileID: 404682612}
   m_Father: {fileID: 72049379}
   m_RootOrder: 0
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
@@ -9348,7 +9436,7 @@ GameObject:
   - component: {fileID: 827581006}
   - component: {fileID: 827581005}
   m_Layer: 5
-  m_Name: Text (TMP) EngineerStandby
+  m_Name: Text (TMP) ResearcherStandby
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -9635,6 +9723,12 @@ PrefabInstance:
       propertyPath: m_Name
       value: UIFacility (5)
       objectReference: {fileID: 0}
+    - target: {fileID: 3464657267243749117, guid: 78e7d8cf937b2504887569da1e559160,
+        type: 3}
+      propertyPath: gridObjectPrefab
+      value: 
+      objectReference: {fileID: 5374163674581648635, guid: eb4d85312c74f6048a2278a59298f442,
+        type: 3}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 78e7d8cf937b2504887569da1e559160, type: 3}
 --- !u!1 &859367007
@@ -13405,6 +13499,12 @@ PrefabInstance:
       propertyPath: m_Name
       value: UIFacility (2)
       objectReference: {fileID: 0}
+    - target: {fileID: 3464657267243749117, guid: 78e7d8cf937b2504887569da1e559160,
+        type: 3}
+      propertyPath: gridObjectPrefab
+      value: 
+      objectReference: {fileID: 2359021798316112932, guid: 12f06ff1ba57e5d4cbeb8c5a56c34a23,
+        type: 3}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 78e7d8cf937b2504887569da1e559160, type: 3}
 --- !u!224 &1182748720 stripped
@@ -15339,8 +15439,8 @@ Transform:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1329615247}
-  m_LocalRotation: {x: 0.6463749, y: 0.000000013128814, z: -0.000000011121775, w: 0.76302}
-  m_LocalPosition: {x: 0, y: 12, z: -2}
+  m_LocalRotation: {x: 0.5847103, y: 0, z: 0, w: 0.8112422}
+  m_LocalPosition: {x: 0, y: 12, z: -4}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children:
   - {fileID: 637100370}
@@ -16295,6 +16395,12 @@ PrefabInstance:
       propertyPath: m_Name
       value: UIFacility (1)
       objectReference: {fileID: 0}
+    - target: {fileID: 3464657267243749117, guid: 78e7d8cf937b2504887569da1e559160,
+        type: 3}
+      propertyPath: gridObjectPrefab
+      value: 
+      objectReference: {fileID: 1712445586578786585, guid: aebc43eebc261b44aa58c1161a919f7b,
+        type: 3}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 78e7d8cf937b2504887569da1e559160, type: 3}
 --- !u!1 &1366769955
@@ -17070,7 +17176,7 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0, y: 0}
   m_AnchorMax: {x: 1, y: 1}
-  m_AnchoredPosition: {x: 0, y: 0}
+  m_AnchoredPosition: {x: 0, y: 1080}
   m_SizeDelta: {x: 0, y: 0}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!114 &1439845280
@@ -17097,12 +17203,14 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: b1b013315bdf3b1498cdabe2d831d6d7, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  uiUserInterface: {fileID: 1202786216}
+  uiTasksContainer: {fileID: 1140300332}
+  uiTaskPrefab: {fileID: -2874232537688439950, guid: 3cbc5111b37e18c4492752521a92f6e9,
+    type: 3}
   uiDeliveriesContainer: {fileID: 199974063}
-  uiDeliveryPrefab: {fileID: 8961993237406275533, guid: ede857e306081f149aa025ca4554aee0,
+  uiDeliveryPrefab: {fileID: 6732597299535471545, guid: ede857e306081f149aa025ca4554aee0,
     type: 3}
-  uiFloatingTextPrefab: {fileID: 6709345602067005713, guid: 7d9e7ed64b2439f48ad54ec14cb615a2,
-    type: 3}
+  allGridObjectDeliveryPrefabArray:
+  - {fileID: 4225908689338179398, guid: 78d1cf7863aabfb43a80adb5475b626d, type: 3}
   originText: {fileID: 196218059}
   timeText: {fileID: 960388298}
   destinationText: {fileID: 635270739}
@@ -17110,6 +17218,7 @@ MonoBehaviour:
   rewardText: {fileID: 255850451}
   conditionText: {fileID: 822970915}
   selectedTask: {fileID: 0}
+  uiTaskArray: []
 --- !u!224 &1443670584 stripped
 RectTransform:
   m_CorrespondingSourceObject: {fileID: 8961993237406275530, guid: ede857e306081f149aa025ca4554aee0,
@@ -18661,7 +18770,7 @@ GameObject:
   - component: {fileID: 1554114816}
   - component: {fileID: 1554114815}
   m_Layer: 5
-  m_Name: Text (TMP) Engineer
+  m_Name: Text (TMP) ResearcherWorking
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -19954,8 +20063,8 @@ Transform:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1687258581}
-  m_LocalRotation: {x: 0.6463749, y: 0.000000013128814, z: -0.000000011121775, w: 0.76302}
-  m_LocalPosition: {x: 0, y: 12, z: -2}
+  m_LocalRotation: {x: 0.5847103, y: 0, z: 0, w: 0.8112422}
+  m_LocalPosition: {x: 0, y: 12, z: -4}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children: []
   m_Father: {fileID: 0}
@@ -21161,6 +21270,7 @@ RectTransform:
   m_Children:
   - {fileID: 859367008}
   - {fileID: 2131264665}
+  - {fileID: 478054521}
   m_Father: {fileID: 490584002}
   m_RootOrder: 0
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
@@ -21372,6 +21482,11 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   currentColonyIndex: 0
   currentColonyName: Earth
+  gearcoins: 0
+  workingEngineer: 0
+  standbyEngineer: 0
+  information: 0
+  taskList: []
 --- !u!1 &1848295676
 GameObject:
   m_ObjectHideFlags: 0
@@ -23917,11 +24032,12 @@ MonoBehaviour:
     taskLevel: 1
     taskMaxAmount: 2
     taskMinAmount: 1
-    contentMaxAmountPerTask: 2
+    contentMaxAmountPerTask: 1
     contentMinAmountPerTask: 1
   - colonyName: Saturn
     associatedColonyArray:
     - Mars
+    - Earth
     taskLevel: 1
     taskMaxAmount: 1
     taskMinAmount: 1
@@ -23931,12 +24047,6 @@ MonoBehaviour:
   - {fileID: 1739524641}
   - {fileID: 2078070880}
   - {fileID: 229320683}
-  tasksContainer: {fileID: 1140300332}
-  uiTaskPrefab: {fileID: -2874232537688439950, guid: 3cbc5111b37e18c4492752521a92f6e9,
-    type: 3}
-  uiTaskArray: []
-  allGridObjectDeliveriesArray:
-  - {fileID: 446000831588728786, guid: 78d1cf7863aabfb43a80adb5475b626d, type: 3}
 --- !u!1 &2041928625
 GameObject:
   m_ObjectHideFlags: 0
@@ -25421,6 +25531,12 @@ PrefabInstance:
       propertyPath: m_Name
       value: UIFacility
       objectReference: {fileID: 0}
+    - target: {fileID: 3464657267243749117, guid: 78e7d8cf937b2504887569da1e559160,
+        type: 3}
+      propertyPath: gridObjectPrefab
+      value: 
+      objectReference: {fileID: 3982695410172322998, guid: 59234dd83ba57ed45b6e3414144412f1,
+        type: 3}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 78e7d8cf937b2504887569da1e559160, type: 3}
 --- !u!1001 &2253906467318351387

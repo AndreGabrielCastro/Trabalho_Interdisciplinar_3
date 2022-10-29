@@ -7,7 +7,7 @@ public class UIRoute : MonoBehaviour
 {
     public int firstColonyIndex;
     public int secondColonyIndex;
-    [HideInInspector] public Image image;
+    [HideInInspector] public Image image; // Button image
     private void Awake() { image = this.GetComponentInChildren<Image>(); }
     public void OnButtonSelectRoute()
     {

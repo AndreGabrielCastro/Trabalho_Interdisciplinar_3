@@ -11,7 +11,7 @@ GameObject:
   - component: {fileID: 1660685874253591500}
   - component: {fileID: 1660685874253591489}
   - component: {fileID: 1660685874253591490}
-  - component: {fileID: 1660685874253591491}
+  - component: {fileID: 3464657267243749117}
   m_Layer: 5
   m_Name: UIFacility
   m_TagString: Untagged
@@ -76,7 +76,7 @@ MonoBehaviour:
   m_FillOrigin: 0
   m_UseSpriteMesh: 0
   m_PixelsPerUnitMultiplier: 1
---- !u!114 &1660685874253591491
+--- !u!114 &3464657267243749117
 MonoBehaviour:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
@@ -85,14 +85,13 @@ MonoBehaviour:
   m_GameObject: {fileID: 1660685874253591501}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 54f8fbe1a0fcf564cacd3296a74a41b0, type: 3}
+  m_Script: {fileID: 11500000, guid: 8a7497de2b1dde64eaf4d4a5488ecf3e, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  gridObjectPrefab: {fileID: 3982695410172322998, guid: 59234dd83ba57ed45b6e3414144412f1,
-    type: 3}
+  gridObjectPrefab: {fileID: 0}
+  curAmountText: {fileID: 1182234401961848260}
   maxAmount: 1
   curAmount: 1
-  curAmountText: {fileID: 1182234401961848260}
 --- !u!1 &4417771545929211441
 GameObject:
   m_ObjectHideFlags: 0
@@ -166,7 +165,7 @@ MonoBehaviour:
   m_fontMaterials: []
   m_fontColor32:
     serializedVersion: 2
-    rgba: 4281808695
+    rgba: 4281545523
   m_fontColor: {r: 0.2, g: 0.2, b: 0.2, a: 1}
   m_enableVertexGradient: 0
   m_colorMode: 3
@@ -202,7 +201,7 @@ MonoBehaviour:
   m_enableWordWrapping: 1
   m_wordWrappingRatios: 0.4
   m_overflowMode: 0
-  m_firstOverflowCharacterIndex: -1
+  m_firstOverflowCharacterIndex: 0
   m_linkedTextComponent: {fileID: 0}
   m_isLinkedTextComponent: 0
   m_isTextTruncated: 0

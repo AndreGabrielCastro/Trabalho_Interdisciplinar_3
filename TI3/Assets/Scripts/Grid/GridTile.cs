@@ -31,7 +31,7 @@ public class GridTile : MonoBehaviour
     }
 
     /// <summary>
-    /// Sets the grid object to this grid tile and updates the grid visual color.
+    /// Sets the grid object of this grid tile and updates the grid visual color.
     /// </summary>
     public void SetGridObject(GridObject newGridObject)
     {

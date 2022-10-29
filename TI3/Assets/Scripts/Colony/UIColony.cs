@@ -5,7 +5,7 @@ using UnityEngine.UI;
 
 public class UIColony : MonoBehaviour
 {
-    [HideInInspector] public Image image;
+    [HideInInspector] public Image image; // Button image
     private void Awake()
     {
         this.image = this.GetComponentInChildren<Image>();
@@ -13,5 +13,6 @@ public class UIColony : MonoBehaviour
     public void OnButtonSelectColony()
     {
         UIUserInterface.Instance.PopResult("Can't do this yet", Color.red);
+        // Show colony information here
     }
 }

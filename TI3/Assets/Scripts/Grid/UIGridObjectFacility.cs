@@ -5,23 +5,17 @@ using UnityEngine.UI;
 using UnityEngine.EventSystems;
 using TMPro;
 
-// Esse script tem a função de armazenar as informações da instalação que será criada pelo jogador. Tudo isso é feito automaticamente no Awake().
-// A maioria dos códigos nesse script são para fins de Game Juice. Suavizar transição e evitar Z fight, por exemplo.
-// Então, para evitar perda de performance, maioria desses ajustes são feitos no Awake() para já deixar os componentes necessários referenciados.
-// O PreviewInstance precisa ser referenciado na hora para evitar futuras complicações. Se eu receber pelo Instantiate() o objeto será criado e armazenado.
-// Para fins de performance, esse método pode não ser o ideal se tivermos 20 instalações para serem criadas, pois todas elas "existiriam", de certa forma.
-public class UIGridObject : MonoBehaviour, IPointerDownHandler, IPointerUpHandler, IDragHandler
+public class UIGridObjectFacility : MonoBehaviour, IPointerDownHandler, IPointerUpHandler, IDragHandler
 {
     [Tooltip("Must be a GridObject")]
     public GameObject gridObjectPrefab; // This thing MUST be GameObject to work with Awake(), otherwise it will log error on the first line of Awake();
+    public TMP_Text curAmountText;
     public int maxAmount = 1;
     public int curAmount = 1;
-    public TMP_Text curAmountText;
 
-
-    // References to be setted on Awake() down below
+    // References setted on Awake() down below
     private GameObject gameObjectPreview;
-    private GridObject gridObjectPrefabScript;
+    private GridObjectFacility gridObjectPrefabScript;
     private int gridObjectPrefabScriptWidth;
     private int gridObjectPrefabScriptLength;
     private Snap snap;
@@ -44,7 +38,6 @@ public class UIGridObject : MonoBehaviour, IPointerDownHandler, IPointerUpHandle
         ToEdgeVertical,
         ToEdgeCorner,
     }
-
     public void UpdateCurrentAmount(int valueToIncreaseOrDecrease)
     {
         curAmount += valueToIncreaseOrDecrease;
@@ -57,13 +50,13 @@ public class UIGridObject : MonoBehaviour, IPointerDownHandler, IPointerUpHandle
     private void SwitchDesiredWidthAndLength() { int temp = desiredWidth; desiredWidth = desiredLength; desiredLength = temp; }
     private void Awake()
     {
-        this.gridObjectPrefabScript = gridObjectPrefab.GetComponent<GridObject>(); // Gets the grid object script and stores it
+        this.gridObjectPrefabScript = gridObjectPrefab.GetComponent<GridObjectFacility>(); // Gets the grid object script and stores it
         this.gridObjectPrefabScriptWidth = gridObjectPrefabScript.width; // Gets the grid object width and stores it
         this.gridObjectPrefabScriptLength = gridObjectPrefabScript.lenght; // Gets the grid object lenght and stores it
         this.gameObject.GetComponent<Image>().sprite = gridObjectPrefabScript.gridObjectIcon; // Gets the grid object icon and applies it
         this.gameObjectPreview = gridObjectPrefab.transform.Find("Mesh").gameObject; // Gets the grid object mesh game object and stores it
 
-        this.gridObjectPrefabScript.uiGridObject = this; // Sets the UIGridObject of the gridObject. This code is to make easier to recover
+        this.gridObjectPrefabScript.uiGridObjectFacility = this; // Sets the UIGridObject of the gridObject. This code is to make easier to recover
 
         if (gridObjectPrefabScriptWidth % 2 == 1 && gridObjectPrefabScriptLength % 2 == 1) { snap = Snap.ToGround; } // If width and length are both unpair, snap to ground
         else if (gridObjectPrefabScriptWidth % 2 == 0 && gridObjectPrefabScriptLength % 2 != 0) { snap = Snap.ToEdgeHorizontal; } // If width is pair and length unpair, snap to left or right edge

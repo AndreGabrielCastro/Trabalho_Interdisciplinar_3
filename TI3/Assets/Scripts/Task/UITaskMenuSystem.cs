@@ -7,11 +7,18 @@ public class UITaskMenuSystem : MonoBehaviour
 {
     public static UITaskMenuSystem Instance;
 
-    public Transform uiUserInterface;
-    public Transform uiDeliveriesContainer;
-    public UIGridObject uiDeliveryPrefab;
-    public UIFloatingText uiFloatingTextPrefab;
+    [Header("Task related")]
+    public Transform uiTasksContainer;
+    public UITask uiTaskPrefab;
 
+    [Header("Delivery related")]
+    public Transform uiDeliveriesContainer;
+    public UIGridObjectDelivery uiDeliveryPrefab;
+
+    [Header("All Content related")]
+    public GridObjectDelivery[] allGridObjectDeliveryPrefabArray;
+
+    [Header("Description related")]
     public TMP_Text originText;
     public TMP_Text timeText;
     public TMP_Text destinationText;
@@ -19,7 +26,9 @@ public class UITaskMenuSystem : MonoBehaviour
     public TMP_Text rewardText;
     public TMP_Text conditionText;
 
+    [Header("Setted during playtime")]
     public UITask selectedTask;
+    public UITask[] uiTaskArray;
 
     private void Awake()
     {
@@ -36,6 +45,7 @@ public class UITaskMenuSystem : MonoBehaviour
         }
         #endregion
     }
+
     /// <summary>
     /// Updates the Task Menu Description based on the UI Task Clicked.
     /// </summary>
@@ -43,10 +53,10 @@ public class UITaskMenuSystem : MonoBehaviour
     public void UpdateTaskDescription(UITask uiTask)
     {
         this.selectedTask = uiTask;
-        this.originText.text = uiTask.origin;
-        this.destinationText.text = uiTask.destination;
+        this.originText.text = uiTask.taskOrigin;
+        this.destinationText.text = uiTask.taskDestination;
         this.timeText.text = "";
-        this.contentText.text = "";
+        this.contentText.text = uiTask.taskDescription;
         this.rewardText.text = "";
         this.conditionText.text = "";
     }
@@ -75,11 +85,27 @@ public class UITaskMenuSystem : MonoBehaviour
     /// <param name="result"></param>
     public void PopResult(string text, Color color)
     {
-        UIFloatingText uiFloatingText = Instantiate(uiFloatingTextPrefab, Input.mousePosition, Quaternion.identity);
-        uiFloatingText.transform.SetParent(uiUserInterface);
+        UIFloatingText uiFloatingText = Instantiate(UIUserInterface.Instance.uiFloatingTextPrefab, Input.mousePosition, Quaternion.identity);
+        uiFloatingText.transform.SetParent(UIUserInterface.Instance.transform);
         uiFloatingText.transform.localScale = Vector3.one;
         TMP_Text floatingText = uiFloatingText.GetComponent<TMP_Text>();
         floatingText.color = color;
         floatingText.text = text;
+    }
+
+    public void GenerateTasks()
+    {
+        Colony currentColony = ColonySystem.Instance.allColoniesArray[ColonySystem.Instance.currentColonyIndex]; // Gets the current colony from the All Colonies Array
+        int taskAmount = Random.Range(currentColony.taskMinAmount, currentColony.taskMaxAmount + 1); // Determines the new size of the UI task array
+        this.uiTaskArray = new UITask[taskAmount]; // Sets the new size of the UI task array
+
+        for (int i = 0; i < taskAmount; i++)
+        {
+            UITask uiTask = Instantiate(uiTaskPrefab, Vector3.zero, Quaternion.identity); // Creates the UI task
+            uiTask.transform.SetParent(uiTasksContainer); // Sets it as child of the UI task container
+            uiTask.transform.localScale = Vector3.one; // Sets it's scale to 1
+            uiTask.SetTask(currentColony); // Sets the atributes to the UI task
+            uiTaskArray[i] = uiTask; // Stores it in the array
+        }
     }
 }

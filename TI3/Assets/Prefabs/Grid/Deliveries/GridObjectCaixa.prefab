@@ -40,8 +40,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 5293245095426640068}
-  - component: {fileID: 446000831588728786}
-  - component: {fileID: -8480201045876931948}
+  - component: {fileID: 4225908689338179398}
   m_Layer: 0
   m_Name: GridObjectCaixa
   m_TagString: Untagged
@@ -64,7 +63,7 @@ Transform:
   m_Father: {fileID: 0}
   m_RootOrder: 0
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
---- !u!114 &446000831588728786
+--- !u!114 &4225908689338179398
 MonoBehaviour:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
@@ -73,7 +72,7 @@ MonoBehaviour:
   m_GameObject: {fileID: 7453630684437691494}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 6662876259f62fe4e8cee455bb0b7d89, type: 3}
+  m_Script: {fileID: 11500000, guid: 1daab060545c2f64da940fe9fed82b6d, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
   gridObjectIcon: {fileID: 10913, guid: 0000000000000000f000000000000000, type: 0}
@@ -81,19 +80,9 @@ MonoBehaviour:
   width: 2
   lenght: 1
   gridTileArray: []
-  uiGridObject: {fileID: 0}
---- !u!114 &-8480201045876931948
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 7453630684437691494}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 3ca150d7959226c49aafff4a33d3e96d, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
+  uiGridObjectDelivery: {fileID: 0}
+  isPlaced: 0
+  description: Simple box  2x1
 --- !u!1001 &5834681914555274359
 PrefabInstance:
   m_ObjectHideFlags: 0

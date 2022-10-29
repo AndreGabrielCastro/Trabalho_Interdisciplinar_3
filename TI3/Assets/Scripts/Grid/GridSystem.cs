@@ -48,7 +48,7 @@ public class GridSystem : MonoBehaviour
         }
         else if (Instance != null)
         {
-            Debug.LogError($" ----- There is more than one GridSystem!!! ----- {this.transform.position} ----- {this.gameObject} -----");
+            Debug.LogWarning($" ----- There is more than one GridSystem!!! ----- {this.transform.position} ----- {this.gameObject} -----");
             Destroy(this.gameObject);
             return;
         }
@@ -71,20 +71,14 @@ public class GridSystem : MonoBehaviour
     /// 
     public void GetGridObject()
     {
-        GridPosition gridPosition = GetGridGroundPosition(MouseSystem.Instance.GetWorldPosition());
-        GridTile gridTile = TryGetGridTile(gridPosition);
-        if (gridTile == null) { return; }
-        if (gridTile.gridObject == null) { return; }
-        if (gridTile.gridObject.TryGetComponent<GridObject>(out GridObject gridObject))
-        { DeleteGridObject(gridObject); }
-    }
-
-    private void DeleteGridObject(GridObject gridObject)
-    {
-        foreach(GridTile gridTile in gridObject.gridTileArray)
-        { gridTile.SetGridObject(null); }
-        gridObject.uiGridObject.UpdateCurrentAmount(+1); // FAZER UM TRATAMENTO DE ERRO AQUI
-        Destroy(gridObject.gameObject);
+        GridPosition gridPosition = GetGridGroundPosition(MouseSystem.Instance.GetWorldPosition()); // Gets the grid position of the mouse position projected on the mouse plane in the world
+        GridTile gridTile = TryGetGridTile(gridPosition); // Tries to get the grid tile
+        if (gridTile == null) { return; } // If grid tile does not exist, return
+        if (gridTile.gridObject == null) { return; } // If the grid tile is empty, return
+        if (gridTile.gridObject.TryGetComponent<GridObjectDelivery>(out GridObjectDelivery gridObjectDelivery)) // Tries to get the grid object
+        { gridObjectDelivery.DeleteGridObjectDelivery(); } // Deletes the grid object
+        else if (gridTile.gridObject.TryGetComponent<GridObjectFacility>(out GridObjectFacility gridObjectFacility))
+        { gridObjectFacility.DeleteGridObjectFacility(); }
     }
 
     /// <summary>

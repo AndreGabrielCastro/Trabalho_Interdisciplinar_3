@@ -6,12 +6,13 @@ using TMPro;
 public class UIFloatingText : MonoBehaviour
 {
     private TMP_Text text;
-    private float timeToFade = 2;
+    [HideInInspector] public float fadeTime = 2;
+    private float time = 0;
     private void Awake() { text = this.GetComponent<TMP_Text>(); }
     private void FixedUpdate()
     {
-        if (timeToFade <= 0) { Destroy(this.gameObject); }
-        timeToFade -= Time.fixedDeltaTime;
-        text.color -= new Color(0, 0, 0, 1 * 0.5f * Time.fixedDeltaTime);
+        if (time >= fadeTime) { Destroy(this.gameObject); }
+        time += Time.fixedDeltaTime;
+        text.color -= new Color(0, 0, 0, 1 / fadeTime * Time.fixedDeltaTime);
     }
 }

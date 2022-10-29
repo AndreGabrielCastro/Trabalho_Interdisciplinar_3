@@ -9,6 +9,7 @@ public class UIFader : MonoBehaviour
     private float transparency;
     private Transparency desiredTransparency = Transparency.Idle;
     enum Transparency { Transparent, Opaque, Idle }
+
     private void Awake()
     {
         this.image = this.GetComponent<Image>();
@@ -16,10 +17,12 @@ public class UIFader : MonoBehaviour
         transparency = 1;
         image.color = new Color(image.color.r, image.color.g, image.color.b, transparency);
     }
-    private void Start()
-    {
-        Invoke(nameof(LateStart), 0.5f);
-    }
+    private void Start() { Invoke(nameof(LateStart), 0.5f); }
+
+    /// <summary>
+    /// Is called by Start to be invoked in half second.
+    /// </summary>
+    private void LateStart() { FadeOut(); }
     private void FixedUpdate()
     {
         switch (desiredTransparency)
@@ -44,11 +47,6 @@ public class UIFader : MonoBehaviour
                 break;
         }
     }
-
-    /// <summary>
-    /// Is called by Start to be invoked in half second.
-    /// </summary>
-    private void LateStart() { FadeOut(); }
 
     /// <summary>
     /// Sets the desired transparency to transparent.
