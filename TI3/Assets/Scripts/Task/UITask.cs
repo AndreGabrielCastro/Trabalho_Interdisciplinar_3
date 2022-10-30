@@ -74,7 +74,6 @@ public class UITask : MonoBehaviour
         }
         imageState.color = new Color(1f, 0.4f, 0.5f, 0.8f); // Red
         PlayerData.Instance.taskList.Remove(this.task);
-        UIUserInterface.Instance.PopResult("Successfully refused!", Color.green);
     }
     public void OnClickRequestTaskDescriptionUpdate()
     {

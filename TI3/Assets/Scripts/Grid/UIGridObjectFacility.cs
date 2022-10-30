@@ -285,6 +285,7 @@ public class UIGridObjectFacility : MonoBehaviour, IPointerDownHandler, IPointer
         }
 
         UpdateCurrentAmount(-1);
+        Instantiate(VfxSystem.Instance.vfxInstantiated, newGridObject.transform.position, Quaternion.identity);
 
         #region CommentedOldCodes
         // This body of code deactivate some functions

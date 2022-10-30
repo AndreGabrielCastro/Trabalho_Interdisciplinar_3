@@ -266,6 +266,7 @@ public class UIGridObjectDelivery : MonoBehaviour, IPointerDownHandler, IPointer
         isPlaced = true;
         gridObjectDelivery.isPlaced = true;
         this.gameObject.SetActive(false);
+        Instantiate(VfxSystem.Instance.vfxInstantiated, gridObjectDelivery.transform.position, Quaternion.identity);
 
         #region CommentedOldCodes
         // This body of code deactivate some functions

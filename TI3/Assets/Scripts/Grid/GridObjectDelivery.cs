@@ -20,28 +20,22 @@ public class GridObjectDelivery : GridObject
             uiGridObjectDelivery.SetGridObjectDelivery(this);
             uiGridObjectDelivery.transform.SetParent(UITaskMenuSystem.Instance.uiDeliveriesContainer);
             uiGridObjectDelivery.transform.localScale = Vector3.one;
-            this.isPlaced = false;
         }
         else if (uiGridObjectDelivery != null)
         {
             uiGridObjectDelivery.gameObject.SetActive(true);
             uiGridObjectDelivery.isPlaced = false;
             this.gameObject.SetActive(false);
-            this.isPlaced = false;
         }
+        Instantiate(VfxSystem.Instance.vfxDeleted, this.transform.position, Quaternion.identity);
+        this.isPlaced = false;
     }
     public void DeliverGridObjectDelivery()
     {
         foreach (GridTile gridTile in gridTileArray) // Foreach grid tile it occupies...
         { gridTile.SetGridObject(null); } // Set the grid tile to null
-        if (uiGridObjectDelivery == null)
-        {
-            Destroy(this.gameObject);
-        }
-        else if (uiGridObjectDelivery != null)
-        {
-            Destroy(uiGridObjectDelivery);
-            Destroy(this.gameObject);
-        }
+        if (uiGridObjectDelivery != null) { Destroy(uiGridObjectDelivery); }
+        Instantiate(VfxSystem.Instance.vfxDelivered, this.transform.position, Quaternion.identity);
+        Destroy(this.gameObject);
     }
 }
