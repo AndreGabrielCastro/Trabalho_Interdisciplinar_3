@@ -92,6 +92,11 @@ public class UIUserInterface : MonoBehaviour
         isLerping = true;
         targetPosition.x -= Screen.width; // For some unknown reason the sign must be inverse
     }
+    public void UpdateUserInterfaceResources()
+    {
+        gearcoinText.text = PlayerSystem.Instance.gearcoins.ToString();
+        informationText.text = PlayerSystem.Instance.gearcoins.ToString();
+    }
     public void PopResult(string text, Color color, int fadeTime = 2, Transform transform = null)
     {
         Vector3 position = Vector3.zero;

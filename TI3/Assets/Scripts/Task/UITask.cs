@@ -14,7 +14,9 @@ public class UITask : MonoBehaviour
     public int taskContentAmount;
     public int taskGearcoinAmount;
     public int taskInformationAmount;
-    public string taskDescription;
+    public int taskTime;
+    public string taskContentDescription;
+    public string taskRewardDescription;
     public GridObjectDelivery[] taskGridObjectDeliveryArray;
     public UIGridObjectDelivery[] taskUiGridObjectDeliveryArray;
     public void SetTask(Colony currentColony)
@@ -24,6 +26,8 @@ public class UITask : MonoBehaviour
         taskContentAmount = Random.Range(currentColony.contentMinAmountPerTask, currentColony.contentMaxAmountPerTask + 1); // Determines the amount of content to be created
         taskGearcoinAmount = 20 * taskContentAmount;
         taskInformationAmount = 10 * taskContentAmount;
+        taskTime = 3 * taskContentAmount;
+        taskRewardDescription = $"{taskGearcoinAmount} gearcoins\n{taskInformationAmount} information";
         taskGridObjectDeliveryArray = new GridObjectDelivery[taskContentAmount]; // Sets the content array size
         taskUiGridObjectDeliveryArray = new UIGridObjectDelivery[taskContentAmount]; // Sets the UI content array size
 
@@ -31,7 +35,7 @@ public class UITask : MonoBehaviour
         {
             int random = Random.Range(0, UITaskMenuSystem.Instance.allGridObjectDeliveryPrefabArray.Length); // Choose one over all of the grid object deliveries available
             GridObjectDelivery gridObjectDelivery = Instantiate(UITaskMenuSystem.Instance.allGridObjectDeliveryPrefabArray[random], Vector3.zero, Quaternion.identity); // Gets the grid object
-            taskDescription += $"{gridObjectDelivery.description}\n";
+            taskContentDescription += $"{gridObjectDelivery.description}\n";
             taskGridObjectDeliveryArray[i] = gridObjectDelivery; // Stores the grid object on the array
 
             UIGridObjectDelivery uiGridObjectDelivery = Instantiate(UITaskMenuSystem.Instance.uiDeliveryPrefab, Vector3.zero, Quaternion.identity); // Instantiates the UI of the gridObject
@@ -42,8 +46,9 @@ public class UITask : MonoBehaviour
             taskUiGridObjectDeliveryArray[i] = uiGridObjectDelivery; // Stores the UI grid object
         }
 
-        task = new Task(taskOrigin, taskDestination, taskContentAmount,
-                        taskGearcoinAmount, taskInformationAmount, taskDescription,
+        task = new Task(taskOrigin, taskTime, taskDestination, taskContentAmount,
+                        taskGearcoinAmount, taskInformationAmount,
+                        taskContentDescription, taskRewardDescription,
                         taskGridObjectDeliveryArray, taskUiGridObjectDeliveryArray);
     }
     public void ActivateDeliveries()
@@ -53,7 +58,7 @@ public class UITask : MonoBehaviour
             taskUiGridObjectDeliveryArray[i].gameObject.SetActive(true);
         }
         imageState.color = new Color(0.3f, 1f, 0.6f, 0.8f); // Green
-        PlayerData.Instance.taskList.Add(this.task);
+        PlayerSystem.Instance.taskList.Add(this.task);
     }
     public void TryDeactivateDeliveries()
     {
@@ -73,7 +78,7 @@ public class UITask : MonoBehaviour
             taskUiGridObjectDeliveryArray[i].gameObject.SetActive(false);
         }
         imageState.color = new Color(1f, 0.4f, 0.5f, 0.8f); // Red
-        PlayerData.Instance.taskList.Remove(this.task);
+        PlayerSystem.Instance.taskList.Remove(this.task);
     }
     public void OnClickRequestTaskDescriptionUpdate()
     {

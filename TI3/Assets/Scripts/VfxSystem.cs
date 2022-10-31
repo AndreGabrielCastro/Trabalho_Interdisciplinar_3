@@ -5,6 +5,7 @@ using UnityEngine;
 public class VfxSystem : MonoBehaviour
 {
     public static VfxSystem Instance;
+    public GameObject vfxIsLate;
     public GameObject vfxDelivered;
     public GameObject vfxDeleted;
     public GameObject vfxInstantiated;

@@ -77,7 +77,7 @@ public class UIRouteSystem : MonoBehaviour
         }
         else if (activeRoute != null)
         {
-            foreach(Task task in PlayerData.Instance.taskList)
+            foreach(Task task in PlayerSystem.Instance.taskList)
             {
                 for (int i = 0; i < task.gridObjectDeliveryArray.Length; i++)
                 {
@@ -91,7 +91,7 @@ public class UIRouteSystem : MonoBehaviour
             UIUserInterface.Instance.OnButtonLerpToDown(); // Lerps the screen back to the SpaceShip
             UIUserInterface.Instance.uiFader.FadeIn(); // Activates the fade in
             isLoading = true; // Activates the timer
-            PlayerData.Instance.SetCurrentColony(destinationColonyIndex); // Sets the current colony of the player
+            PlayerSystem.Instance.SetCurrentColony(destinationColonyIndex); // Sets the current colony of the player
         }
     }
 }

@@ -55,10 +55,19 @@ public class UITaskMenuSystem : MonoBehaviour
         this.selectedTask = uiTask;
         this.originText.text = uiTask.taskOrigin;
         this.destinationText.text = uiTask.taskDestination;
-        this.timeText.text = "";
-        this.contentText.text = uiTask.taskDescription;
-        this.rewardText.text = "";
-        this.conditionText.text = "";
+        this.timeText.text = uiTask.taskTime.ToString();
+        this.contentText.text = uiTask.taskContentDescription;
+        this.rewardText.text = uiTask.taskRewardDescription;
+        this.conditionText.text = "No condition";
+    }
+    public void ResetTaskDescription()
+    {
+        this.originText.text = "Undefined";
+        this.destinationText.text = "Undefined";
+        this.timeText.text = "Undefined";
+        this.contentText.text = "Undefined";
+        this.rewardText.text = "Undefined";
+        this.conditionText.text = "Undefined";
     }
 
     /// <summary>
@@ -93,6 +102,21 @@ public class UITaskMenuSystem : MonoBehaviour
         floatingText.text = text;
     }
 
+    public void ReGenerateTasks()
+    {
+        // This "for" goes through all UI Task generated
+        for (int i = 0; i < uiTaskArray.Length; i++)
+        {
+            // This "for" goes through all UI Grid Object generated
+            for (int j = 0; j < uiTaskArray[i].taskUiGridObjectDeliveryArray.Length; j++)
+            {
+                Destroy(uiTaskArray[i].taskUiGridObjectDeliveryArray[j].gameObject); // Destroy de UI Grid Object Delivery
+                Destroy(uiTaskArray[i].taskGridObjectDeliveryArray[j].gameObject); // Destroy the Grid Object Delivery
+            }
+            Destroy(uiTaskArray[i].gameObject); // Destroy the UI Task
+        }
+        GenerateTasks();
+    }
     public void GenerateTasks()
     {
         Colony currentColony = ColonySystem.Instance.allColoniesArray[ColonySystem.Instance.currentColonyIndex]; // Gets the current colony from the All Colonies Array

@@ -7,24 +7,31 @@ using UnityEngine;
 public class Task
 {
     public string origin;
+    public int time;
     public string destination;
     public int contentAmount;
     public int gearcoinAmount;
     public int informationAmount;
-    public string description;
+    public string contentDescription;
+    public string rewardDescription;
+    public bool isLate = false;
     public GridObjectDelivery[] gridObjectDeliveryArray;
     public UIGridObjectDelivery[] uiGridObjectDeliveryArray;
 
-    public Task(string origin, string destination, int contentAmount,
-                int gearcoinAmount, int informationAmount, string description,
+    public Task(string origin, int time, string destination, int contentAmount,
+                int gearcoinAmount, int informationAmount,
+                string contentDescription, string rewardDescription,
                 GridObjectDelivery[] gridObjectDeliveryArray, UIGridObjectDelivery[] uiGridObjectDeliveryArray)
     {
         this.origin = origin;
+        this.time = time;
         this.destination = destination;
         this.contentAmount = contentAmount;
         this.gearcoinAmount = gearcoinAmount;
         this.informationAmount = informationAmount;
-        this.description = description;
+        this.contentDescription = contentDescription;
+        this.rewardDescription = rewardDescription;
+
         int amount = gridObjectDeliveryArray.Length;
         this.gridObjectDeliveryArray = new GridObjectDelivery[amount];
         this.uiGridObjectDeliveryArray = new UIGridObjectDelivery[amount];
