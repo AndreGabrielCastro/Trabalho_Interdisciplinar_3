@@ -107,17 +107,20 @@ public class UITaskMenuSystem : MonoBehaviour
         // This "for" goes through all UI Task generated
         for (int i = 0; i < uiTaskArray.Length; i++)
         {
-            // This "for" goes through all UI Grid Object generated
-            for (int j = 0; j < uiTaskArray[i].taskUiGridObjectDeliveryArray.Length; j++)
+            if (uiTaskArray[i].isAccepted == false) // If the task was NOT accepted
             {
-                Destroy(uiTaskArray[i].taskUiGridObjectDeliveryArray[j].gameObject); // Destroy de UI Grid Object Delivery
-                Destroy(uiTaskArray[i].taskGridObjectDeliveryArray[j].gameObject); // Destroy the Grid Object Delivery
+                // This "for" goes through all UI Grid Object generated
+                for (int j = 0; j < uiTaskArray[i].taskUiGridObjectDeliveryArray.Length; j++)
+                {
+                    Destroy(uiTaskArray[i].taskUiGridObjectDeliveryArray[j].gameObject); // Destroy de UI Grid Object Delivery
+                    Destroy(uiTaskArray[i].taskGridObjectDeliveryArray[j].gameObject); // Destroy the Grid Object Delivery
+                }
             }
             Destroy(uiTaskArray[i].gameObject); // Destroy the UI Task
         }
-        GenerateTasks();
+        GenerateUITasks();
     }
-    public void GenerateTasks()
+    public void GenerateUITasks()
     {
         Colony currentColony = ColonySystem.Instance.allColoniesArray[ColonySystem.Instance.currentColonyIndex]; // Gets the current colony from the All Colonies Array
         int taskAmount = Random.Range(currentColony.taskMinAmount, currentColony.taskMaxAmount + 1); // Determines the new size of the UI task array
@@ -128,7 +131,7 @@ public class UITaskMenuSystem : MonoBehaviour
             UITask uiTask = Instantiate(uiTaskPrefab, Vector3.zero, Quaternion.identity); // Creates the UI task
             uiTask.transform.SetParent(uiTasksContainer); // Sets it as child of the UI task container
             uiTask.transform.localScale = Vector3.one; // Sets it's scale to 1
-            uiTask.SetTask(currentColony); // Sets the atributes to the UI task
+            uiTask.GenerateTask(currentColony); // Sets the atributes to the UI task
             uiTaskArray[i] = uiTask; // Stores it in the array
         }
     }

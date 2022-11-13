@@ -25,7 +25,7 @@ public class UIUserInterface : MonoBehaviour
     [SerializeField] private GameObject userInterfaceRight;
 
     private Vector3 targetPosition = Vector3.zero;
-    bool isLerping;
+    private bool isLerping;
     private void Awake()
     {
         #region ErrorTreatment
@@ -92,11 +92,23 @@ public class UIUserInterface : MonoBehaviour
         isLerping = true;
         targetPosition.x -= Screen.width; // For some unknown reason the sign must be inverse
     }
+
+    /// <summary>
+    /// Updates the User Interface resources.
+    /// </summary>
     public void UpdateUserInterfaceResources()
     {
         gearcoinText.text = PlayerSystem.Instance.gearcoins.ToString();
         informationText.text = PlayerSystem.Instance.gearcoins.ToString();
     }
+
+    /// <summary>
+    /// Instantiates a floating text in the mouse position with the input string text and color.
+    /// </summary>
+    /// <param name="text"></param>
+    /// <param name="color"></param>
+    /// <param name="fadeTime"></param>
+    /// <param name="transform"></param>
     public void PopResult(string text, Color color, int fadeTime = 2, Transform transform = null)
     {
         Vector3 position = Vector3.zero;

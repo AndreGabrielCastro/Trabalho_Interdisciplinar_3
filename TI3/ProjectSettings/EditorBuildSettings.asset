@@ -8,4 +8,7 @@ EditorBuildSettings:
   - enabled: 1
     path: Assets/Scenes/ColonyScene.unity
     guid: d1c3109bdb54ad54c8a2b2838528e640
+  - enabled: 1
+    path: Assets/Scenes/EventScene.unity
+    guid: f7c01a704fc377941b42895ecb81b262
   m_configObjects: {}

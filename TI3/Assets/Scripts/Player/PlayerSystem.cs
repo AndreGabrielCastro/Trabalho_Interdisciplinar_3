@@ -7,6 +7,7 @@ public class PlayerSystem : MonoBehaviour
     public static PlayerSystem Instance;
     public int currentColonyIndex;
     public string currentColonyName;
+    public bool isTravelling;
 
     public int gearcoins;
     public int workingEngineer;
@@ -37,6 +38,17 @@ public class PlayerSystem : MonoBehaviour
                 { Instantiate(VfxSystem.Instance.vfxIsLate, task.gridObjectDeliveryArray[i].transform.position, Quaternion.identity); } // Instantiate isLate effect
             }
         }
+    }
+    public bool AreTaskDeliveriesPlaced()
+    {
+        foreach (Task task in taskList)
+        {
+            for (int i = 0; i < task.gridObjectDeliveryArray.Length; i++)
+            {
+                if (task.gridObjectDeliveryArray[i].isPlaced == false) { return false; }
+            }
+        }
+        return true;
     }
     private void Awake()
     {

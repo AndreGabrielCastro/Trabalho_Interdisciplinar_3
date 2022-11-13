@@ -47,6 +47,6 @@ public class ColonySystem : MonoBehaviour
 
         allUIColoniesArray[colonyIndex].image.color = new Color(0.3f, 1f, 1f, 1f); // Sets the color of the route to cyan
 
-        UITaskMenuSystem.Instance.GenerateTasks(); // Generate tasks based on the current colony
+        UITaskMenuSystem.Instance.GenerateUITasks(); // Generate tasks based on the current colony
     }
 }

@@ -1,7 +1,6 @@
 ﻿using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
-using TMPro;
 
 public class UIRouteSystem : MonoBehaviour
 {
@@ -42,7 +41,7 @@ public class UIRouteSystem : MonoBehaviour
     {
         if (isLoading == false) { return; }
         timer -= Time.fixedDeltaTime;
-        if (timer <= 0) { UnityEngine.SceneManagement.SceneManager.LoadScene("ColonyScene"); }
+        if (timer <= 0) { UnityEngine.SceneManagement.SceneManager.LoadScene("EventScene"); }
     }
     public void UpdateSelectedRoute(UIRoute uiRoute)
     {
@@ -92,6 +91,7 @@ public class UIRouteSystem : MonoBehaviour
             UIUserInterface.Instance.uiFader.FadeIn(); // Activates the fade in
             isLoading = true; // Activates the timer
             PlayerSystem.Instance.SetCurrentColony(destinationColonyIndex); // Sets the current colony of the player
+            PlayerSystem.Instance.isTravelling = true;
         }
     }
 }

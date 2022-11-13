@@ -5,6 +5,7 @@ using UnityEngine.UI;
 
 public class GridObjectDelivery : GridObject
 {
+    [Header("Setted during playtime")]
     public UIGridObjectDelivery uiGridObjectDelivery;
     public bool isPlaced;
 
@@ -14,7 +15,7 @@ public class GridObjectDelivery : GridObject
     public void DeleteGridObjectDelivery()
     {
         foreach (GridTile gridTile in gridTileArray) // Foreach grid tile it occupies...
-        { gridTile.SetGridObject(null); } // Set the grid tile to null
+        { gridTile.SetGridObject(null); } // Sets the grid tile to null
         if (uiGridObjectDelivery == null)
         {
             UIGridObjectDelivery uiGridObjectDelivery = Instantiate(UITaskMenuSystem.Instance.uiDeliveryPrefab, Vector3.zero, Quaternion.identity); // Instantiates the UI of the gridObject

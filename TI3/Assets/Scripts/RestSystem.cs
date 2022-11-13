@@ -24,7 +24,12 @@ public class RestSystem : MonoBehaviour
     }
     public void OnButtonRest()
     {
-        if (isFadingIn == true) { UIUserInterface.Instance.PopResult("Can't do this now!", Color.red); return; }
+        if (isFadingIn == true)
+        { UIUserInterface.Instance.PopResult("Can't do this now!", Color.red); return; }
+
+        if (PlayerSystem.Instance.AreTaskDeliveriesPlaced() == false)
+        { UIUserInterface.Instance.PopResult("Place all task's deliveries first", Color.red); return; }
+
         UIUserInterface.Instance.uiFader.FadeIn(); // Activates the fade in
         isFadingIn = true;
     }

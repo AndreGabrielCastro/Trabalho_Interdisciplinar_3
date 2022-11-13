@@ -62,6 +62,7 @@ public class GridSystem : MonoBehaviour
     }
     private void Update()
     {
+        if (PlayerSystem.Instance.isTravelling == true) { return; }
         if (Input.GetMouseButtonUp(1) == true) { GetGridObject();}
     }
 
