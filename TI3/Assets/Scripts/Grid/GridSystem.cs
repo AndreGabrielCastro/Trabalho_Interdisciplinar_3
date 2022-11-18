@@ -124,6 +124,18 @@ public class GridSystem : MonoBehaviour
     }
 
     /// <summary>
+    /// Returns the grid position from the world position relative to the grid local position.
+    /// </summary>
+    /// <param name="worldPosition"></param>
+    /// <returns></returns>
+    public GridPosition GetGridGroundPositionRelative(Vector3 worldPosition)
+    {
+        Vector3 relativePosition = this.transform.InverseTransformPoint(worldPosition);
+        return new GridPosition(Mathf.RoundToInt((relativePosition.x) / cellsize), Mathf.RoundToInt((relativePosition.z) / cellsize));
+        // OBSERVAÇÃO: (int) nesse caso não daria certo, pois se o valor fosse 0.99, ele seria reduzido a 0. Dessa forma, o valor é arredondado para o inteiro mais próximo
+    }
+
+    /// <summary>
     /// Returns the grid float position from the world position considering grid system position
     /// </summary>
     /// <param name="worldPosition"></param>

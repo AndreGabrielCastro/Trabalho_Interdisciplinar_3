@@ -48,8 +48,11 @@ MonoBehaviour:
   gridObjectPrice: 0
   width: 1
   lenght: 2
+  maximumIntegrityPoints: 15
+  currentIntegrityPoints: 15
   gridTileArray: []
   uiGridObjectFacility: {fileID: 0}
+  uiGridObjectFacilityIndexPosition: 1
 --- !u!1 &5487973128718701728
 GameObject:
   m_ObjectHideFlags: 0

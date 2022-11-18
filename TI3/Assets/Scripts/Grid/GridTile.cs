@@ -6,10 +6,7 @@ public class GridTile : MonoBehaviour
 {
     [HideInInspector] public GridObject gridObject;
     [HideInInspector] public GridVisual gridVisual;
-    private void Awake()
-    {
-        gridVisual = this.GetComponentInChildren<GridVisual>();
-    }
+    private void Awake() { gridVisual = this.GetComponentInChildren<GridVisual>(); }
     void Start()
     {
         #region ErrorTreatment
@@ -36,7 +33,23 @@ public class GridTile : MonoBehaviour
     public void SetGridObject(GridObject newGridObject)
     {
         this.gridObject = newGridObject;
-        if (this.gridObject == null) { gridVisual.SetColorToGreen(); }
-        else if (this.gridObject != null) { gridVisual.SetColorToRed(); }
+        if (this.gridObject == null) { gridVisual.SetColorToWhite(); }
+        else if (this.gridObject != null) { gridVisual.SetColorToGreen(); }
     }
+
+    /// <summary>
+    /// Cause damage to the Grid Object of this Grid Tile and updates the Grid Visual
+    /// </summary>
+    public void TakeDamage(int damage)
+    {
+        if (gridObject == null) { return; }
+        gridObject.TakeDamage(damage);
+        float value = 0.5f * ((float)gridObject.currentIntegrityPoints / (float)gridObject.maximumIntegrityPoints);
+        Debug.Log(value);
+        Color currentIntegrityColor = new Color(1f - value, 0.5f + value, 0.5f);
+        Debug.Log(currentIntegrityColor);
+        gridVisual.SetColorTo(currentIntegrityColor);
+    }
+    //Color(1f, 0.5f, 0.5f) red
+    //Color(0.5f, 1f, 0.5f) green
 }

@@ -14,8 +14,8 @@ TagManager:
   - 
   - 
   - Mouse
-  - 
-  - 
+  - UnactiveEventObject
+  - ActiveEventObject
   - 
   - 
   - 

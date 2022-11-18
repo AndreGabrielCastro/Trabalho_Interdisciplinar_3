@@ -8,7 +8,7 @@ public class EventHandler : MonoBehaviour
     [Header("Must be setted")]
     public UIFader uiFader;
     public TMP_Text timerText;
-    private float timer = 5;
+    private float timer = 309;
     private bool isOver;
     void FixedUpdate()
     {
@@ -27,6 +27,7 @@ public class EventHandler : MonoBehaviour
         else if (timer <= 0 && isOver == true)
         {
             PlayerSystem.Instance.isTravelling = false;
+            Player.Instance.ResetPosition();
             UnityEngine.SceneManagement.SceneManager.LoadScene("ColonyScene");
         }
     }

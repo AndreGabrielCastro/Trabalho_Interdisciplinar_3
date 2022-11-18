@@ -141,5 +141,8 @@ MonoBehaviour:
   gridObjectPrice: 0
   width: 3
   lenght: 2
+  maximumIntegrityPoints: 35
+  currentIntegrityPoints: 35
   gridTileArray: []
   uiGridObjectFacility: {fileID: 0}
+  uiGridObjectFacilityIndexPosition: 5

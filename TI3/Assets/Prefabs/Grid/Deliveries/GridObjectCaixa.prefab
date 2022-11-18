@@ -79,6 +79,8 @@ MonoBehaviour:
   gridObjectPrice: 0
   width: 2
   lenght: 1
+  maximumIntegrityPoints: 10
+  currentIntegrityPoints: 10
   gridTileArray: []
   uiGridObjectDelivery: {fileID: 0}
   isPlaced: 0
