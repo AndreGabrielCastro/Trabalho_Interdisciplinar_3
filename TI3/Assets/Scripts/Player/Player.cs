@@ -6,15 +6,24 @@ public class Player : MonoBehaviour
 {
     public static Player Instance;
     [Header("Must be setted")]
+    public Transform playerCameraEventFollowTransform;
+    public Transform playerCameraEventLookAtTransform;
     public LayerMask unactiveEventObjectLayerMask;
     public LayerMask activeEventObjectLayerMask;
+    public int activeEventObjectLayerMaskValue; // For complete explanation, go to Event Object
 
     [Header("Setted during playtime")]
     public PlayerIntegrity playerIntegrity;
     public PlayerMovement playerMovement;
+    public PlayerCameraEventLookAt playerCameraEventLookAt;
     public bool isEventRunning;
     public void ResetPosition() { this.transform.position = Vector3.zero; this.transform.rotation = Quaternion.identity; }
-    public void IsEventRunning(bool result) { isEventRunning = result; playerMovement.isEventRunning = result; }
+    public void IsEventRunning(bool result)
+    { 
+        isEventRunning = result;
+        playerMovement.isEventRunning = result;
+        playerCameraEventLookAt.isEventRunning = result;
+    }
     private void Awake()
     {
         DontDestroyOnLoad(this);
@@ -33,6 +42,7 @@ public class Player : MonoBehaviour
 
         playerIntegrity = this.GetComponent<PlayerIntegrity>();
         playerMovement = this.GetComponent<PlayerMovement>();
+        playerCameraEventLookAt = this.GetComponentInChildren<PlayerCameraEventLookAt>();
     }
     private void OnDrawGizmos()
     {

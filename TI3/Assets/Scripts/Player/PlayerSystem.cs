@@ -15,6 +15,7 @@ public class PlayerSystem : MonoBehaviour
     public int information;
 
     public List<Task> taskList;
+    public List<GridObject> gridObjectList;
 
     /// <summary>
     /// Sets the current colony based on the index received
@@ -49,6 +50,12 @@ public class PlayerSystem : MonoBehaviour
             }
         }
         return true;
+    }
+    public void HealEverything(int healShip, int healBuildings)
+    {
+        Player.Instance.playerIntegrity.HealDamage(healShip);
+        foreach (GridObject gridObject in gridObjectList)
+        { gridObject.HealDamage(healBuildings); }
     }
     private void Awake()
     {

@@ -31,6 +31,7 @@ public class GridObjectDelivery : GridObject
         }
         Instantiate(VfxSystem.Instance.vfxDeleted, this.transform.position, Quaternion.identity);
         this.isPlaced = false;
+        PlayerSystem.Instance.gridObjectList.Remove(this);
     }
     public void DeliverGridObjectDelivery()
     {
@@ -39,5 +40,6 @@ public class GridObjectDelivery : GridObject
         if (uiGridObjectDelivery != null) { Destroy(uiGridObjectDelivery); }
         Instantiate(VfxSystem.Instance.vfxDelivered, this.transform.position, Quaternion.identity);
         Destroy(this.gameObject);
+        PlayerSystem.Instance.gridObjectList.Remove(this);
     }
 }

@@ -18,6 +18,7 @@ public class RestSystem : MonoBehaviour
                 UITaskMenuSystem.Instance.ReGenerateTasks();
                 UITaskMenuSystem.Instance.ResetTaskDescription();
                 PlayerSystem.Instance.DecrementTasksTime();
+                PlayerSystem.Instance.HealEverything(20, 10);
                 time = 1.5f; isFadingIn = false;
             }
         }

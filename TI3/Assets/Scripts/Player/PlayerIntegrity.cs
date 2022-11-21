@@ -5,9 +5,11 @@ using UnityEngine.UI;
 
 public class PlayerIntegrity : MonoBehaviour
 {
-    public Image integrityBar;
     public int maximumIntegrity = 100;
     public int currentIntegrity = 100;
+
+    [Header("Setted during playtime")]
+    public Image integrityBar;
     public void HealDamage(int heal)
     {
         if (currentIntegrity >= maximumIntegrity) { return; }

@@ -33,5 +33,23 @@ public class GridObject : MonoBehaviour
     {
         if (currentIntegrityPoints <= 0) { return; }
         currentIntegrityPoints -= damage;
+
+        float value = 0.5f * ((float)currentIntegrityPoints / (float)maximumIntegrityPoints);
+        Color currentIntegrityColor = new Color(1f - value, 0.5f + value, 0.5f);
+
+        for (int i = 0; i < gridTileArray.Length; i++)
+        { gridTileArray[i].gridVisual.SetColorTo(currentIntegrityColor); }
+    }
+
+    public void HealDamage(int heal)
+    {
+        if (currentIntegrityPoints >= maximumIntegrityPoints) { return; }
+        currentIntegrityPoints += heal;
+
+        float value = 0.5f * ((float)currentIntegrityPoints / (float)maximumIntegrityPoints);
+        Color currentIntegrityColor = new Color(1f - value, 0.5f + value, 0.5f);
+
+        for (int i = 0; i < gridTileArray.Length; i++)
+        { gridTileArray[i].gridVisual.SetColorTo(currentIntegrityColor); }
     }
 }

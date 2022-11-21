@@ -46,8 +46,8 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   asteroidPrefab: {fileID: 8968569302500940392, guid: df4691d1ae5d2a844bd61bf8d47c5591,
     type: 3}
-  asteroidAmount: 20
-  spawnTime: 3
+  asteroidAmount: 50
+  spawnTime: 1
 --- !u!1 &8467866306930197621
 GameObject:
   m_ObjectHideFlags: 0

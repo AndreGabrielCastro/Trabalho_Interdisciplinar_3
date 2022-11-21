@@ -18,13 +18,12 @@ public class GridTile : MonoBehaviour
         #endregion
 
         GridSystem.Instance.SetGridTile(this);
-        GridPosition gridPosition = GridSystem.Instance.GetGridGroundPosition(this.transform.position);
-        GridTile gridTile = GridSystem.Instance.TryGetGridTile(gridPosition);
 
-        if (this == gridTile)
-        {
-            Debug.Log("It's working");
-        }
+        #region Log
+        //GridPosition gridPosition = GridSystem.Instance.GetGridGroundPosition(this.transform.position);
+        //GridTile gridTile = GridSystem.Instance.TryGetGridTile(gridPosition);
+        //if (this == gridTile) { Debug.Log("It's working"); }
+        #endregion
     }
 
     /// <summary>
@@ -44,11 +43,7 @@ public class GridTile : MonoBehaviour
     {
         if (gridObject == null) { return; }
         gridObject.TakeDamage(damage);
-        float value = 0.5f * ((float)gridObject.currentIntegrityPoints / (float)gridObject.maximumIntegrityPoints);
-        Debug.Log(value);
-        Color currentIntegrityColor = new Color(1f - value, 0.5f + value, 0.5f);
-        Debug.Log(currentIntegrityColor);
-        gridVisual.SetColorTo(currentIntegrityColor);
+        
     }
     //Color(1f, 0.5f, 0.5f) red
     //Color(0.5f, 1f, 0.5f) green

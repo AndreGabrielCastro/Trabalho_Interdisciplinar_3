@@ -287,6 +287,7 @@ public class UIGridObjectFacility : MonoBehaviour, IPointerDownHandler, IPointer
 
         UpdateCurrentAmount(-1);
         Instantiate(VfxSystem.Instance.vfxInstantiated, newGridObject.transform.position, Quaternion.identity);
+        PlayerSystem.Instance.gridObjectList.Add(newGridObject);
 
         #region CommentedOldCodes
         // This body of code deactivate some functions

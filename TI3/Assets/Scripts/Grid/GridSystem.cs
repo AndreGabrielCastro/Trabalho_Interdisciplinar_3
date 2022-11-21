@@ -218,9 +218,7 @@ public class GridSystem : MonoBehaviour
         #region ErrorTreatment
         if (gridPosition.x + offsetX < 0 || gridPosition.x + offsetX > width - 1|| // -1 to avoid going out of the bonds of the array
             gridPosition.z + offsetZ < 0 || gridPosition.z + offsetZ > lenght - 1) // -1 to avoid going out of the bonds of the array
-        {
-            Debug.LogWarning("This grid position is out of the allowed grid range."); return null;
-        }
+        { Debug.LogWarning("This grid position is out of the allowed grid range."); return null; }
         #endregion
 
         return gridTileArray[gridPosition.x + offsetX, gridPosition.z + offsetZ];

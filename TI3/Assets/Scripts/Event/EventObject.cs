@@ -9,6 +9,10 @@ public class EventObject : MonoBehaviour
     {
         if (isActive == true) { return; }
         isActive = true;
-        this.transform.gameObject.layer = Player.Instance.activeEventObjectLayerMask;
+        this.gameObject.layer = Player.Instance.activeEventObjectLayerMaskValue;
+
+        // layerMask.value returns a value bigger than 32.
+        // LayerMask.NameToLayer(layerMask.ToString()) returns -1
+        // I don't know why Unity does not have support for this kind of thing...
     }
 }

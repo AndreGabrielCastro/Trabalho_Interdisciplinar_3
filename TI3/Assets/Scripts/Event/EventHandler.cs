@@ -8,7 +8,7 @@ public class EventHandler : MonoBehaviour
     [Header("Must be setted")]
     public UIFader uiFader;
     public TMP_Text timerText;
-    private float timer = 309;
+    private float timer = 90;
     private bool isOver;
     void FixedUpdate()
     {

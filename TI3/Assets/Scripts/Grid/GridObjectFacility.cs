@@ -20,5 +20,6 @@ public class GridObjectFacility : GridObject
         uiGridObjectFacility.UpdateCurrentAmount(+1); // Increases +1 to the UI grid object amount
         Instantiate(VfxSystem.Instance.vfxDeleted, this.transform.position, Quaternion.identity);
         Destroy(this.gameObject); // Destroy the object
+        PlayerSystem.Instance.gridObjectList.Remove(this);
     }
 }

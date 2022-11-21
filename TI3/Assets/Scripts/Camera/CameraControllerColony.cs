@@ -3,7 +3,7 @@ using System.Collections.Generic;
 using UnityEngine;
 using Cinemachine;
 
-public class CameraController : MonoBehaviour
+public class CameraControllerColony : MonoBehaviour
 {
     private Vector3 targetTransformPosition;
     private Vector3 targetOffset;
