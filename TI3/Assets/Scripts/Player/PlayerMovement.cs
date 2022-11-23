@@ -6,8 +6,10 @@ public class PlayerMovement : MonoBehaviour
 {
     public bool isEventRunning;
     public float speed = 1;
+    [HideInInspector] public bool isGameOver;
     void Update()
     {
+        if (isGameOver == true) { return; }
         if (isEventRunning == false) { return; }
 
         float horizontal = Input.GetAxis("Horizontal");

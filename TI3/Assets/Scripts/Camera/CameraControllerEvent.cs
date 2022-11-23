@@ -8,8 +8,5 @@ public class CameraControllerEvent : MonoBehaviour
     [Header("Must be setted")]
     [SerializeField] private CinemachineVirtualCamera cinemachineVirtualCamera;
     private void Start()
-    {
-        cinemachineVirtualCamera.Follow = Player.Instance.playerCameraEventFollowTransform;
-        cinemachineVirtualCamera.LookAt = Player.Instance.playerCameraEventLookAtTransform;
-    }
+    { cinemachineVirtualCamera.Follow = Player.Instance.playerCameraEventTargetGroupTransform; }
 }

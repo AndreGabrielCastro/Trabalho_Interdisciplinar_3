@@ -6,8 +6,7 @@ public class Player : MonoBehaviour
 {
     public static Player Instance;
     [Header("Must be setted")]
-    public Transform playerCameraEventFollowTransform;
-    public Transform playerCameraEventLookAtTransform;
+    public Transform playerCameraEventTargetGroupTransform;
     public LayerMask unactiveEventObjectLayerMask;
     public LayerMask activeEventObjectLayerMask;
     public int activeEventObjectLayerMaskValue; // For complete explanation, go to Event Object
@@ -17,6 +16,7 @@ public class Player : MonoBehaviour
     public PlayerMovement playerMovement;
     public PlayerCameraEventLookAt playerCameraEventLookAt;
     public bool isEventRunning;
+    [HideInInspector] public bool isGameOver;
     public void ResetPosition() { this.transform.position = Vector3.zero; this.transform.rotation = Quaternion.identity; }
     public void IsEventRunning(bool result)
     { 
@@ -44,12 +44,9 @@ public class Player : MonoBehaviour
         playerMovement = this.GetComponent<PlayerMovement>();
         playerCameraEventLookAt = this.GetComponentInChildren<PlayerCameraEventLookAt>();
     }
-    private void OnDrawGizmos()
-    {
-
-    }
     private void FixedUpdate()
     {
+        if (isGameOver == true) { return; }
         if (isEventRunning == false) { return; }
         Vector3 halfExtentsVector = new Vector3(GridSystem.Instance.width * 0.5f, 0.5f, GridSystem.Instance.lenght * 0.5f);
         Collider[] eventObjectCollidersArray = Physics.OverlapBox(this.transform.position, halfExtentsVector, this.transform.rotation, unactiveEventObjectLayerMask.value);

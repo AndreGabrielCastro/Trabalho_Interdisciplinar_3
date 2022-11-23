@@ -21,9 +21,15 @@ public class PlayerIntegrity : MonoBehaviour
         if (currentIntegrity <= 0) { return; }
         currentIntegrity -= damage;
         UpdateIntegrityBar();
+        if (currentIntegrity <= 0) { Die(); }
     }
     public void UpdateIntegrityBar()
     {
         integrityBar.fillAmount = (float)currentIntegrity / (float)maximumIntegrity;
+    }
+    public void Die()
+    {
+        Player.Instance.playerMovement.isGameOver = true;
+        UIGameOver.Instance.SetGameOver();
     }
 }

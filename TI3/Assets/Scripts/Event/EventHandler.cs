@@ -26,6 +26,7 @@ public class EventHandler : MonoBehaviour
         }
         else if (timer <= 0 && isOver == true)
         {
+            if (UIGameOver.Instance.isGameOver == true) { return; }
             PlayerSystem.Instance.isTravelling = false;
             Player.Instance.ResetPosition();
             UnityEngine.SceneManagement.SceneManager.LoadScene("ColonyScene");

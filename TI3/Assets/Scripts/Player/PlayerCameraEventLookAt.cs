@@ -11,6 +11,6 @@ public class PlayerCameraEventLookAt : MonoBehaviour
         if (isEventRunning == false) { return; }
         Vector3 pivotPosition = Player.Instance.transform.position;
         Vector3 mousePosition = MouseSystem.Instance.GetWorldPosition();
-        this.transform.position = pivotPosition + Vector3.ClampMagnitude(mousePosition, 10);
+        this.transform.position = Vector3.ClampMagnitude(mousePosition, 10 + pivotPosition.magnitude);
     }
 }
