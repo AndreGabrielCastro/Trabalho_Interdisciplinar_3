@@ -17,7 +17,7 @@ public class UIUserInterface : MonoBehaviour
     //public TMP_Text standbyResearcherAmount;
     public Transform gearcoinPopUpTransform;
     public Transform informationPopUpTransform;
-    public UIFader uiFader;
+    public UIImageFader uiFader;
 
     [SerializeField] private GameObject userInterfaceUp;
     [SerializeField] private GameObject userInterfaceDown;

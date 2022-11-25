@@ -4,8 +4,10 @@ using UnityEngine;
 
 public class PlayerMovement : MonoBehaviour
 {
-    public bool isEventRunning;
+    [Header("Must be setted")]
     public float speed = 1;
+    [Header("Setted during playtime")]
+    public bool isEventRunning;
     [HideInInspector] public bool isGameOver;
     void Update()
     {

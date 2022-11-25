@@ -30,6 +30,7 @@ public class EventObjectAsteroid : EventObject
         if (gridTile == null) { return; }
         gridTile.TakeDamage(damage);
         Player.Instance.playerIntegrity.TakeDamage(damage);
+        Instantiate(VfxSystem.Instance.vfxEventObjectDestroyed, this.transform.position, Quaternion.identity);
         Destroy(this.gameObject);
     }
 }

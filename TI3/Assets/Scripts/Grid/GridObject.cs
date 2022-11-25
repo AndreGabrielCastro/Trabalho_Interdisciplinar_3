@@ -31,7 +31,14 @@ public class GridObject : MonoBehaviour
     /// <returns></returns>
     public void TakeDamage(int damage)
     {
-        if (currentIntegrityPoints <= 0) { return; }
+        if (currentIntegrityPoints <= 0)
+        { 
+            if (this.gameObject.TryGetComponent<GridObjectDelivery>(out GridObjectDelivery gridObjectDelivery) == true)
+            { gridObjectDelivery.DestroyGridObjectDelivery(); }
+            else if (this.gameObject.TryGetComponent<GridObjectFacility>(out GridObjectFacility gridObjectFacility) == true)
+            { gridObjectFacility.DestroyGridObjectFacility(); }
+            return;
+        }
         currentIntegrityPoints -= damage;
 
         float value = 0.5f * ((float)currentIntegrityPoints / (float)maximumIntegrityPoints);

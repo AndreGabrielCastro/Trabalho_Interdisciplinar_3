@@ -6,7 +6,7 @@ public class UIRouteSystem : MonoBehaviour
 {
     public static UIRouteSystem Instance;
 
-    public UIFader uiFader;
+    public UIImageFader uiFader;
 
     [Header("Setted during playtime")]
     public UIRoute activeRoute;

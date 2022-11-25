@@ -17,6 +17,9 @@ public class Player : MonoBehaviour
     public PlayerCameraEventLookAt playerCameraEventLookAt;
     public bool isEventRunning;
     [HideInInspector] public bool isGameOver;
+
+    [Header("Por enquanto")]
+    public GameObject initialScreen;
     public void ResetPosition() { this.transform.position = Vector3.zero; this.transform.rotation = Quaternion.identity; }
     public void IsEventRunning(bool result)
     { 
@@ -44,6 +47,7 @@ public class Player : MonoBehaviour
         playerMovement = this.GetComponent<PlayerMovement>();
         playerCameraEventLookAt = this.GetComponentInChildren<PlayerCameraEventLookAt>();
     }
+    private void Start() { initialScreen.SetActive(true); }
     private void FixedUpdate()
     {
         if (isGameOver == true) { return; }

@@ -1,23 +1,24 @@
 ﻿using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
-using UnityEngine.UI;
+using TMPro;
 
-public class UIFader : MonoBehaviour
+public class UITextFader : MonoBehaviour
 {
-    [HideInInspector] public Image image;
+    [SerializeField] private bool onStartFade = true;
+    [HideInInspector] public TMP_Text text;
     private float transparency;
     private Transparency desiredTransparency = Transparency.Idle;
     enum Transparency { Transparent, Opaque, Idle }
 
     private void Awake()
     {
-        this.image = this.GetComponent<Image>();
+        this.text = this.GetComponent<TMP_Text>();
 
         transparency = 1;
-        image.color = new Color(image.color.r, image.color.g, image.color.b, transparency);
+        text.color = new Color(text.color.r, text.color.g, text.color.b, transparency);
     }
-    private void Start() { Invoke(nameof(LateStart), 0.5f); }
+    private void Start() { if (onStartFade == true) { Invoke(nameof(LateStart), 0.5f); } }
 
     /// <summary>
     /// Is called by Start to be invoked in half second.
@@ -30,7 +31,7 @@ public class UIFader : MonoBehaviour
             case Transparency.Transparent:
 
                 transparency -= Time.fixedDeltaTime;
-                image.color = new Color(image.color.r, image.color.g, image.color.b, transparency);
+                text.color = new Color(text.color.r, text.color.g, text.color.b, transparency);
                 if (transparency <= 0) { desiredTransparency = Transparency.Idle; }
 
                 break;
@@ -38,7 +39,7 @@ public class UIFader : MonoBehaviour
             case Transparency.Opaque:
 
                 transparency += Time.fixedDeltaTime;
-                image.color = new Color(image.color.r, image.color.g, image.color.b, transparency);
+                text.color = new Color(text.color.r, text.color.g, text.color.b, transparency);
                 if (transparency >= 1) { desiredTransparency = Transparency.Idle; }
 
                 break;

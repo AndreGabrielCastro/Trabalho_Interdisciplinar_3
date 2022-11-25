@@ -286,7 +286,7 @@ public class UIGridObjectFacility : MonoBehaviour, IPointerDownHandler, IPointer
         }
 
         UpdateCurrentAmount(-1);
-        Instantiate(VfxSystem.Instance.vfxInstantiated, newGridObject.transform.position, Quaternion.identity);
+        Instantiate(VfxSystem.Instance.vfxInstantiated, newGridObject.transform.position + Vector3.up * 0.1f, Quaternion.identity);
         PlayerSystem.Instance.gridObjectList.Add(newGridObject);
 
         #region CommentedOldCodes

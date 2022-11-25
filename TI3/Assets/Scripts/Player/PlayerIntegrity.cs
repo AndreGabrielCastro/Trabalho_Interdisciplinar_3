@@ -29,6 +29,7 @@ public class PlayerIntegrity : MonoBehaviour
     }
     public void Die()
     {
+        Instantiate(VfxSystem.Instance.vfxSpaceShipDestroyed, this.transform.position + Vector3.up * 0.1f, Quaternion.identity);
         Player.Instance.playerMovement.isGameOver = true;
         UIGameOver.Instance.SetGameOver();
     }

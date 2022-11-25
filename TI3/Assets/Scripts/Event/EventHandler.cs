@@ -6,7 +6,7 @@ using TMPro;
 public class EventHandler : MonoBehaviour
 {
     [Header("Must be setted")]
-    public UIFader uiFader;
+    public UIImageFader uiFader;
     public TMP_Text timerText;
     private float timer = 90;
     private bool isOver;

@@ -118,7 +118,10 @@ public class PlayerSystem : MonoBehaviour
             }
 
             for (int i = 0; i < task.gridObjectDeliveryArray.Length; i++) // Foreach task content...
-            { task.gridObjectDeliveryArray[i].DeliverGridObjectDelivery(); } // Deliver the content...
+            {
+                if (task.gridObjectDeliveryArray[i] == null) { continue; }
+                task.gridObjectDeliveryArray[i].DeliverGridObjectDelivery();
+            } // Deliver the content...
 
             accomplishedTaskList.Add(task); // Adds the task to the accomplished tasks list
             // This is needed because you can't remove a task from a list while it is in a loop
