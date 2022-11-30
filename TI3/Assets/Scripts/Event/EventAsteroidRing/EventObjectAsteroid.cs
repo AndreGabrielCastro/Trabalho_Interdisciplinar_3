@@ -18,7 +18,7 @@ public class EventObjectAsteroid : EventObject
     {
         if (this.transform.position.z <= -15) { Destroy(this.gameObject); }
 
-        this.transform.position += Vector3.back * Time.fixedDeltaTime;
+        this.transform.position += Vector3.back * 4 * Time.fixedDeltaTime;
         this.transform.Translate(Vector3.forward * speed * Time.fixedDeltaTime);
         meshTransform.Rotate(rotationDirection * 1 * Time.fixedDeltaTime);
 

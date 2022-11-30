@@ -8,6 +8,9 @@ public class ColonySystem : MonoBehaviour
 {
     public static ColonySystem Instance;
 
+    public Transform coloniesParentTransform;
+    public GameObject spaceShipIconPrefab;
+
     [Header("Current Colony")]
     public int currentColonyIndex;
     public string currentColonyName;
@@ -45,7 +48,10 @@ public class ColonySystem : MonoBehaviour
         this.currentColonyName = allColoniesArray[colonyIndex].colonyName;
         this.colonyNameText.text = currentColonyName;
 
-        allUIColoniesArray[colonyIndex].image.color = new Color(0.3f, 1f, 1f, 1f); // Sets the color of the route to cyan
+        allUIColoniesArray[colonyIndex].image.color = new Color(0.3f, 1f, 1f, 1f); // Sets the color of the current colony to cyan
+        GameObject spaceShipIcon = Instantiate(spaceShipIconPrefab, allUIColoniesArray[colonyIndex].transform.position, Quaternion.identity);
+        spaceShipIcon.transform.SetParent(coloniesParentTransform);
+        spaceShipIcon.transform.localScale = Vector3.one;
 
         UITaskMenuSystem.Instance.GenerateUITasks(); // Generate tasks based on the current colony
     }

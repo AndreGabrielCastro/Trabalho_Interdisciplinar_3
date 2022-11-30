@@ -4888,4 +4888,4 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   damage: 1
-  speed: 40
+  speed: 60

@@ -78,7 +78,7 @@ MonoBehaviour:
   spawnPointProjectile: {fileID: 4439088020747165852}
   projectilePrefab: {fileID: 3439245932285607117, guid: 92c96d89de25d7c42a0bf6247091eecb,
     type: 3}
-  reloadTime: 0.5
+  reloadTime: 0.25
 --- !u!1 &5151028420290207863
 GameObject:
   m_ObjectHideFlags: 0
