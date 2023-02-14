@@ -6,7 +6,6 @@ public class UIPlayerIntegrityBar : MonoBehaviour
 {
     private void Start()
     {
-        Player.Instance.playerIntegrity.integrityBar = this.gameObject.GetComponent<UnityEngine.UI.Image>();
-        Player.Instance.playerIntegrity.UpdateIntegrityBar();
+        Player.Instance.playerIntegrity.SetIntegrityBar(this.gameObject.GetComponent<UnityEngine.UI.Image>());
     }
 }

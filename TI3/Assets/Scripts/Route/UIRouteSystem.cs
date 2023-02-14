@@ -5,14 +5,13 @@ using UnityEngine;
 public class UIRouteSystem : MonoBehaviour
 {
     public static UIRouteSystem Instance;
-
     public UIImageFader uiFader;
 
     [Header("Setted during playtime")]
     public UIRoute activeRoute;
 
-    [SerializeField] private int currentColonyIndex;
-    [SerializeField] private int destinationColonyIndex;
+    [SerializeField] private sbyte currentColonyIndex;
+    [SerializeField] private sbyte destinationColonyIndex;
 
     private bool isLoading = false;
     private float timer = 1;

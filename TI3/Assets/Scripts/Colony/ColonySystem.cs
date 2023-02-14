@@ -8,11 +8,11 @@ public class ColonySystem : MonoBehaviour
 {
     public static ColonySystem Instance;
 
-    public Transform coloniesParentTransform;
+    public Transform uiColoniesParentTransform;
     public GameObject spaceShipIconPrefab;
 
     [Header("Current Colony")]
-    public int currentColonyIndex;
+    public sbyte currentColonyIndex;
     public string currentColonyName;
 
     [Header("Colony Structure")]
@@ -42,7 +42,7 @@ public class ColonySystem : MonoBehaviour
     /// Updates the all things related to the colony based on the index received.
     /// </summary>
     /// <param name="colonyIndex"></param>
-    public void UpdateCurrentColony(int colonyIndex) 
+    public void UpdateCurrentColony(sbyte colonyIndex) 
     {
         this.currentColonyIndex = colonyIndex;
         this.currentColonyName = allColoniesArray[colonyIndex].colonyName;
@@ -50,7 +50,7 @@ public class ColonySystem : MonoBehaviour
 
         allUIColoniesArray[colonyIndex].image.color = new Color(0.3f, 1f, 1f, 1f); // Sets the color of the current colony to cyan
         GameObject spaceShipIcon = Instantiate(spaceShipIconPrefab, allUIColoniesArray[colonyIndex].transform.position, Quaternion.identity);
-        spaceShipIcon.transform.SetParent(coloniesParentTransform);
+        spaceShipIcon.transform.SetParent(uiColoniesParentTransform);
         spaceShipIcon.transform.localScale = Vector3.one;
 
         UITaskMenuSystem.Instance.GenerateUITasks(); // Generate tasks based on the current colony

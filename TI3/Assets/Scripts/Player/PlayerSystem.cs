@@ -5,23 +5,29 @@ using UnityEngine;
 public class PlayerSystem : MonoBehaviour
 {
     public static PlayerSystem Instance;
-    public int currentColonyIndex;
+    public sbyte currentColonyIndex;
     public string currentColonyName;
     public bool isTravelling;
 
     public int gearcoins;
-    public int workingEngineer;
-    public int standbyEngineer;
+    public byte workingEngineer;
+    public byte standbyEngineer;
     public int information;
 
     public List<Task> taskList;
     public List<GridObject> gridObjectList;
 
+    public sbyte masterVolumeValue = 0;
+    public sbyte environmentVolumeValue = 0;
+    public sbyte soundtrackVolumeValue = 0;
+    public sbyte sfxVolumeValue = 0;
+    public sbyte uiVolumeValue = 0;
+
     /// <summary>
     /// Sets the current colony based on the index received
     /// </summary>
     /// <param name="colonyIndex"></param>
-    public void SetCurrentColony(int colonyIndex)
+    public void SetCurrentColony(sbyte colonyIndex)
     { 
         this.currentColonyIndex = colonyIndex; // Changes the index
         this.currentColonyName = ColonySystem.Instance.allColoniesArray[currentColonyIndex].colonyName; // Gets the name from the all colonies array

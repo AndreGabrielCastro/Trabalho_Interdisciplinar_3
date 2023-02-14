@@ -5,8 +5,12 @@ using UnityEngine;
 public class Player : MonoBehaviour
 {
     public static Player Instance;
+
     [Header("Must be setted")]
-    public Transform playerCameraEventTargetGroupTransform;
+    public Transform playerCameraPivotTransform;
+    public Transform playerCameraFakeTransform;
+    public Transform playerCameraTransform;
+
     public LayerMask unactiveEventObjectLayerMask;
     public LayerMask activeEventObjectLayerMask;
     public int activeEventObjectLayerMaskValue; // For complete explanation, go to Event Object
@@ -14,18 +18,29 @@ public class Player : MonoBehaviour
     [Header("Setted during playtime")]
     public PlayerIntegrity playerIntegrity;
     public PlayerMovement playerMovement;
-    public PlayerCameraEventLookAt playerCameraEventLookAt;
     public bool isEventRunning;
     [HideInInspector] public bool isGameOver;
 
     [Header("Por enquanto")]
     public GameObject initialScreen;
-    public void ResetPosition() { this.transform.position = Vector3.zero; this.transform.rotation = Quaternion.identity; }
+    public void ResetPosition()
+    { 
+        this.transform.position = Vector3.zero;
+        this.transform.rotation = Quaternion.identity;
+    }
     public void IsEventRunning(bool result)
     { 
         isEventRunning = result;
         playerMovement.isEventRunning = result;
-        playerCameraEventLookAt.isEventRunning = result;
+
+        if (result == true)
+        {
+            playerCameraTransform.position += Vector3.up * 15;
+        }
+        else
+        {
+            playerCameraTransform.localPosition = Vector3.zero;
+        }
     }
     private void Awake()
     {
@@ -45,7 +60,6 @@ public class Player : MonoBehaviour
 
         playerIntegrity = this.GetComponent<PlayerIntegrity>();
         playerMovement = this.GetComponent<PlayerMovement>();
-        playerCameraEventLookAt = this.GetComponentInChildren<PlayerCameraEventLookAt>();
     }
     private void Start() { initialScreen.SetActive(true); }
     private void FixedUpdate()

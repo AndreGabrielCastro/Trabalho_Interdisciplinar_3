@@ -10,17 +10,25 @@ public class PlayerIntegrity : MonoBehaviour
 
     [Header("Setted during playtime")]
     public Image integrityBar;
+
+    public void SetIntegrityBar(Image image)
+    {
+        integrityBar = image;
+        UpdateIntegrityBar();
+    }
     public void HealDamage(int heal)
     {
         if (currentIntegrity >= maximumIntegrity) { return; }
         currentIntegrity += heal;
         UpdateIntegrityBar();
+        if (currentIntegrity > maximumIntegrity) { currentIntegrity = maximumIntegrity; }
     }
     public void TakeDamage(int damage)
     {
         if (currentIntegrity <= 0) { return; }
         currentIntegrity -= damage;
         UpdateIntegrityBar();
+        CameraControllerEvent.Instance.ShakeCamera(Vector3.zero);
         if (currentIntegrity <= 0) { Die(); }
     }
     public void UpdateIntegrityBar()

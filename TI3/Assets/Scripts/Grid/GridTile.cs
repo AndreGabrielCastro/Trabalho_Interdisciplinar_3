@@ -43,7 +43,6 @@ public class GridTile : MonoBehaviour
     {
         if (gridObject == null) { return; }
         gridObject.TakeDamage(damage);
-        
     }
     //Color(1f, 0.5f, 0.5f) red
     //Color(0.5f, 1f, 0.5f) green
