@@ -57,7 +57,7 @@ public class UIGridObjectFacility : MonoBehaviour, IPointerDownHandler, IPointer
         this.gameObjectPreview = gridObjectPrefab.transform.Find("Mesh").gameObject; // Gets the grid object mesh game object and stores it
 
         this.gridObjectPrefabScript.uiGridObjectFacility = this; // Sets the UIGridObject of the gridObject. This code is to make easier to recover
-        this.gridObjectPrefabScript.uiGridObjectFacilityIndexPosition = this.transform.GetSiblingIndex();
+        this.gridObjectPrefabScript.prefabIndex = this.transform.GetSiblingIndex();
 
         if (gridObjectPrefabScriptWidth % 2 == 1 && gridObjectPrefabScriptLength % 2 == 1) { snap = Snap.ToGround; } // If width and length are both unpair, snap to ground
         else if (gridObjectPrefabScriptWidth % 2 == 0 && gridObjectPrefabScriptLength % 2 != 0) { snap = Snap.ToEdgeHorizontal; } // If width is pair and length unpair, snap to left or right edge
@@ -284,6 +284,10 @@ public class UIGridObjectFacility : MonoBehaviour, IPointerDownHandler, IPointer
                 arrayPosition += 1; // Increases the array position
             }
         }
+
+        newGridObject.desiredWidth = desiredWidth;
+        newGridObject.desiredLength = desiredLength;
+        newGridObject.snapValue = (int)snap;
 
         UpdateCurrentAmount(-1);
         Instantiate(VfxSystem.Instance.vfxInstantiated, newGridObject.transform.position + Vector3.up * 0.1f, Quaternion.identity);

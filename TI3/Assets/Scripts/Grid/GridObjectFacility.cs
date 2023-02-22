@@ -6,12 +6,11 @@ public class GridObjectFacility : GridObject
 {
     [Header("Setted during playtime")]
     public UIGridObjectFacility uiGridObjectFacility;
-    public int uiGridObjectFacilityIndexPosition;
 
     public void OnLevelWasLoaded(int level)
     {
         if (level == 0)
-        { uiGridObjectFacility = UIFacilitiesMenuSystem.Instance.allUiGridObjectFacilityArray[uiGridObjectFacilityIndexPosition]; }
+        { uiGridObjectFacility = SpaceShipSystem.Instance.allUiGridObjectFacilityArray[prefabIndex]; }
     }
     public void DeleteGridObjectFacility()
     {

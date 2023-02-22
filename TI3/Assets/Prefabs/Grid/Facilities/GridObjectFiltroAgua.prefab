@@ -44,6 +44,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 026eb42099c886e43b3624ebbad7ed1a, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  prefabType: Facility
+  prefabIndex: 0
   gridObjectIcon: {fileID: 21300000, guid: c16c658b75c3a2640ba74c1951cc9457, type: 3}
   gridObjectPrice: 0
   width: 1

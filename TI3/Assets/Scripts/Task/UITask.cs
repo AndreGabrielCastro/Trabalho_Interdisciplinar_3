@@ -11,14 +11,6 @@ public class UITask : MonoBehaviour
     public Task task;
     public Image imageState;
 
-    public string taskOrigin;
-    public string taskDestination;
-    public int taskContentAmount;
-    public int taskGearcoinAmount;
-    public int taskInformationAmount;
-    public int taskTime;
-    public string taskContentDescription;
-    public string taskRewardDescription;
     public GridObjectDelivery[] taskGridObjectDeliveryArray;
     public UIGridObjectDelivery[] taskUiGridObjectDeliveryArray;
 
@@ -29,16 +21,17 @@ public class UITask : MonoBehaviour
     public void GenerateTask(Colony currentColony)
     {
         // This body of code creates all non-object Task attributes.
-        taskOrigin = currentColony.colonyName; // Sets the origin of the Tasks posteriorly created
-        taskDestination = currentColony.associatedColonyArray[Random.Range(0, currentColony.associatedColonyArray.Length)]; // Sets the destination of the Task based on the amount of associated colonies
-        taskContentAmount = Random.Range(currentColony.contentMinAmountPerTask, currentColony.contentMaxAmountPerTask + 1); // Determines the amount of content to be created by the Task
-        taskGearcoinAmount = 20 * taskContentAmount;
-        taskInformationAmount = 10 * taskContentAmount;
-        taskTime = 3 * taskContentAmount;
-        taskRewardDescription = $"{taskGearcoinAmount} gearcoins\n{taskInformationAmount} information"; // Sets the Task's reward description
+        string taskOrigin = currentColony.colonyName; // Sets the origin of the Tasks posteriorly created
+        string taskDestination = currentColony.associatedColonyArray[Random.Range(0, currentColony.associatedColonyArray.Length)]; // Sets the destination of the Task based on the amount of associated colonies
+        int taskContentAmount = Random.Range(currentColony.contentMinAmountPerTask, currentColony.contentMaxAmountPerTask + 1); // Determines the amount of content to be created by the Task
+        int taskGearcoinAmount = 20 * taskContentAmount;
+        int taskInformationAmount = 10 * taskContentAmount;
+        int taskTime = 3 * taskContentAmount;
+        string taskRewardDescription = $"{taskGearcoinAmount} gearcoins\n{taskInformationAmount} information"; // Sets the Task's reward description
         taskGridObjectDeliveryArray = new GridObjectDelivery[taskContentAmount]; // Sets the Task's Grid Object Deliveries array size
         taskUiGridObjectDeliveryArray = new UIGridObjectDelivery[taskContentAmount]; // Sets the Task's UI Grid Object Deliveries array size
 
+        string taskContentDescription = "";
         // This body of code creates the object Task attributes foreach Grid Object Delivery 
         for (int i = 0; i < taskGridObjectDeliveryArray.Length; i++)
         {

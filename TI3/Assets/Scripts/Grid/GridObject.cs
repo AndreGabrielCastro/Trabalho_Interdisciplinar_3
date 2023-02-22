@@ -4,16 +4,23 @@ using UnityEngine;
 
 public class GridObject : MonoBehaviour
 {
+    [Header("Must be setted")]
+    public int prefabIndex = -1;
+
     public Sprite gridObjectIcon;
     public int gridObjectPrice;
     public int width = 1;
     public int lenght = 1;
 
-    [Header("Must be setted")]
+
     public int maximumIntegrityPoints;
     public int currentIntegrityPoints;
 
     [Header("Setted during playtime")]
+    public int desiredWidth;
+    public int desiredLength;
+    public int snapValue;
+
     public GridTile[] gridTileArray;
 
     /// <summary>

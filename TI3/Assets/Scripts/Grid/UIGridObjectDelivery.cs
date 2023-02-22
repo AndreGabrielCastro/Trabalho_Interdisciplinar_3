@@ -263,6 +263,10 @@ public class UIGridObjectDelivery : MonoBehaviour, IPointerDownHandler, IPointer
             }
         }
 
+        gridObjectDelivery.desiredWidth = desiredWidth;
+        gridObjectDelivery.desiredLength = desiredLength;
+        gridObjectDelivery.snapValue = (int)snap;
+
         isPlaced = true;
         gridObjectDelivery.isPlaced = true;
         this.gameObject.SetActive(false);

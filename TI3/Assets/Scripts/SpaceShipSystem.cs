@@ -2,11 +2,12 @@
 using System.Collections.Generic;
 using UnityEngine;
 
-public class UIFacilitiesMenuSystem : MonoBehaviour
+public class SpaceShipSystem : MonoBehaviour
 {
-    public static UIFacilitiesMenuSystem Instance;
+    public static SpaceShipSystem Instance;
     [Header("All facilities related")]
     public UIGridObjectFacility[] allUiGridObjectFacilityArray;
+    public GridObjectFacility[] allGridObjectFacilityPrefabArray;
     private void Awake()
     {
         #region ErrorTreatment

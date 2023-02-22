@@ -18,6 +18,7 @@ public class Task
     public GridObjectDelivery[] gridObjectDeliveryArray;
     public UIGridObjectDelivery[] uiGridObjectDeliveryArray;
 
+    public Task() { }
     public Task(string origin, int time, string destination, int contentAmount,
                 int gearcoinAmount, int informationAmount,
                 string contentDescription, string rewardDescription,

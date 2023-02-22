@@ -53,11 +53,11 @@ public class UITaskMenuSystem : MonoBehaviour
     public void UpdateTaskDescription(UITask uiTask)
     {
         this.selectedTask = uiTask;
-        this.originText.text = uiTask.taskOrigin;
-        this.destinationText.text = uiTask.taskDestination;
-        this.timeText.text = uiTask.taskTime.ToString();
-        this.contentText.text = uiTask.taskContentDescription;
-        this.rewardText.text = uiTask.taskRewardDescription;
+        this.originText.text = uiTask.task.origin;
+        this.destinationText.text = uiTask.task.destination;
+        this.timeText.text = uiTask.task.time.ToString();
+        this.contentText.text = uiTask.task.contentDescription;
+        this.rewardText.text = uiTask.task.rewardDescription;
         this.conditionText.text = "No condition";
     }
     public void ResetTaskDescription()
