@@ -10,8 +10,8 @@ public class UIRouteSystem : MonoBehaviour
     [Header("Setted during playtime")]
     public UIRoute activeRoute;
 
-    [SerializeField] private sbyte currentColonyIndex;
-    [SerializeField] private sbyte destinationColonyIndex;
+    public sbyte currentColonyIndex;
+    public sbyte destinationColonyIndex;
 
     private bool isLoading = false;
     private float timer = 1;
@@ -90,7 +90,8 @@ public class UIRouteSystem : MonoBehaviour
             UIUserInterface.Instance.uiFader.FadeIn(); // Activates the fade in
             isLoading = true; // Activates the timer
             PlayerSystem.Instance.SetCurrentColony(destinationColonyIndex); // Sets the current colony of the player
-            PlayerSystem.Instance.isTravelling = true;
+            Player.Instance.SetEvent(activeRoute.spaceEvent);
+            //PlayerSystem.Instance.isTravelling = true;
         }
     }
 }

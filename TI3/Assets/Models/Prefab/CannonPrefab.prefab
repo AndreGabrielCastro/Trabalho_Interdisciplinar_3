@@ -84,6 +84,7 @@ MonoBehaviour:
   - {fileID: 8300000, guid: 5207b2a445fcb144281ab5395fe95c1d, type: 3}
   - {fileID: 8300000, guid: 1e940d15337ad1e43b0cc1b2430d7c06, type: 3}
   - {fileID: 8300000, guid: 70c97e425596b8142b7b9163256c0868, type: 3}
+  shootEnergyCost: 1
   reloadTime: 0.25
 --- !u!82 &2174331774848539266
 AudioSource:

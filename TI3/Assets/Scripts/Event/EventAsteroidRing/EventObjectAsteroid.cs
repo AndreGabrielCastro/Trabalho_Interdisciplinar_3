@@ -16,7 +16,7 @@ public class EventObjectAsteroid : EventObject
     }
     private void FixedUpdate()
     {
-        if (this.transform.position.z <= -15) { Destroy(this.gameObject); }
+        if (this.transform.position.z <= -25) { Destroy(this.gameObject); }
 
         this.transform.position += Vector3.back * 4 * Time.fixedDeltaTime;
         this.transform.Translate(Vector3.forward * speed * Time.fixedDeltaTime);

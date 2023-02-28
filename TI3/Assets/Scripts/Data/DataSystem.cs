@@ -5,7 +5,28 @@ using UnityEngine;
 
 public class DataSystem : MonoBehaviour
 {
+    private float time;
+    private bool isFadingIn;
+    private bool falseSave_TrueLoad;
     public void OnButtonSaveGame()
+    {
+        if (isFadingIn == true) { UIUserInterface.Instance.PopResult("Can't do this now!", Color.red); return; }
+
+        falseSave_TrueLoad = false;
+        isFadingIn = true;
+        time = Time.time + 1.5f;
+        UIUserInterface.Instance.uiFader.FadeIn();
+    }
+    public void OnButtonLoadGame()
+    {
+        if (isFadingIn == true) { UIUserInterface.Instance.PopResult("Can't do this now!", Color.red); return; }
+
+        falseSave_TrueLoad = true;
+        isFadingIn = true;
+        time = Time.time + 1.5f;
+        UIUserInterface.Instance.uiFader.FadeIn();
+    }
+    private void SaveGame()
     {
         GameData saveData = new GameData();
         saveData.playerData = new PlayerData();
@@ -103,8 +124,7 @@ public class DataSystem : MonoBehaviour
 
         UIUserInterface.Instance.PopResult("Game Saved Successfully", Color.green, 4);
     }
-
-    public void OnButtonLoadGame()
+    private void LoadGame()
     {
         string load = File.ReadAllText(Application.dataPath + "/save.txt");
         GameData loadData = JsonUtility.FromJson<GameData>(load);
@@ -251,6 +271,18 @@ public class DataSystem : MonoBehaviour
             PlayerSystem.Instance.taskList.Add(task);
         }
 
+        UIRouteSystem.Instance.currentColonyIndex = loadData.playerData.currentColonyIndex;
         UIUserInterface.Instance.PopResult("Game Loaded Successfully", Color.green, 4);
+    }
+    private void FixedUpdate()
+    {
+        if (isFadingIn == false) { return; }
+        if (time >= Time.time) { return; }
+
+        if (falseSave_TrueLoad == false) { SaveGame(); }
+        else if (falseSave_TrueLoad == true) { LoadGame(); }
+        
+        UIUserInterface.Instance.uiFader.FadeOut();
+        isFadingIn = false;
     }
 }

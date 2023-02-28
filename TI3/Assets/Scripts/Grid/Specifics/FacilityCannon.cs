@@ -9,6 +9,7 @@ public class FacilityCannon : MonoBehaviour
     public Transform spawnPointProjectile;
     public GameObject projectilePrefab;
     public AudioClip[] projectileSfxArray;
+    public int shootEnergyCost;
     public float reloadTime;
     private float timer = 0;
     private void Awake()
@@ -17,14 +18,14 @@ public class FacilityCannon : MonoBehaviour
     }
     private void Update()
     {
-        if (Player.Instance.isEventRunning == false) { return; }
+        if (Player.Instance.isTravelling == false) { return; }
         if (Player.Instance.isGameOver == true) { return; }
         if (timer < reloadTime) { return; }
         if (Input.GetMouseButton(0)) { timer = 0; Shoot(); }
     }
     private void FixedUpdate()
     {
-        if (Player.Instance.isEventRunning == false) { return; }
+        if (Player.Instance.isTravelling == false) { return; }
 
         Vector3 mousePosition = MouseSystem.Instance.GetWorldPosition();
         mousePosition = new Vector3(mousePosition.x, this.transform.position.y, mousePosition.z);
@@ -36,5 +37,6 @@ public class FacilityCannon : MonoBehaviour
     {
         Instantiate(projectilePrefab, spawnPointProjectile.transform.position, spawnPointProjectile.transform.rotation);
         audioSource.PlayOneShot(projectileSfxArray[Random.Range(0, 4)]);
+        Player.Instance.playerEnergy.LoseEnergy(shootEnergyCost);
     }
 }

@@ -7,12 +7,12 @@ public class PlayerMovement : MonoBehaviour
     [Header("Must be setted")]
     public float speed = 1;
     [Header("Setted during playtime")]
-    public bool isEventRunning;
+    public bool isTravelling;
     [HideInInspector] public bool isGameOver;
     void Update()
     {
         if (isGameOver == true) { return; }
-        if (isEventRunning == false) { return; }
+        if (isTravelling == false) { return; }
 
         float horizontal = Input.GetAxis("Horizontal");
         float vertical = Input.GetAxis("Vertical");

@@ -16,10 +16,12 @@ public class Player : MonoBehaviour
     public int activeEventObjectLayerMaskValue; // For complete explanation, go to Event Object
 
     [Header("Setted during playtime")]
+    public PlayerEnergy playerEnergy;
     public PlayerIntegrity playerIntegrity;
     public PlayerMovement playerMovement;
-    public bool isEventRunning;
-    [HideInInspector] public bool isGameOver;
+    public bool isTravelling;
+    public bool isGameOver;
+    public Event spaceEvent; public void SetEvent(Event spaceEvent) {this.spaceEvent = spaceEvent; }
 
     [Header("Por enquanto")]
     public GameObject initialScreen;
@@ -28,14 +30,16 @@ public class Player : MonoBehaviour
         this.transform.position = Vector3.zero;
         this.transform.rotation = Quaternion.identity;
     }
-    public void IsEventRunning(bool result)
+    public void SetTravellingState(bool result)
     { 
-        isEventRunning = result;
-        playerMovement.isEventRunning = result;
+        isTravelling = result;
+        playerMovement.isTravelling = result;
 
         if (result == true)
         {
             playerCameraTransform.position += Vector3.up * 15;
+            EventHandler.Instance.SetEvent(spaceEvent);
+            EventHandler.Instance.PlayEvent();
         }
         else
         {
@@ -58,14 +62,15 @@ public class Player : MonoBehaviour
         }
         #endregion
 
-        playerIntegrity = this.GetComponent<PlayerIntegrity>();
-        playerMovement = this.GetComponent<PlayerMovement>();
+        playerEnergy = GetComponent<PlayerEnergy>();
+        playerIntegrity = GetComponent<PlayerIntegrity>();
+        playerMovement = GetComponent<PlayerMovement>();
     }
     private void Start() { initialScreen.SetActive(true); }
     private void FixedUpdate()
     {
         if (isGameOver == true) { return; }
-        if (isEventRunning == false) { return; }
+        if (isTravelling == false) { return; }
         Vector3 halfExtentsVector = new Vector3(GridSystem.Instance.width * 0.5f, 0.5f, GridSystem.Instance.lenght * 0.5f);
         Collider[] eventObjectCollidersArray = Physics.OverlapBox(this.transform.position, halfExtentsVector, this.transform.rotation, unactiveEventObjectLayerMask.value);
         for (int i = 0; i < eventObjectCollidersArray.Length; i++)

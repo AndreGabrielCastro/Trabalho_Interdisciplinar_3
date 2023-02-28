@@ -2,13 +2,13 @@
 using System.Collections.Generic;
 using UnityEngine;
 
-public class EventAsteroidRing : MonoBehaviour
+public class EventAsteroidRing : Event
 {
     [Header("Must be setted")]
     [Tooltip("Must be EventObjectAsteroid")] public GameObject asteroidPrefab;
-    public int asteroidAmount = 50;
-    public float spawnTimeMax = 2;
-    public float spawnTimeMin = 1;
+    public int asteroidAmount = 100;
+    public float spawnTimeMax = 0.5f;
+    public float spawnTimeMin = 0.2f;
     private float timer;
     private float spawnTime = 0;
     private int remainingAsteroids;
@@ -29,13 +29,17 @@ public class EventAsteroidRing : MonoBehaviour
         if (timer >= spawnTime)
         {
             Vector3 spawnPosition = spawnPointTransform.position;
-            Vector3 spawnRange = Vector3.right * Random.Range(-20, 20);
+            Vector3 spawnRange = Vector3.right * Random.Range(-40, 40);
             spawnPosition += spawnRange;
             Instantiate(asteroidPrefab, spawnPosition, spawnPointTransform.rotation);
             timer = 0;
             spawnTime = Random.Range(spawnTimeMin, spawnTimeMax);
             remainingAsteroids -= 1;
-            if (remainingAsteroids <= 0) { Destroy(this.gameObject); }
+            if (remainingAsteroids <= 0)
+            {
+                EventHandler.Instance.SetTimer(10);
+                Destroy(this.gameObject);
+            }
         }
     }
 }

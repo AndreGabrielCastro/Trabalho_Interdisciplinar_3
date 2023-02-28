@@ -46,8 +46,9 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   asteroidPrefab: {fileID: 8968569302500940392, guid: df4691d1ae5d2a844bd61bf8d47c5591,
     type: 3}
-  asteroidAmount: 50
-  spawnTime: 1
+  asteroidAmount: 100
+  spawnTimeMax: 0.5
+  spawnTimeMin: 0.2
 --- !u!1 &8467866306930197621
 GameObject:
   m_ObjectHideFlags: 0
@@ -72,7 +73,7 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 8467866306930197621}
   m_LocalRotation: {x: 0, y: -1, z: 0, w: 0}
-  m_LocalPosition: {x: 0, y: 0, z: 30}
+  m_LocalPosition: {x: 0, y: 0, z: 50}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children: []
   m_Father: {fileID: 5035833956507919263}

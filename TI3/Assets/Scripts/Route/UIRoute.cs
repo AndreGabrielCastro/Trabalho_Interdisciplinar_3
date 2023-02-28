@@ -5,6 +5,7 @@ using UnityEngine.UI;
 
 public class UIRoute : MonoBehaviour
 {
+    public Event spaceEvent;
     public sbyte firstColonyIndex;
     public sbyte secondColonyIndex;
     [HideInInspector] public Image image; // Button image

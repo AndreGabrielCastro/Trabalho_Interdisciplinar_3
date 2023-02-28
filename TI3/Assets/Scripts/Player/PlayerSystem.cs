@@ -88,9 +88,9 @@ public class PlayerSystem : MonoBehaviour
     {
         if (Instance != this) { return; } // WITHOUT THIS THE NEW PLAYERDATA WILL CREATE ONE TASK FROM EARTH TO MARS
 
-        if (level == 1) { Player.Instance.IsEventRunning(true); return; }
+        if (level == 1) { Player.Instance.SetTravellingState(true); return; }
 
-        Player.Instance.IsEventRunning(false);
+        Player.Instance.SetTravellingState(false);
         ColonySystem.Instance.UpdateCurrentColony(currentColonyIndex);
         UIUserInterface.Instance.UpdateUserInterfaceResources();
 
