@@ -2,16 +2,16 @@
 using System.Collections.Generic;
 using UnityEngine;
 
-public class EventObjectCometPart : EventObject
+public class EventObjectCometCore : EventObject
 {
-    public GameObject[] partMeshArray;
+    public GameObject coreMesh;
     private EventComet eventComet;
-    private EventObjectCometCore cometCore;
-    public void SetAttributes(EventComet eventComet, EventObjectCometCore cometCore)
+    private EventObjectComet objectComet;
+    public void SetAttributes(EventComet eventComet, EventObjectComet objectComet)
     {
         this.eventComet = eventComet;
-        this.cometCore = cometCore;
-        this.integrityPoints = eventComet.cometPartsIntegrity;
+        this.objectComet = objectComet;
+        this.integrityPoints = eventComet.cometPartsIntegrity * (8 + 4) * 2;
     }
     public void ThrowShard()
     {
@@ -27,14 +27,13 @@ public class EventObjectCometPart : EventObject
         {
             ThrowShard();
         }
+
+        objectComet.transform.position -= Vector3.forward * 0.25f;
     }
     public override void BeDestroyed()
     {
-        cometCore.TakeDamage(eventComet.cometPartsIntegrity * 2);
-        foreach (GameObject partMesh in partMeshArray)
-        {
-            Destroy(partMesh);
-        }
+        objectComet.TakeDamage(objectComet.integrityPoints);
+        Destroy(coreMesh);
         base.BeDestroyed();
     }
     private void OnCollisionEnter(Collision collision)

@@ -37,7 +37,7 @@ public class Player : MonoBehaviour
 
         if (result == true)
         {
-            playerCameraTransform.position += Vector3.up * 15;
+            playerCameraTransform.position += Vector3.up * 20;
             EventHandler.Instance.SetEvent(spaceEvent);
             EventHandler.Instance.PlayEvent();
         }

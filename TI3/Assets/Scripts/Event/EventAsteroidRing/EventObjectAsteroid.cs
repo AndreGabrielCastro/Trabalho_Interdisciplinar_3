@@ -5,6 +5,7 @@ using UnityEngine;
 public class EventObjectAsteroid : EventObject
 {
     public int speed = 1;
+    public int backSpeed = 4;
     public int damage = 5;
     private GridPosition currentGridPosition;
     private Transform meshTransform;
@@ -18,7 +19,7 @@ public class EventObjectAsteroid : EventObject
     {
         if (this.transform.position.z <= -25) { Destroy(this.gameObject); }
 
-        this.transform.position += Vector3.back * 4 * Time.fixedDeltaTime;
+        this.transform.position += Vector3.back * backSpeed * Time.fixedDeltaTime;
         this.transform.Translate(Vector3.forward * speed * Time.fixedDeltaTime);
         meshTransform.Rotate(rotationDirection * 1 * Time.fixedDeltaTime);
 
