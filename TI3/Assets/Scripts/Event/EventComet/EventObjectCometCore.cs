@@ -11,7 +11,8 @@ public class EventObjectCometCore : EventObject
     {
         this.eventComet = eventComet;
         this.objectComet = objectComet;
-        this.integrityPoints = eventComet.cometPartsIntegrity * (8 + 4) * 2;
+        this.integrityPoints = eventComet.cometPartsIntegrity * ((8 * 2) + 4);
+                                                        // parts doubled + extra
     }
     public void ThrowShard()
     {
@@ -28,7 +29,7 @@ public class EventObjectCometCore : EventObject
             ThrowShard();
         }
 
-        objectComet.transform.position -= Vector3.forward * 0.25f;
+        objectComet.transform.position -= Vector3.forward * 0.15f;
     }
     public override void BeDestroyed()
     {
@@ -41,7 +42,13 @@ public class EventObjectCometCore : EventObject
         if (collision.transform.TryGetComponent<GridObject>(out GridObject gridObject) == true)
         {
             gridObject.TakeDamage(eventComet.cometPartsDamage);
-            Player.Instance.transform.position += Vector3.forward * 0.5f;
+            Player.Instance.playerIntegrity.TakeDamage(eventComet.cometPartsDamage);
+            Player.Instance.transform.position += Vector3.forward * 1;
+        }
+        else if (collision.transform.TryGetComponent<Player>(out Player player) == true)
+        {
+            Player.Instance.playerIntegrity.TakeDamage(eventComet.cometPartsDamage);
+            Player.Instance.transform.position += Vector3.forward * 1;
         }
     }
 }

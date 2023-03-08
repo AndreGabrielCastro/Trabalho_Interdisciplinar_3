@@ -10,6 +10,7 @@ GameObject:
   m_Component:
   - component: {fileID: 4163063229839392187}
   - component: {fileID: 8744919019369097049}
+  - component: {fileID: 5980764073065601233}
   m_Layer: 0
   m_Name: GridObjectArmazemAgua
   m_TagString: Untagged
@@ -44,7 +45,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 026eb42099c886e43b3624ebbad7ed1a, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  prefabType: Facility
   prefabIndex: 1
   gridObjectIcon: {fileID: 21300000, guid: aac9be92c77de4d4d875b8c3b7a859f4, type: 3}
   gridObjectPrice: 0
@@ -52,9 +52,24 @@ MonoBehaviour:
   lenght: 2
   maximumIntegrityPoints: 15
   currentIntegrityPoints: 15
+  desiredWidth: 0
+  desiredLength: 0
+  snapValue: 0
   gridTileArray: []
   uiGridObjectFacility: {fileID: 0}
-  uiGridObjectFacilityIndexPosition: 1
+--- !u!65 &5980764073065601233
+BoxCollider:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1712445586578786585}
+  m_Material: {fileID: 0}
+  m_IsTrigger: 0
+  m_Enabled: 1
+  serializedVersion: 2
+  m_Size: {x: 0.8, y: 1, z: 1.6}
+  m_Center: {x: 0, y: 0.5, z: 0}
 --- !u!1 &5487973128718701728
 GameObject:
   m_ObjectHideFlags: 0

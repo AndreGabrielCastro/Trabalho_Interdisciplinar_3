@@ -42,7 +42,13 @@ public class EventObjectCometPart : EventObject
         if (collision.transform.TryGetComponent<GridObject>(out GridObject gridObject) == true)
         {
             gridObject.TakeDamage(eventComet.cometPartsDamage);
-            Player.Instance.transform.position += Vector3.forward * 0.5f;
+            Player.Instance.playerIntegrity.TakeDamage(eventComet.cometPartsDamage);
+            Player.Instance.transform.position += Vector3.forward * 1;
+        }
+        else if (collision.transform.TryGetComponent<Player>(out Player player) == true)
+        {
+            Player.Instance.playerIntegrity.TakeDamage(eventComet.cometPartsDamage);
+            Player.Instance.transform.position += Vector3.forward * 1;
         }
     }
 }

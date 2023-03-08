@@ -41,6 +41,7 @@ GameObject:
   m_Component:
   - component: {fileID: 5293245095426640068}
   - component: {fileID: 4225908689338179398}
+  - component: {fileID: 2561425855033358454}
   m_Layer: 0
   m_Name: GridObjectCaixa
   m_TagString: Untagged
@@ -75,7 +76,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 1daab060545c2f64da940fe9fed82b6d, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  prefabType: Delivery
   prefabIndex: 0
   gridObjectIcon: {fileID: 21300000, guid: a905a8388548a4f4e8ff7e2013049dea, type: 3}
   gridObjectPrice: 0
@@ -83,10 +83,26 @@ MonoBehaviour:
   lenght: 1
   maximumIntegrityPoints: 10
   currentIntegrityPoints: 10
+  desiredWidth: 0
+  desiredLength: 0
+  snapValue: 0
   gridTileArray: []
   uiGridObjectDelivery: {fileID: 0}
   isPlaced: 0
   description: Simple box  2x1
+--- !u!65 &2561425855033358454
+BoxCollider:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 7453630684437691494}
+  m_Material: {fileID: 0}
+  m_IsTrigger: 0
+  m_Enabled: 1
+  serializedVersion: 2
+  m_Size: {x: 1.6, y: 1, z: 0.8}
+  m_Center: {x: 0, y: 0.5, z: 0}
 --- !u!1001 &5834681914555274359
 PrefabInstance:
   m_ObjectHideFlags: 0

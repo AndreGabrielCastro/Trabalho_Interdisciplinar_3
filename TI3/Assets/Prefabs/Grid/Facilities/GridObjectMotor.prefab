@@ -41,6 +41,7 @@ GameObject:
   m_Component:
   - component: {fileID: 8548713465384289250}
   - component: {fileID: 3907220028294437120}
+  - component: {fileID: 4896624065412497639}
   m_Layer: 0
   m_Name: GridObjectMotor
   m_TagString: Untagged
@@ -75,7 +76,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 026eb42099c886e43b3624ebbad7ed1a, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  prefabType: Facility
   prefabIndex: 2
   gridObjectIcon: {fileID: 21300000, guid: 093398ba643013245a5fc39b0dbe599c, type: 3}
   gridObjectPrice: 0
@@ -83,9 +83,24 @@ MonoBehaviour:
   lenght: 2
   maximumIntegrityPoints: 15
   currentIntegrityPoints: 15
+  desiredWidth: 0
+  desiredLength: 0
+  snapValue: 0
   gridTileArray: []
   uiGridObjectFacility: {fileID: 0}
-  uiGridObjectFacilityIndexPosition: 1
+--- !u!65 &4896624065412497639
+BoxCollider:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 6388037598726829888}
+  m_Material: {fileID: 0}
+  m_IsTrigger: 0
+  m_Enabled: 1
+  serializedVersion: 2
+  m_Size: {x: 0.8, y: 1, z: 1.6}
+  m_Center: {x: 0, y: 0.5, z: 0}
 --- !u!1001 &1582976915224256669
 PrefabInstance:
   m_ObjectHideFlags: 0

@@ -47,11 +47,11 @@ MonoBehaviour:
     type: 3}
   eventObjectCometShardPrefab: {fileID: 3043952086517637669, guid: 71b9966f14336da49b6f89f0eff4180f,
     type: 3}
-  cometPartsIntegrity: 10
-  cometPartsDamage: 10
+  cometPartsIntegrity: 20
+  cometPartsDamage: 5
   cometMovementSpeed: 0.5
   cometRotationSpeed: 30
-  cometShardChancePerDamage: 10
-  cometShardIntegrity: 3
+  cometShardChancePerDamage: 15
+  cometShardIntegrity: 4
   cometShardDamage: 5
-  cometShardSpeed: 5
+  cometShardSpeed: 6

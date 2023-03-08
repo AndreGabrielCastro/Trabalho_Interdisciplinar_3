@@ -33945,6 +33945,7 @@ GameObject:
   - component: {fileID: 1641159432}
   - component: {fileID: 1641159431}
   - component: {fileID: 1641159430}
+  - component: {fileID: 1641159433}
   m_Layer: 0
   m_Name: Player
   m_TagString: Untagged
@@ -34047,6 +34048,19 @@ MonoBehaviour:
   energyThreshold: 30
   energyGeneration: 1
   energyBar: {fileID: 0}
+--- !u!65 &1641159433
+BoxCollider:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1641159427}
+  m_Material: {fileID: 0}
+  m_IsTrigger: 0
+  m_Enabled: 1
+  serializedVersion: 2
+  m_Size: {x: 4.6, y: 1, z: 4.6}
+  m_Center: {x: 0, y: 0.5, z: 0}
 --- !u!1 &1641412713
 GameObject:
   m_ObjectHideFlags: 0
