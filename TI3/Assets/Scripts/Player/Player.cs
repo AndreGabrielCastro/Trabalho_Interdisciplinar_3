@@ -19,8 +19,9 @@ public class Player : MonoBehaviour
     public PlayerEnergy playerEnergy;
     public PlayerIntegrity playerIntegrity;
     public PlayerMovement playerMovement;
+    public PlayerZoom playerZoom;
     public bool isTravelling;
-    public bool isGameOver;
+    public bool isGameOver; public void SetGameOver() { isGameOver = true; }
     public Event spaceEvent; public void SetEvent(Event spaceEvent) {this.spaceEvent = spaceEvent; }
 
     [Header("Por enquanto")]
@@ -33,17 +34,16 @@ public class Player : MonoBehaviour
     public void SetTravellingState(bool result)
     { 
         isTravelling = result;
-        playerMovement.isTravelling = result;
 
         if (result == true)
         {
-            playerCameraTransform.position += Vector3.up * 20;
+            playerZoom.SetCameraHeight(20);
             EventHandler.Instance.SetEvent(spaceEvent);
             EventHandler.Instance.PlayEvent();
         }
         else
         {
-            playerCameraTransform.localPosition = Vector3.zero;
+            playerZoom.ResetCameraHeight();
         }
     }
     private void Awake()
@@ -65,6 +65,7 @@ public class Player : MonoBehaviour
         playerEnergy = GetComponent<PlayerEnergy>();
         playerIntegrity = GetComponent<PlayerIntegrity>();
         playerMovement = GetComponent<PlayerMovement>();
+        playerZoom = GetComponent<PlayerZoom>();
     }
     private void Start() { initialScreen.SetActive(true); }
     private void FixedUpdate()

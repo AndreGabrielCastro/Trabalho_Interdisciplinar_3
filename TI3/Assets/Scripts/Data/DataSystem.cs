@@ -281,8 +281,8 @@ public class DataSystem : MonoBehaviour
 
         if (falseSave_TrueLoad == false) { SaveGame(); }
         else if (falseSave_TrueLoad == true) { LoadGame(); }
-        
-        UIUserInterface.Instance.uiFader.FadeOut();
+
         isFadingIn = false;
+        UnityEngine.SceneManagement.SceneManager.LoadScene("ColonyScene");
     }
 }
