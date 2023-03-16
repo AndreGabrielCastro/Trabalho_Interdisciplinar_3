@@ -7196,7 +7196,7 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0, y: 0}
   m_AnchorMax: {x: 1, y: 1}
-  m_AnchoredPosition: {x: 0, y: -0.000030517578}
+  m_AnchoredPosition: {x: 0, y: -0.000061035156}
   m_SizeDelta: {x: 0, y: 0}
   m_Pivot: {x: 0.5, y: 1}
 --- !u!114 &199974064
@@ -16561,7 +16561,7 @@ PrefabInstance:
         type: 3}
       propertyPath: gridObjectPrefab
       value: 
-      objectReference: {fileID: 6388037598726829888, guid: db1d3756b8788b5469000fbb028c2125,
+      objectReference: {fileID: 2419543751453094540, guid: 06e2d5953093ab546959692acfbd13ab,
         type: 3}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 78e7d8cf937b2504887569da1e559160, type: 3}
@@ -20941,7 +20941,7 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0, y: 0}
   m_AnchorMax: {x: 1, y: 1}
-  m_AnchoredPosition: {x: 0, y: 0.00033569336}
+  m_AnchoredPosition: {x: 0, y: 0.000091552734}
   m_SizeDelta: {x: 0, y: 0}
   m_Pivot: {x: 0.5, y: 1}
 --- !u!114 &1140300333
@@ -29547,7 +29547,7 @@ PrefabInstance:
         type: 3}
       propertyPath: gridObjectPrefab
       value: 
-      objectReference: {fileID: 1712445586578786585, guid: aebc43eebc261b44aa58c1161a919f7b,
+      objectReference: {fileID: 8677684942998408088, guid: fd64a42c9bfd7024ab6d1f4f3c02a930,
         type: 3}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 78e7d8cf937b2504887569da1e559160, type: 3}
@@ -34292,9 +34292,9 @@ MonoBehaviour:
   - {fileID: 933520369}
   - {fileID: 84461383}
   allGridObjectFacilityPrefabArray:
-  - {fileID: 8201542973041299913, guid: 59234dd83ba57ed45b6e3414144412f1, type: 3}
-  - {fileID: 8744919019369097049, guid: aebc43eebc261b44aa58c1161a919f7b, type: 3}
-  - {fileID: 3907220028294437120, guid: db1d3756b8788b5469000fbb028c2125, type: 3}
+  - {fileID: 7153519220603773658, guid: 00675f6c80ea5fc47a446a3630e760a2, type: 3}
+  - {fileID: 4537816172500958951, guid: fd64a42c9bfd7024ab6d1f4f3c02a930, type: 3}
+  - {fileID: 5695953515052735692, guid: 06e2d5953093ab546959692acfbd13ab, type: 3}
 --- !u!1 &1669584077
 GameObject:
   m_ObjectHideFlags: 0
@@ -40613,7 +40613,7 @@ PrefabInstance:
         type: 3}
       propertyPath: gridObjectPrefab
       value: 
-      objectReference: {fileID: 3982695410172322998, guid: 59234dd83ba57ed45b6e3414144412f1,
+      objectReference: {fileID: 2725447888163854245, guid: 00675f6c80ea5fc47a446a3630e760a2,
         type: 3}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 78e7d8cf937b2504887569da1e559160, type: 3}

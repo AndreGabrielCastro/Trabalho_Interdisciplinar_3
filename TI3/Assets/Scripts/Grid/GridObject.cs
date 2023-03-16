@@ -12,7 +12,6 @@ public class GridObject : MonoBehaviour
     public int width = 1;
     public int lenght = 1;
 
-
     public int maximumIntegrityPoints;
     public int currentIntegrityPoints;
 
