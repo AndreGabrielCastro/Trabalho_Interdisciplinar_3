@@ -11,6 +11,7 @@ public class Player : MonoBehaviour
     public Transform playerCameraFakeTransform;
     public Transform playerCameraTransform;
 
+    public LayerMask workerLayerMask;
     public LayerMask unactiveEventObjectLayerMask;
     public LayerMask activeEventObjectLayerMask;
     public int activeEventObjectLayerMaskValue; // For complete explanation, go to Event Object
@@ -20,6 +21,7 @@ public class Player : MonoBehaviour
     public PlayerIntegrity playerIntegrity;
     public PlayerMovement playerMovement;
     public PlayerZoom playerZoom;
+    public PlayerSelection playerSelection;
     public bool isTravelling;
     public bool isGameOver; public void SetGameOver() { isGameOver = true; }
     public Event spaceEvent; public void SetEvent(Event spaceEvent) {this.spaceEvent = spaceEvent; }

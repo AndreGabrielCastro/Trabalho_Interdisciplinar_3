@@ -153,6 +153,7 @@ public class DataSystem : MonoBehaviour
         {
             Destroy(PlayerSystem.Instance.gridObjectList[i].gameObject);
         }
+        PlayerSystem.Instance.gridObjectList = new List<GridObject>();
 
         // Creating new data
 
@@ -207,6 +208,7 @@ public class DataSystem : MonoBehaviour
         {
             PlayerSystem.Instance.taskList[i] = null;
         }
+        PlayerSystem.Instance.taskList = new List<Task>();
 
         // Creating new data
 

@@ -5,7 +5,8 @@ using UnityEngine;
 public class PlayerMovement : MonoBehaviour
 {
     [Header("Must be setted")]
-    public float speed = 1;
+    [SerializeField] private float speed = 1; public void AlterateSpeed(float value) { speed += value; }
+
     void Update()
     {
         if (Player.Instance.isGameOver == true) { return; }

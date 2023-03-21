@@ -10,9 +10,10 @@ GameObject:
   m_Component:
   - component: {fileID: 853225048863908615}
   - component: {fileID: 7153519220603773658}
+  - component: {fileID: -1104710157264508840}
   - component: {fileID: 6748937816486604665}
   m_Layer: 0
-  m_Name: GridObjectGeradorEnergia
+  m_Name: GridObjectEnergyGenerator
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -46,7 +47,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   prefabIndex: 0
-  gridObjectIcon: {fileID: 21300000, guid: c16c658b75c3a2640ba74c1951cc9457, type: 3}
+  gridObjectIcon: {fileID: 21300000, guid: 3a2f7e46b952b8f418915327d471ca73, type: 3}
   gridObjectPrice: 0
   width: 1
   lenght: 1
@@ -57,6 +58,19 @@ MonoBehaviour:
   snapValue: 0
   gridTileArray: []
   uiGridObjectFacility: {fileID: 0}
+--- !u!114 &-1104710157264508840
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 2725447888163854245}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 7ae4db2f433930f4a811ce11b14e18c0, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  extraEnergyGeneration: 0.5
 --- !u!65 &6748937816486604665
 BoxCollider:
   m_ObjectHideFlags: 0
