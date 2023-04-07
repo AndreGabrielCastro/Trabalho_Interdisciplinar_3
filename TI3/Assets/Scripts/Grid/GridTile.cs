@@ -4,6 +4,7 @@ using UnityEngine;
 
 public class GridTile : MonoBehaviour
 {
+    [HideInInspector] public Worker worker;
     [HideInInspector] public GridObject gridObject;
     [HideInInspector] public GridVisual gridVisual;
     private void Awake() { gridVisual = this.GetComponentInChildren<GridVisual>(); }
@@ -24,6 +25,10 @@ public class GridTile : MonoBehaviour
         //GridTile gridTile = GridSystem.Instance.TryGetGridTile(gridPosition);
         //if (this == gridTile) { Debug.Log("It's working"); }
         #endregion
+    }
+    public void SetWorker(Worker worker)
+    {
+        this.worker = worker;
     }
 
     /// <summary>

@@ -17,9 +17,9 @@ TagManager:
   - UnactiveEventObject
   - ActiveEventObject
   - Projectile
-  - 
-  - 
-  - 
+  - Ground
+  - Worker
+  - Component
   - 
   - 
   - 

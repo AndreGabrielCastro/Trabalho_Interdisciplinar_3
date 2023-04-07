@@ -2,16 +2,28 @@
 using System.Collections.Generic;
 using UnityEngine;
 
-public class FacilityMotor : MonoBehaviour
+public class FacilityMotor : MonoBehaviour, Facility
 {
     [Header("Must be setted")]
     [SerializeField] private float extraSpeed;
+    public void AddWorker()
+    {
+        AlterateSpeed(+extraSpeed);
+    }
+    public void RemoveWorker()
+    {
+        AlterateSpeed(-extraSpeed);
+    }
+    private void AlterateSpeed(float extra)
+    {
+        Player.Instance.playerMovement.AlterateSpeed(extra);
+    }
     private void OnEnable()
     {
-        Player.Instance.playerMovement.AlterateSpeed(+extraSpeed);
+        AlterateSpeed(+extraSpeed);
     }
     private void OnDisable()
     {
-        Player.Instance.playerMovement.AlterateSpeed(-extraSpeed);
+        AlterateSpeed(-extraSpeed);
     }
 }

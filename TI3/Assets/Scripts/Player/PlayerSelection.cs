@@ -10,7 +10,7 @@ public class PlayerSelection : MonoBehaviour
     {
         if (Input.GetMouseButtonUp(0))
         {
-            TrySelectWorker();
+            //TrySelectWorker();
         }
         else if (Input.GetMouseButtonUp(1))
         {
@@ -29,7 +29,11 @@ public class PlayerSelection : MonoBehaviour
     private void TrySendWorker()
     {
         if (selectedWorker == null) { return; }
-
-
+        Vector3 worldPosition = MouseSystem.Instance.GetWorldPosition();
+        GridPosition localGridPosition = GridSystem.Instance.GetGridGroundPositionRelative(worldPosition);
+        GridTile gridTile = GridSystem.Instance.TryGetGridTile(localGridPosition);
+        if (gridTile == null) { return; }
+        Vector3 localPosition = GridSystem.Instance.GetWorldPositionWithoutOffset(localGridPosition);
+        selectedWorker.SetDestination(gridTile, localPosition); return;
     }
 }

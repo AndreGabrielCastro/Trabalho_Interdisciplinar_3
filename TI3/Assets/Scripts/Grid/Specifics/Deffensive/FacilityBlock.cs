@@ -2,16 +2,28 @@
 using System.Collections.Generic;
 using UnityEngine;
 
-public class FacilityBlock : MonoBehaviour
+public class FacilityBlock : MonoBehaviour, Facility
 {
     [Header("Must be setted")]
     [SerializeField] private int extraIntegrity;
+    public void AddWorker()
+    {
+        AlterateMaximumIntegrity(+extraIntegrity);
+    }
+    public void RemoveWorker()
+    {
+        AlterateMaximumIntegrity(-extraIntegrity);
+    }
+    private void AlterateMaximumIntegrity(int extra)
+    {
+        Player.Instance.playerIntegrity.AlterateMaximumIntegrity(extra);
+    }
     private void OnEnable()
     {
-        Player.Instance.playerIntegrity.AlterateMaximumIntegrity(+extraIntegrity);
+        AlterateMaximumIntegrity(+extraIntegrity);
     }
     private void OnDisable()
     {
-        Player.Instance.playerIntegrity.AlterateMaximumIntegrity(-extraIntegrity);
+        AlterateMaximumIntegrity(-extraIntegrity);
     }
 }

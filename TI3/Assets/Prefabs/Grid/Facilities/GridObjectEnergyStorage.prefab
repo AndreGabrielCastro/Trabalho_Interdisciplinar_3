@@ -9,7 +9,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 7769788456217553833}
-  m_Layer: 0
+  m_Layer: 14
   m_Name: Mesh
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -43,7 +43,8 @@ GameObject:
   - component: {fileID: 4537816172500958951}
   - component: {fileID: -2749331367855659558}
   - component: {fileID: 6442311174533956}
-  m_Layer: 0
+  - component: {fileID: 4073085630932559132}
+  m_Layer: 14
   m_Name: GridObjectEnergyStorage
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -89,6 +90,7 @@ MonoBehaviour:
   snapValue: 0
   gridTileArray: []
   uiGridObjectFacility: {fileID: 0}
+  hasWorker: 0
 --- !u!114 &-2749331367855659558
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -115,6 +117,22 @@ BoxCollider:
   serializedVersion: 2
   m_Size: {x: 0.8, y: 1, z: 0.8}
   m_Center: {x: 0, y: 0.5, z: 0}
+--- !u!208 &4073085630932559132
+NavMeshObstacle:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 8677684942998408088}
+  m_Enabled: 1
+  serializedVersion: 3
+  m_Shape: 1
+  m_Extents: {x: 0.2, y: 0.5, z: 0.2}
+  m_MoveThreshold: 0.1
+  m_Carve: 1
+  m_CarveOnlyStationary: 1
+  m_Center: {x: 0, y: 0.5, z: 0}
+  m_TimeToStationary: 0.5
 --- !u!1001 &3063909572253364738
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -181,6 +199,11 @@ PrefabInstance:
         type: 3}
       propertyPath: m_Name
       value: ArmazemEnergiaPrefab
+      objectReference: {fileID: 0}
+    - target: {fileID: 4130888613970301092, guid: ec58234f0cdb31a448351516c54137d6,
+        type: 3}
+      propertyPath: m_Layer
+      value: 14
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: ec58234f0cdb31a448351516c54137d6, type: 3}

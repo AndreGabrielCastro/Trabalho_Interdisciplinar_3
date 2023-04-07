@@ -12,7 +12,7 @@ public class UIColony : MonoBehaviour
     }
     public void OnButtonSelectColony()
     {
-        UIUserInterface.Instance.PopResult("Can't do this yet", Color.red);
+        UIUserInterface.Instance.PopResult("You should click TRAVEL!", Color.red);
         // Show colony information here
     }
 }

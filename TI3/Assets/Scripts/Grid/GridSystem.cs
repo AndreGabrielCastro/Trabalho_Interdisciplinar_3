@@ -63,22 +63,27 @@ public class GridSystem : MonoBehaviour
     private void Update()
     {
         if (PlayerSystem.Instance.isTravelling == true) { return; }
-        if (Input.GetMouseButtonUp(1) == true) { GetGridObject();}
+        if (Input.GetMouseButtonUp(2) == true) { DeleteGridObject(GetGridObject());}
     }
 
     /// <summary>
     /// INCOMPLETE Raycasts from camera to mouse position and (try to return) DELETES the grid object.
     /// </summary>
     /// 
-    public void GetGridObject()
+    public GridObject GetGridObject()
     {
         GridPosition gridPosition = GetGridGroundPosition(MouseSystem.Instance.GetWorldPosition()); // Gets the grid position of the mouse position projected on the mouse plane in the world
         GridTile gridTile = TryGetGridTile(gridPosition); // Tries to get the grid tile
-        if (gridTile == null) { return; } // If grid tile does not exist, return
-        if (gridTile.gridObject == null) { return; } // If the grid tile is empty, return
-        if (gridTile.gridObject.TryGetComponent<GridObjectDelivery>(out GridObjectDelivery gridObjectDelivery)) // Tries to get the grid object
+        if (gridTile == null) { return null; } // If grid tile does not exist, return
+        if (gridTile.gridObject == null) { return null; } // If the grid tile is empty, return
+        return gridTile.gridObject;
+    }
+
+    public void DeleteGridObject(GridObject gridObject)
+    {
+        if (gridObject.TryGetComponent<GridObjectDelivery>(out GridObjectDelivery gridObjectDelivery)) // Tries to get the grid object
         { gridObjectDelivery.DeleteGridObjectDelivery(); } // Deletes the grid object
-        else if (gridTile.gridObject.TryGetComponent<GridObjectFacility>(out GridObjectFacility gridObjectFacility))
+        else if (gridObject.TryGetComponent<GridObjectFacility>(out GridObjectFacility gridObjectFacility))
         { gridObjectFacility.DeleteGridObjectFacility(); }
     }
 

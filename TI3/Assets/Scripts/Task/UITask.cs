@@ -58,7 +58,13 @@ public class UITask : MonoBehaviour
     /// <summary>
     /// Activates the Task's UI Grid Object Deliveries
     /// </summary>
-    public void ActivateDeliveries()
+    public bool TryActivateDeliveries()
+    {
+        if (isAccepted == true) { return false; }
+        ActivateDeliveries();
+        return true;
+    }
+    private void ActivateDeliveries()
     {
         for (int i = 0; i < taskUiGridObjectDeliveryArray.Length; i++) // This "for" goes through all Task's UI Grid Object Deliveries in the UI Task
         { taskUiGridObjectDeliveryArray[i].gameObject.SetActive(true); } // Activate the UI Grid Object
@@ -72,7 +78,6 @@ public class UITask : MonoBehaviour
     /// </summary>
     public void TryDeactivateDeliveries()
     {
-        
         for (int i = 0; i < taskUiGridObjectDeliveryArray.Length; i++) // This "for" goes through all Task's UI Grid Object Deliveries in the UI Task
         {
             if (taskUiGridObjectDeliveryArray[i].isPlaced == true) // If the UI Grid Object is placed...

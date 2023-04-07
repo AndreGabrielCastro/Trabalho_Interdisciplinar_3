@@ -11,6 +11,7 @@ public class Player : MonoBehaviour
     public Transform playerCameraFakeTransform;
     public Transform playerCameraTransform;
 
+    public LayerMask componentLayerMask;
     public LayerMask workerLayerMask;
     public LayerMask unactiveEventObjectLayerMask;
     public LayerMask activeEventObjectLayerMask;

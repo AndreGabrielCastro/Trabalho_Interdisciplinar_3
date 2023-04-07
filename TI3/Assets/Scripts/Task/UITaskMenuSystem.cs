@@ -76,7 +76,7 @@ public class UITaskMenuSystem : MonoBehaviour
     public void OnButtonAcceptTask()
     {
         if (selectedTask == null) { UIUserInterface.Instance.PopResult("Select a task first!", Color.red); return; }
-        selectedTask.ActivateDeliveries();
+        if (selectedTask.TryActivateDeliveries() == false) { UIUserInterface.Instance.PopResult("Already Accepted!", Color.red); return; }
     }
 
     /// <summary>
