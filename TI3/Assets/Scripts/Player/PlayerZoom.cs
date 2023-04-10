@@ -38,31 +38,37 @@ public class PlayerZoom : MonoBehaviour
         if (Input.mouseScrollDelta.y > 0 && desiredCameraHeight > minimumCameraHeight) // Get Close
         {
             if (desiredCameraHeight == minimumCameraHeight) { return; }
+            desiredCameraHeight -= Time.deltaTime * 250;
             if (desiredCameraHeight < maximumCameraHeight * 0.5f && Player.Instance.playerCameraTransform.parent != Player.Instance.transform)
             { Player.Instance.playerCameraPivotTransform.SetParent(Player.Instance.transform); }
-            desiredCameraHeight -= Time.deltaTime * 250;
             if (desiredCameraHeight < minimumCameraHeight) { desiredCameraHeight = minimumCameraHeight; }
         }
         else if (Input.mouseScrollDelta.y < 0 && desiredCameraHeight < maximumCameraHeight) // Get Far
         {
             if (desiredCameraHeight == maximumCameraHeight) { return; }
+            desiredCameraHeight += Time.deltaTime * 250;
             if (desiredCameraHeight > maximumCameraHeight * 0.5f && Player.Instance.playerCameraTransform.parent != PlayerSystem.Instance.transform)
             { Player.Instance.playerCameraPivotTransform.SetParent(PlayerSystem.Instance.transform); }
-            desiredCameraHeight += Time.deltaTime * 250;
             if (desiredCameraHeight > maximumCameraHeight) { desiredCameraHeight = maximumCameraHeight; }
         }
     }
     private void LerpPivotCameraTransform()
     {
-        if (Player.Instance.playerCameraPivotTransform == Player.Instance.playerCameraPivotTransform.parent.transform) { return; }
+        if (Player.Instance.playerCameraPivotTransform.position == Player.Instance.playerCameraPivotTransform.parent.transform.position) { return; }
 
         Player.Instance.playerCameraPivotTransform.position = Vector3.Lerp(Player.Instance.playerCameraPivotTransform.position,
                                                                            Player.Instance.playerCameraPivotTransform.parent.position,
                                                                            Time.fixedDeltaTime * 5);
 
+        // LERPS THE FORWARD. ACTIVATE TO ALSO ROTATE THE CAMERA
+        //Player.Instance.playerCameraPivotTransform.forward = Vector3.Lerp(Player.Instance.playerCameraPivotTransform.forward,
+        //                                                                  Player.Instance.playerCameraPivotTransform.parent.forward,
+        //                                                                  Time.fixedDeltaTime * 5);
+
         if ((Player.Instance.playerCameraPivotTransform.position - Player.Instance.playerCameraPivotTransform.parent.position).magnitude < 0.01f)
         {
             Player.Instance.playerCameraPivotTransform.position = Player.Instance.playerCameraPivotTransform.parent.position;
+            //Player.Instance.playerCameraPivotTransform.forward = Player.Instance.playerCameraPivotTransform.parent.forward;
         }
     }
     private void LerpMainCameraTransform()

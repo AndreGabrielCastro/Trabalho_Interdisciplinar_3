@@ -10,7 +10,7 @@ GameObject:
   m_Component:
   - component: {fileID: 4163063229839392187}
   - component: {fileID: 8744919019369097049}
-  - component: {fileID: 5980764073065601233}
+  - component: {fileID: 6883827337111601062}
   m_Layer: 0
   m_Name: GridObjectArmazemAgua
   m_TagString: Untagged
@@ -57,7 +57,8 @@ MonoBehaviour:
   snapValue: 0
   gridTileArray: []
   uiGridObjectFacility: {fileID: 0}
---- !u!65 &5980764073065601233
+  hasWorker: 0
+--- !u!65 &6883827337111601062
 BoxCollider:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}

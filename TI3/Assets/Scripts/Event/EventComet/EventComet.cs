@@ -6,6 +6,8 @@ public class EventComet : Event
 {
     public EventObjectComet eventObjectCometPrefab;
     public EventObjectCometShard eventObjectCometShardPrefab;
+    public GameObject vfxEventCometCoreExplosion;
+    public GameObject vfxEventCometPartExplosion;
     public int cometPartsIntegrity;
     public int cometPartsDamage;
     public float cometMovementSpeed;
