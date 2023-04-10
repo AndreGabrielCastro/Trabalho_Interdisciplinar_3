@@ -37063,6 +37063,8 @@ MonoBehaviour:
   - {fileID: 4537816172500958951, guid: fd64a42c9bfd7024ab6d1f4f3c02a930, type: 3}
   - {fileID: -7737702895159866052, guid: 7cb64d5afa203ab4296ed699b6ab9b5d, type: 3}
   - {fileID: 5695953515052735692, guid: 06e2d5953093ab546959692acfbd13ab, type: 3}
+  workerPrefab: {fileID: -2697506409437861961, guid: 889618275cfeeb5499112a3a8f280ce3,
+    type: 3}
 --- !u!1 &1664263936
 GameObject:
   m_ObjectHideFlags: 0
@@ -39399,7 +39401,8 @@ MonoBehaviour:
   information: 0
   taskList: []
   gridObjectList: []
-  workerList: []
+  workerList:
+  - {fileID: 867497676}
   masterVolumeValue: 0
   environmentVolumeValue: 0
   soundtrackVolumeValue: 0

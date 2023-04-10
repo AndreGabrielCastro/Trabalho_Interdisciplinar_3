@@ -8,6 +8,7 @@ public class SpaceShipSystem : MonoBehaviour
     [Header("All facilities related")]
     public UIGridObjectFacility[] allUiGridObjectFacilityArray;
     public GridObjectFacility[] allGridObjectFacilityPrefabArray;
+    public Worker workerPrefab;
     private void Awake()
     {
         #region ErrorTreatment

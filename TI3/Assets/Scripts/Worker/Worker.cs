@@ -7,8 +7,8 @@ public class Worker : MonoBehaviour
 {
     [SerializeField] private GridTile gridTileDestination; public GridTile GetGridDestination() { return gridTileDestination; }
     [SerializeField] private Vector3 localGridDestination = Vector3.negativeInfinity; public Vector3 GetDestinationPosition() { return localGridDestination; }
+    private bool isWorking; public bool GetWorkingState() { return isWorking; }
     private bool isMoving;
-    private bool isWorking;
     public void SetDestination(GridTile gridTile, Vector3 localPosition)
     {
         if (gridTile == gridTileDestination || localPosition == localGridDestination) { return; }
@@ -22,6 +22,17 @@ public class Worker : MonoBehaviour
         TryStopWork();
         gridTileDestination = gridTile;
         localGridDestination = Player.Instance.transform.InverseTransformPoint(gridTile.transform.position);
+    }
+    public void SetDestination(Vector3 localPosition)
+    {
+        if (localPosition == localGridDestination) { return; }
+        GridPosition localGridPosition = GridSystem.Instance.GetGridGroundPositionRelative(localPosition);
+        GridTile gridTile = GridSystem.Instance.TryGetGridTile(localGridPosition);
+        if (gridTile == null) { return; }
+        Vector3 localPos = GridSystem.Instance.GetWorldPositionWithoutOffset(localGridPosition);
+        TryStopWork();
+        gridTileDestination = gridTile;
+        localGridDestination = localPos;
     }
     public void TryStartWork()
     {

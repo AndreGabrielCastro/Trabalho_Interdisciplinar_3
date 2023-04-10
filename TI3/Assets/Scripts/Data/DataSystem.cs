@@ -59,7 +59,6 @@ public class DataSystem : MonoBehaviour
         }
 
         int ii = 0;
-        Debug.Log("F" + gridObjectFacilityAmount);
         saveData.gridObjectFacilityDataArray = new GridObjectFacilityData[gridObjectFacilityAmount];
         for (int i = 0; i < PlayerSystem.Instance.gridObjectList.Count; i++)
         {
@@ -117,6 +116,18 @@ public class DataSystem : MonoBehaviour
                 saveData.taskDataArray[i].gridObjectDeliveryDataArray[j].currentIntegrityPoints = PlayerSystem.Instance.taskList[i].gridObjectDeliveryArray[j].currentIntegrityPoints;
             }
         }
+
+        // WorkerData
+
+        saveData.workerDataArray = new WorkerData[PlayerSystem.Instance.workerList.Count];
+        for (int i = 0; i < saveData.workerDataArray.Length; i++)
+        {
+            saveData.workerDataArray[i] = new WorkerData();
+            saveData.workerDataArray[i].localPosition = PlayerSystem.Instance.workerList[i].transform.localPosition;
+            saveData.workerDataArray[i].isWorking = PlayerSystem.Instance.workerList[i].GetWorkingState();
+        }
+
+        // 
 
         string save = JsonUtility.ToJson(saveData);
         string path = Application.dataPath + "/save.txt";
@@ -272,6 +283,34 @@ public class DataSystem : MonoBehaviour
 
             PlayerSystem.Instance.taskList.Add(task);
         }
+
+        // WorkerData
+
+        // Excluding current data
+
+        for (int i = 0; i < PlayerSystem.Instance.workerList.Count; i++)
+        {
+            Destroy(PlayerSystem.Instance.workerList[i].gameObject);
+        }
+        PlayerSystem.Instance.workerList = new List<Worker>();
+
+        // Creating new data
+
+        for (int i = 0; i < loadData.workerDataArray.Length; i++)
+        {
+            Worker worker = Instantiate(SpaceShipSystem.Instance.workerPrefab,
+                                        loadData.workerDataArray[i].localPosition,
+                                        Quaternion.identity);
+
+            worker.transform.SetParent(GridSystem.Instance.transform);
+
+            if (loadData.workerDataArray[i].isWorking == true)
+            {
+                worker.SetDestination(worker.transform.localPosition);
+            }
+        }
+
+        //
 
         UIRouteSystem.Instance.currentColonyIndex = loadData.playerData.currentColonyIndex;
         UIUserInterface.Instance.PopResult("Game Loaded Successfully", Color.green, 4);
