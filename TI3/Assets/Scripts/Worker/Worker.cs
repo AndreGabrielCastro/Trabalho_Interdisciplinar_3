@@ -64,7 +64,7 @@ public class Worker : MonoBehaviour
         if (distance.magnitude <= 0.01f) { transform.localPosition = localGridDestination; TryStartWork(); }
         transform.localPosition = Vector3.Lerp(transform.localPosition, localGridDestination, 2 * Time.fixedDeltaTime);
         Vector3 direction = distance.normalized;
-        transform.forward = Vector3.Lerp(transform.forward, direction, 2 * Time.fixedDeltaTime);
+        transform.forward = Vector3.Lerp(transform.forward, direction, 4 * Time.fixedDeltaTime);
     }
     private void FixedUpdate()
     {
