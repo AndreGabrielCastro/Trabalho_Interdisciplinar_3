@@ -23,6 +23,7 @@ public class Player : MonoBehaviour
     public PlayerMovement playerMovement;
     public PlayerZoom playerZoom;
     public PlayerSelection playerSelection;
+    public PlayerCommand playerCommand;
     public bool isTravelling;
     public bool isGameOver; public void SetGameOver() { isGameOver = true; }
     public Event spaceEvent; public void SetEvent(Event spaceEvent) {this.spaceEvent = spaceEvent; }
@@ -69,6 +70,8 @@ public class Player : MonoBehaviour
         playerIntegrity = GetComponent<PlayerIntegrity>();
         playerMovement = GetComponent<PlayerMovement>();
         playerZoom = GetComponent<PlayerZoom>();
+        playerSelection = GetComponent<PlayerSelection>();
+        playerCommand = GetComponent<PlayerCommand>();
     }
     private void Start() { initialScreen.SetActive(true); }
     private void FixedUpdate()

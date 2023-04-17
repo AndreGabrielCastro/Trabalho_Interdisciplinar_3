@@ -306,7 +306,7 @@ public class DataSystem : MonoBehaviour
 
             if (loadData.workerDataArray[i].isWorking == true)
             {
-                worker.SetDestination(worker.transform.localPosition);
+                worker.TrySetDestination(worker.transform.localPosition);
             }
         }
 

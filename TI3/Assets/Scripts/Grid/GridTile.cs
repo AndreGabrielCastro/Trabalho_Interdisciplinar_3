@@ -4,7 +4,7 @@ using UnityEngine;
 
 public class GridTile : MonoBehaviour
 {
-    [HideInInspector] public Worker worker;
+    public Worker worker;
     [HideInInspector] public GridObject gridObject;
     [HideInInspector] public GridVisual gridVisual;
     private void Awake() { gridVisual = this.GetComponentInChildren<GridVisual>(); }

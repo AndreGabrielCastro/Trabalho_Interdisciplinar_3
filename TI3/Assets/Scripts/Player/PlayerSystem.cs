@@ -16,7 +16,7 @@ public class PlayerSystem : MonoBehaviour
 
     public List<Task> taskList;
     public List<GridObject> gridObjectList;
-    public List<Worker> workerList;
+    public List<Worker> workerList; public List<Worker> GetMyWorkers() { return workerList; }
 
     public sbyte masterVolumeValue = 0;
     public sbyte environmentVolumeValue = 0;
