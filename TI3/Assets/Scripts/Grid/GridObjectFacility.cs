@@ -6,18 +6,24 @@ public class GridObjectFacility : GridObject
 {
     [Header("Setted during playtime")]
     public UIGridObjectFacility uiGridObjectFacility;
-    public bool hasWorker;
-    public void TryAddWorker()
+    public void AddWorker()
     {
-        if (hasWorker == true) { return; }
-        hasWorker = true;
         GetComponent<Facility>().AddWorker();
     }
-    public void TryRemoveWorker()
+    public void RemoveWorker()
     {
-        if (hasWorker == false) { return; }
-        hasWorker = false;
         GetComponent<Facility>().RemoveWorker();
+    }
+    private void RemoveAllWorkers()
+    {
+        foreach (GridTile gridtile in gridTileArray)
+        {
+            if (gridtile.worker != null)
+            {
+                gridtile.worker.Reset();
+                GetComponent<Facility>().RemoveWorker();
+            }
+        }
     }
     public void OnLevelWasLoaded(int level)
     {
@@ -26,7 +32,7 @@ public class GridObjectFacility : GridObject
     }
     public void DeleteGridObjectFacility()
     {
-        TryRemoveWorker();
+        RemoveAllWorkers();
         foreach (GridTile gridTile in gridTileArray) // Foreach grid tile it occupies...
         { gridTile.SetGridObject(null); } // Set the grid tile to null
         uiGridObjectFacility.UpdateCurrentAmount(+1); // Increases +1 to the UI grid object amount
@@ -36,7 +42,7 @@ public class GridObjectFacility : GridObject
     }
     public void DestroyGridObjectFacility()
     {
-        TryRemoveWorker();
+        RemoveAllWorkers();
         foreach (GridTile gridTile in gridTileArray) // Foreach grid tile it occupies...
         { gridTile.SetGridObject(null); } // Set the grid tile to null
         Instantiate(VfxSystem.Instance.vfxDestroyed, this.transform.position + Vector3.up * 0.1f, Quaternion.identity);

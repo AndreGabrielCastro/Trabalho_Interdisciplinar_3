@@ -290,6 +290,11 @@ public class DataSystem : MonoBehaviour
 
         for (int i = 0; i < PlayerSystem.Instance.workerList.Count; i++)
         {
+            if (PlayerSystem.Instance.workerList[i].GetGridDestination() != null)
+            {
+                PlayerSystem.Instance.workerList[i].GetGridDestination().SetWorker(null);
+            }
+            PlayerSystem.Instance.workerList[i].TryStopWork();
             Destroy(PlayerSystem.Instance.workerList[i].gameObject);
         }
         PlayerSystem.Instance.workerList = new List<Worker>();
@@ -304,10 +309,13 @@ public class DataSystem : MonoBehaviour
 
             worker.transform.SetParent(GridSystem.Instance.transform);
 
+            Debug.Log("wereworking: " + loadData.workerDataArray[i].isWorking);
             if (loadData.workerDataArray[i].isWorking == true)
             {
                 worker.TrySetDestination(worker.transform.localPosition);
             }
+            Debug.Log("isworking: " + worker.GetWorkingState());
+            PlayerSystem.Instance.workerList.Add(worker);
         }
 
         //

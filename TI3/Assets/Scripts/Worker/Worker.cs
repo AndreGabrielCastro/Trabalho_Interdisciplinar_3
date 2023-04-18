@@ -8,8 +8,8 @@ public class Worker : MonoBehaviour
     [SerializeField] private GridTile gridTileDestination; public GridTile GetGridDestination() { return gridTileDestination; }
     [SerializeField] private Vector3 localGridDestination = Vector3.negativeInfinity; public Vector3 GetDestinationPosition() { return localGridDestination; }
     private SpriteRenderer selectedVisual;
-    private bool isWorking; public bool GetWorkingState() { return isWorking; }
-    private bool isMoving;
+    [SerializeField] private bool isWorking; public bool GetWorkingState() { return isWorking; }
+    [SerializeField] private bool isMoving;
     public void BeSelected()
     {
         selectedVisual.enabled = true;
@@ -18,19 +18,30 @@ public class Worker : MonoBehaviour
     {
         selectedVisual.enabled = false;
     }
+    public void Reset()
+    {
+        gridTileDestination = null;
+        localGridDestination = Vector3.negativeInfinity;
+        isWorking = false;
+        isMoving = false;
+    }
     public void TrySetDestination(GridTile gridTile, Vector3 localPosition)
     {
         if (gridTile == gridTileDestination || localPosition == localGridDestination) { return; }
+        if (gridTile.worker != null && gridTile.worker != this) { return; }
         TryStopWork();
         gridTileDestination = gridTile;
         localGridDestination = localPosition;
+        gridTileDestination.SetWorker(this);
     }
     public void TrySetDestination(GridTile gridTile)
     {
         if (gridTile == gridTileDestination) { return; }
+        if (gridTile.worker != null && gridTile.worker != this) { return; }
         TryStopWork();
         gridTileDestination = gridTile;
         localGridDestination = Player.Instance.transform.InverseTransformPoint(gridTile.transform.position);
+        gridTileDestination.SetWorker(this);
     }
     public void TrySetDestination(Vector3 localPosition)
     {
@@ -38,10 +49,12 @@ public class Worker : MonoBehaviour
         GridPosition localGridPosition = GridSystem.Instance.GetGridGroundPositionRelative(localPosition);
         GridTile gridTile = GridSystem.Instance.TryGetGridTile(localGridPosition);
         if (gridTile == null) { return; }
+        if (gridTile.worker != null && gridTile.worker != this) { return; }
         Vector3 localPos = GridSystem.Instance.GetWorldPositionWithoutOffset(localGridPosition);
         TryStopWork();
         gridTileDestination = gridTile;
         localGridDestination = localPos;
+        gridTileDestination.SetWorker(this);
     }
     public void TryStartWork()
     {
@@ -52,8 +65,7 @@ public class Worker : MonoBehaviour
         if (gridTileDestination.gridObject.TryGetComponent<GridObjectFacility>(out GridObjectFacility gridObjectFacility) == true)
         {
             isWorking = true;
-            gridTileDestination.SetWorker(this);
-            gridObjectFacility.TryAddWorker();
+            gridObjectFacility.AddWorker();
         }
     }
     public void TryStopWork()
@@ -67,7 +79,7 @@ public class Worker : MonoBehaviour
         {
             isWorking = false;
             gridTileDestination.SetWorker(null);
-            gridObjectFacility.TryRemoveWorker();
+            gridObjectFacility.RemoveWorker();
         }
     }
     public void TryMove()
