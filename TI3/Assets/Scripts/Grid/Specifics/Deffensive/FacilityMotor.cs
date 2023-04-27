@@ -2,15 +2,15 @@
 using System.Collections.Generic;
 using UnityEngine;
 
-public class FacilityMotor : MonoBehaviour, Facility
+public class FacilityMotor : MonoBehaviour, IFacility
 {
     [Header("Must be setted")]
     [SerializeField] private float extraSpeed;
-    public void AddWorker()
+    public void StartWork()
     {
         AlterateSpeed(+extraSpeed);
     }
-    public void RemoveWorker()
+    public void StopWork()
     {
         AlterateSpeed(-extraSpeed);
     }

@@ -4,7 +4,8 @@ using UnityEngine;
 
 public class PlayerCommand : MonoBehaviour
 {
-    private List<Worker> selectedWorkers = new List<Worker>();
+    [Header("Setted during playtime")]
+    [SerializeField] private List<Worker> selectedWorkers = new List<Worker>();
     private void Update()
     {
         if (Input.GetMouseButtonUp(1))

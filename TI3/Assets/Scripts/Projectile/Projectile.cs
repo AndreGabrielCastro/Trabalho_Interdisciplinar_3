@@ -5,8 +5,8 @@ using UnityEngine;
 public class Projectile : MonoBehaviour
 {
     [Header("Must be setted")]
-    public int damage = 1;
-    public int speed = 10;
+    [SerializeField] private int damage = 1;
+    [SerializeField] private int speed = 10;
     private float timer = 0;
     private void FixedUpdate()
     {
@@ -16,7 +16,7 @@ public class Projectile : MonoBehaviour
     private void OnCollisionEnter(Collision collision)
     {
         EventObject eventObject = collision.gameObject.GetComponent<EventObject>();
-        if (eventObject.integrityPoints == 999) { return; }
+        if (eventObject.integrityPoints == 9999) { return; }
         eventObject.TakeDamage(damage);
         Destroy(this.gameObject);
     }

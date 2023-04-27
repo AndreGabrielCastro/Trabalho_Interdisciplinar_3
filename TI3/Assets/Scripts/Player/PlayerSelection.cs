@@ -1,25 +1,34 @@
 ﻿using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.EventSystems;
 
 public class PlayerSelection : MonoBehaviour
 {
+    [Header("Must be setted")]
     [SerializeField] private RectTransform workerSelectionArea = null;
+
+    [Header("Setted during playtime")]
     [SerializeField] private List<Worker> selectedWorkers = new List<Worker>();
-    [SerializeField] private LayerMask workerLayerMask = new LayerMask();
-    private Vector2 startPosition;
+    [SerializeField] private Vector2 startPosition;
+    [SerializeField] private bool isMouseOverUI;
+    [SerializeField] private bool isDrawing;
 
     public List<Worker> GetSelectedWorkers()
     {
         return selectedWorkers;
     }
+    public void ResetSelectedWorkers()
+    {
+        selectedWorkers = new List<Worker>();
+    }
+    public void RemoveSelectedWorker(Worker worker)
+    {
+        selectedWorkers.Remove(worker);
+    }
     private void Update()
     {
-        if (Input.GetMouseButtonDown(0))
-        {
-            StartSelectionArea();
-        }
-        else if (Input.GetMouseButtonUp(0))
+        if (Input.GetMouseButtonUp(0))
         {
             ClearSelectionArea();
         }
@@ -27,10 +36,33 @@ public class PlayerSelection : MonoBehaviour
         {
             UpdateSelectionArea();
         }
+        if (IsMouseOverUI() == true) { return; }
+        if (Input.GetMouseButtonDown(0))
+        {
+            StartSelectionArea();
+        }
     }
-
+    public bool IsMouseOverUI()
+    {
+        PointerEventData pointerEventData = new PointerEventData(EventSystem.current);
+        pointerEventData.position = Input.mousePosition;
+        List<RaycastResult> results = new List<RaycastResult>();
+        EventSystem.current.RaycastAll(pointerEventData, results);
+        if (results.Count > 0)
+        {
+            isMouseOverUI = true;
+            return true;
+        }
+        else
+        {
+            isMouseOverUI = false;
+            return false;
+        }
+    }
     private void StartSelectionArea()
     {
+        isDrawing = true;
+
         if (Input.GetKey(KeyCode.LeftShift) == false) // Se o botão shift não estiver sendo pressionado...
         {
             foreach (Worker selectedWorker in selectedWorkers) // Para todas as unidades selecionadas...
@@ -50,6 +82,8 @@ public class PlayerSelection : MonoBehaviour
 
     private void UpdateSelectionArea()
     {
+        if (isDrawing == false) { return; }
+
         Vector2 mousePosition = Input.mousePosition;
 
         float areaWidth = mousePosition.x - startPosition.x;
@@ -61,22 +95,39 @@ public class PlayerSelection : MonoBehaviour
 
     private void ClearSelectionArea()
     {
+        if (isDrawing == false) { return; }
+
+        isDrawing = false;
+
         workerSelectionArea.gameObject.SetActive(false); // Desativa a area de seleção
 
         if (workerSelectionArea.sizeDelta.magnitude == 0) // Se não tiver movido o mouse durante a seleção...
         {
-            Ray ray = Camera.main.ScreenPointToRay(Input.mousePosition); // == Ray ray = mainCamera.ScreenPointToRay(Mouse.current.position.ReadValue());
+            #region UNUSED_GetUsingRaycast
+            //Ray ray = Camera.main.ScreenPointToRay(Input.mousePosition); // == Ray ray = mainCamera.ScreenPointToRay(Mouse.current.position.ReadValue());
 
-            if (Physics.Raycast(ray, out RaycastHit hit, Mathf.Infinity, workerLayerMask) == false) { return; } // Se o raycast pegar nada, retorna
+            //if (Physics.Raycast(ray, out RaycastHit hit, Mathf.Infinity, workerLayerMask) == false) { return; } // Se o raycast pegar nada, retorna
 
-            if (hit.collider.TryGetComponent<Worker>(out Worker worker) == false) { return; } // Verifica se há o componente Unit. Se não, retorna
+            //if (hit.collider.TryGetComponent<Worker>(out Worker worker) == false) { return; } // Verifica se há o componente Unit. Se não, retorna
+            #endregion
 
-            selectedWorkers.Add(worker); // Adiciona a unidade à lista
-
-            foreach (Worker selectedWorker in selectedWorkers) // Para todas as unidades selecionadas...
+            foreach (Worker worker in PlayerSystem.Instance.GetMyWorkers())
             {
-                selectedWorker.BeSelected(); // Ativa o highlight em todas as unidades selecionadas
+                if (selectedWorkers.Contains(worker)) { continue; }
+
+                Vector3 screenPosition = Camera.main.WorldToScreenPoint(worker.transform.position);
+
+                if ((screenPosition - Input.mousePosition).magnitude < 12)
+                {
+                    selectedWorkers.Add(worker); // Adiciona a unidade à lista
+                    worker.BeSelected();
+                }
             }
+
+            //foreach (Worker selectedWorker in selectedWorkers) // Para todas as unidades selecionadas...
+            //{
+            //    selectedWorker.BeSelected(); // Ativa o highlight em todas as unidades selecionadas
+            //}
 
             return;
         }

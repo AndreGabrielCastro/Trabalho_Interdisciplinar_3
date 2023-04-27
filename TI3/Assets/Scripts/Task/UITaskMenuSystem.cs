@@ -122,7 +122,7 @@ public class UITaskMenuSystem : MonoBehaviour
     }
     public void GenerateUITasks()
     {
-        Colony currentColony = ColonySystem.Instance.allColoniesArray[ColonySystem.Instance.currentColonyIndex]; // Gets the current colony from the All Colonies Array
+        Colony currentColony = ColonySystem.Instance.allColoniesArray[ColonySystem.Instance.GetCurrentColonyIndex()]; // Gets the current colony from the All Colonies Array
         int taskAmount = Random.Range(currentColony.taskMinAmount, currentColony.taskMaxAmount + 1); // Determines the new size of the UI task array
         this.uiTaskArray = new UITask[taskAmount]; // Sets the new size of the UI task array
 

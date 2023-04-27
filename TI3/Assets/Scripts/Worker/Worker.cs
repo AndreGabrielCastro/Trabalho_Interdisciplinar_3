@@ -5,11 +5,28 @@ using UnityEngine.AI;
 
 public class Worker : MonoBehaviour
 {
-    [SerializeField] private GridTile gridTileDestination; public GridTile GetGridDestination() { return gridTileDestination; }
-    [SerializeField] private Vector3 localGridDestination = Vector3.negativeInfinity; public Vector3 GetDestinationPosition() { return localGridDestination; }
-    private SpriteRenderer selectedVisual;
-    [SerializeField] private bool isWorking; public bool GetWorkingState() { return isWorking; }
+    [Header("Setted during playtime")]
+    [SerializeField] private SpriteRenderer selectedVisual;
+    [SerializeField] private GridTile gridTileDestination; 
+    [SerializeField] private Vector3 localGridDestination = Vector3.negativeInfinity; 
+    [SerializeField] private bool isWorking; 
     [SerializeField] private bool isMoving;
+
+    #region Getters&Setters
+    public GridTile GetGridDestination() { return gridTileDestination; }
+    public Vector3 GetDestinationPosition() { return localGridDestination; }
+    public bool GetWorkingState() { return isWorking; }
+    private void SetDestination(GridTile gridTile, Vector3 localPosition)
+    {
+        if (gridTileDestination != null)
+        {
+            gridTileDestination.SetWorker(null);
+        }
+        gridTileDestination = gridTile;
+        localGridDestination = localPosition;
+        gridTileDestination.SetWorker(this);
+    }
+    #endregion
     public void BeSelected()
     {
         selectedVisual.enabled = true;
@@ -30,18 +47,14 @@ public class Worker : MonoBehaviour
         if (gridTile == gridTileDestination || localPosition == localGridDestination) { return; }
         if (gridTile.worker != null && gridTile.worker != this) { return; }
         TryStopWork();
-        gridTileDestination = gridTile;
-        localGridDestination = localPosition;
-        gridTileDestination.SetWorker(this);
+        SetDestination(gridTile, localPosition);
     }
     public void TrySetDestination(GridTile gridTile)
     {
         if (gridTile == gridTileDestination) { return; }
         if (gridTile.worker != null && gridTile.worker != this) { return; }
         TryStopWork();
-        gridTileDestination = gridTile;
-        localGridDestination = Player.Instance.transform.InverseTransformPoint(gridTile.transform.position);
-        gridTileDestination.SetWorker(this);
+        SetDestination(gridTile, Player.Instance.transform.InverseTransformPoint(gridTile.transform.position));
     }
     public void TrySetDestination(Vector3 localPosition)
     {
@@ -52,9 +65,7 @@ public class Worker : MonoBehaviour
         if (gridTile.worker != null && gridTile.worker != this) { return; }
         Vector3 localPos = GridSystem.Instance.GetWorldPositionWithoutOffset(localGridPosition);
         TryStopWork();
-        gridTileDestination = gridTile;
-        localGridDestination = localPos;
-        gridTileDestination.SetWorker(this);
+        SetDestination(gridTile, localPos);
     }
     public void TryStartWork()
     {
@@ -65,7 +76,7 @@ public class Worker : MonoBehaviour
         if (gridTileDestination.gridObject.TryGetComponent<GridObjectFacility>(out GridObjectFacility gridObjectFacility) == true)
         {
             isWorking = true;
-            gridObjectFacility.AddWorker();
+            gridObjectFacility.StartWork();
         }
     }
     public void TryStopWork()
@@ -74,12 +85,16 @@ public class Worker : MonoBehaviour
         if (isWorking == false) { return; }
         if (gridTileDestination == null) { return; }
         if (gridTileDestination.worker != null && gridTileDestination.worker != this) { return; }
-        if (gridTileDestination.gridObject == null) { return; }
-        if (gridTileDestination.gridObject.TryGetComponent<GridObjectFacility>(out GridObjectFacility gridObjectFacility) == true)
+        if (gridTileDestination.gridObject == null)
         {
             isWorking = false;
             gridTileDestination.SetWorker(null);
-            gridObjectFacility.RemoveWorker();
+        }
+        else if (gridTileDestination.gridObject.TryGetComponent<GridObjectFacility>(out GridObjectFacility gridObjectFacility) == true)
+        {
+            isWorking = false;
+            gridTileDestination.SetWorker(null);
+            gridObjectFacility.StopWork();
         }
     }
     public void TryMove()

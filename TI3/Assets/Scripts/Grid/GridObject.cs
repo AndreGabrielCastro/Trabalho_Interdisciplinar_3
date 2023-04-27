@@ -13,7 +13,7 @@ public class GridObject : MonoBehaviour
     public int lenght = 1;
 
     public int maximumIntegrityPoints;
-    public int currentIntegrityPoints;
+    public float currentIntegrityPoints;
 
     [Header("Setted during playtime")]
     public int desiredWidth;
@@ -35,7 +35,7 @@ public class GridObject : MonoBehaviour
     /// </summary>
     /// <param name="damage"></param>
     /// <returns></returns>
-    public void TakeDamage(int damage)
+    public virtual void TakeDamage(int damage)
     {
         if (currentIntegrityPoints <= 0)
         { 
@@ -54,13 +54,18 @@ public class GridObject : MonoBehaviour
         { gridTileArray[i].gridVisual.SetColorTo(currentIntegrityColor); }
     }
 
-    public void HealDamage(int heal)
+    public virtual void HealDamage(int heal)
     {
-        if (currentIntegrityPoints >= maximumIntegrityPoints) { return; }
+        if (currentIntegrityPoints == maximumIntegrityPoints) { return; }
         currentIntegrityPoints += heal;
-
+        if (currentIntegrityPoints >= maximumIntegrityPoints) { currentIntegrityPoints = maximumIntegrityPoints; }
+        UpdateVisual();
+    }
+    public void UpdateVisual()
+    {
         float value = 0.5f * ((float)currentIntegrityPoints / (float)maximumIntegrityPoints);
-        Color currentIntegrityColor = new Color(1f - value, 0.5f + value, 0.5f);
+        Color currentIntegrityColor = new Color(1f - value, 0.2f + value, 0.2f);
+        //                                           r          g          b
 
         for (int i = 0; i < gridTileArray.Length; i++)
         { gridTileArray[i].gridVisual.SetColorTo(currentIntegrityColor); }

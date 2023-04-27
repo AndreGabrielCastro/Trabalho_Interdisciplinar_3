@@ -11,5 +11,5 @@ public class GridObjectFacilityData
     public int desiredLength;
     public int snapValue;
     public int maximumIntegrityPoints;
-    public int currentIntegrityPoints;
+    public float currentIntegrityPoints;
 }

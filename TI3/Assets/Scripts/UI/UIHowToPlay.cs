@@ -4,7 +4,18 @@ using UnityEngine;
 
 public class UIHowToPlay : MonoBehaviour
 {
-    public GameObject[] UIHelpGameObjectsArray;
+    public static UIHowToPlay Instance;
+    private List<UIHint> uiHintList = new List<UIHint>();
+    public void AddUIHint(UIHint hint) { uiHintList.Add(hint); }
+    private void Awake()
+    {
+        if (Instance == null) { Instance = this; }
+    }
     public void OnButtonEnableHelp()
-    { for (int i = 0; i < UIHelpGameObjectsArray.Length; i++) { UIHelpGameObjectsArray[i].SetActive(true); } }
+    { 
+        foreach(UIHint hint in uiHintList)
+        {
+            hint.gameObject.SetActive(true);
+        }
+    }
 }

@@ -8,13 +8,21 @@ public class ColonySystem : MonoBehaviour
 {
     public static ColonySystem Instance;
 
-    public Transform uiColoniesParentTransform;
-    public GameObject spaceShipIconPrefab;
+    [SerializeField] private Transform uiColoniesParentTransform;
+    [SerializeField] private GameObject spaceShipIconPrefab;
 
     [Header("Current Colony")]
     public sbyte currentColonyIndex;
     public string currentColonyName;
 
+    public sbyte GetCurrentColonyIndex()
+    {
+        return currentColonyIndex;
+    }
+    public string GetCurrentColonyName()
+    {
+        return currentColonyName;
+    }
     [Header("Colony Structure")]
     public TMP_Text colonyNameText;
 

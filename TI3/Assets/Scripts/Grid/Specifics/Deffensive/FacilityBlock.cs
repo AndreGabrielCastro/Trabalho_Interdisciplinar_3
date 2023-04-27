@@ -2,15 +2,15 @@
 using System.Collections.Generic;
 using UnityEngine;
 
-public class FacilityBlock : MonoBehaviour, Facility
+public class FacilityBlock : MonoBehaviour, IFacility
 {
     [Header("Must be setted")]
     [SerializeField] private int extraIntegrity;
-    public void AddWorker()
+    public void StartWork()
     {
         AlterateMaximumIntegrity(+extraIntegrity);
     }
-    public void RemoveWorker()
+    public void StopWork()
     {
         AlterateMaximumIntegrity(-extraIntegrity);
     }

@@ -44,8 +44,8 @@ public class DataSystem : MonoBehaviour
         saveData.playerData.sfxVolumeValue = PlayerSystem.Instance.sfxVolumeValue;
         saveData.playerData.uiVolumeValue = PlayerSystem.Instance.uiVolumeValue;
 
-        saveData.playerData.maximumIntegrity = Player.Instance.playerIntegrity.maximumIntegrity;
-        saveData.playerData.currentIntegrity = Player.Instance.playerIntegrity.currentIntegrity;
+        saveData.playerData.maximumIntegrity = Player.Instance.playerIntegrity.GetMaxIntegrity();
+        saveData.playerData.currentIntegrity = Player.Instance.playerIntegrity.GetCurrentIntegrity();
 
         // GridObjectFacilityData
 
@@ -153,8 +153,8 @@ public class DataSystem : MonoBehaviour
         PlayerSystem.Instance.sfxVolumeValue = loadData.playerData.sfxVolumeValue;
         PlayerSystem.Instance.uiVolumeValue = loadData.playerData.uiVolumeValue;
 
-        Player.Instance.playerIntegrity.maximumIntegrity = loadData.playerData.maximumIntegrity;
-        Player.Instance.playerIntegrity.currentIntegrity = loadData.playerData.currentIntegrity;
+        Player.Instance.playerIntegrity.SetMaxIntegrity(loadData.playerData.maximumIntegrity);
+        Player.Instance.playerIntegrity.SetCurrentIntegrity(loadData.playerData.currentIntegrity);
 
         // GridObjectFacilityData
 
@@ -162,6 +162,11 @@ public class DataSystem : MonoBehaviour
 
         for (int i = 0; i < PlayerSystem.Instance.gridObjectList.Count; i++)
         {
+            foreach(GridTile gridtile in PlayerSystem.Instance.gridObjectList[i].gridTileArray)
+            {
+                gridtile.SetGridObject(null);
+                gridtile.SetWorker(null);
+            }
             Destroy(PlayerSystem.Instance.gridObjectList[i].gameObject);
         }
         PlayerSystem.Instance.gridObjectList = new List<GridObject>();
@@ -217,6 +222,14 @@ public class DataSystem : MonoBehaviour
 
         for (int i = 0; i < PlayerSystem.Instance.taskList.Count; i++)
         {
+            for (int j = 0; j < PlayerSystem.Instance.taskList[i].gridObjectDeliveryArray.Length; j++)
+            {
+                for (int k = 0; k < PlayerSystem.Instance.taskList[i].gridObjectDeliveryArray[j].gridTileArray.Length; k++)
+                {
+                    PlayerSystem.Instance.taskList[i].gridObjectDeliveryArray[j].gridTileArray[k].SetGridObject(null);
+                    PlayerSystem.Instance.taskList[i].gridObjectDeliveryArray[j].gridTileArray[k].SetWorker(null);
+                }
+            }
             PlayerSystem.Instance.taskList[i] = null;
         }
         PlayerSystem.Instance.taskList = new List<Task>();
@@ -320,6 +333,7 @@ public class DataSystem : MonoBehaviour
 
         //
 
+        Player.Instance.playerSelection.ResetSelectedWorkers();
         UIRouteSystem.Instance.currentColonyIndex = loadData.playerData.currentColonyIndex;
         UIUserInterface.Instance.PopResult("Game Loaded Successfully", Color.green, 4);
     }

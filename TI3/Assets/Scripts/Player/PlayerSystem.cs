@@ -14,8 +14,8 @@ public class PlayerSystem : MonoBehaviour
     public byte standbyEngineer;
     public int information;
 
-    public List<Task> taskList;
-    public List<GridObject> gridObjectList;
+    public List<Task> taskList; public List<Task> GetMyTasks() { return taskList; }
+    public List<GridObject> gridObjectList; public List<GridObject> GetMyGridObjects() { return gridObjectList; }
     public List<Worker> workerList; public List<Worker> GetMyWorkers() { return workerList; }
 
     public sbyte masterVolumeValue = 0;

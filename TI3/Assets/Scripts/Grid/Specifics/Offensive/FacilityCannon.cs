@@ -6,11 +6,11 @@ public class FacilityCannon : MonoBehaviour
 {
     private AudioSource audioSource;
     [Header("Must be setted")]
-    public Transform spawnPointProjectile;
-    public GameObject projectilePrefab;
-    public AudioClip[] projectileSfxArray;
-    public int shootEnergyCost;
-    public float reloadTime;
+    [SerializeField] private Transform spawnPointProjectile;
+    [SerializeField] private GameObject projectilePrefab;
+    [SerializeField] private AudioClip[] projectileSfxArray;
+    [SerializeField] private int shootEnergyCost;
+    [SerializeField] private float reloadTime;
     private float timer = 0;
     private void Awake()
     {
@@ -21,7 +21,7 @@ public class FacilityCannon : MonoBehaviour
         if (Player.Instance.isTravelling == false) { return; }
         if (Player.Instance.isGameOver == true) { return; }
         if (timer < reloadTime) { return; }
-        if (Input.GetMouseButton(0)) { timer = 0; Shoot(); }
+        if (Input.GetMouseButton(1)) { timer = 0; Shoot(); }
     }
     private void FixedUpdate()
     {
@@ -35,6 +35,7 @@ public class FacilityCannon : MonoBehaviour
     }
     private void Shoot()
     {
+        if (Player.Instance.playerEnergy.GetCurrentEnergy() < shootEnergyCost) { return; }
         Instantiate(projectilePrefab, spawnPointProjectile.transform.position, spawnPointProjectile.transform.rotation);
         audioSource.PlayOneShot(projectileSfxArray[Random.Range(0, 4)]);
         Player.Instance.playerEnergy.LoseEnergy(shootEnergyCost);

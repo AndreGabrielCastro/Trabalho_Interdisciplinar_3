@@ -2,15 +2,15 @@
 using System.Collections.Generic;
 using UnityEngine;
 
-public class FacilityEnergyGenerator : MonoBehaviour, Facility
+public class FacilityEnergyGenerator : MonoBehaviour, IFacility
 {
     [Header("Must be setted")]
     [SerializeField] private float extraEnergyGeneration;
-    public void AddWorker()
+    public void StartWork()
     {
         AlterateEnergyGeneration(+extraEnergyGeneration);
     }
-    public void RemoveWorker()
+    public void StopWork()
     {
         AlterateEnergyGeneration(-extraEnergyGeneration);
     }

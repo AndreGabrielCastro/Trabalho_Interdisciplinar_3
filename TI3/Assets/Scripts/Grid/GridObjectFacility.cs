@@ -6,13 +6,40 @@ public class GridObjectFacility : GridObject
 {
     [Header("Setted during playtime")]
     public UIGridObjectFacility uiGridObjectFacility;
-    public void AddWorker()
+    [SerializeField] private float integrityRegeneration = 0;
+    public void StartWork()
     {
-        GetComponent<Facility>().AddWorker();
+        if (integrityRegeneration != 0) // If the facility is damaged...
+        { integrityRegeneration++; return; } // Then help repair first
+        GetComponent<IFacility>().StartWork();
     }
-    public void RemoveWorker()
+    private void StartAllWork()
     {
-        GetComponent<Facility>().RemoveWorker();
+        foreach (GridTile gridtile in gridTileArray)
+        {
+            if (gridtile.worker != null)
+            {
+                GetComponent<IFacility>().StartWork();
+                integrityRegeneration = 0;
+            }
+        }
+    }
+    public void StopWork()
+    {
+        if (integrityRegeneration != 0) // If the facility is damaged...
+        { integrityRegeneration--; return; } // Then just leave
+        GetComponent<IFacility>().StopWork();
+    }
+    private void StopAllWork()
+    {
+        foreach (GridTile gridtile in gridTileArray)
+        {
+            if (gridtile.worker != null)
+            {
+                GetComponent<IFacility>().StopWork();
+                integrityRegeneration += 0.5f;
+            }
+        }
     }
     private void RemoveAllWorkers()
     {
@@ -21,14 +48,19 @@ public class GridObjectFacility : GridObject
             if (gridtile.worker != null)
             {
                 gridtile.worker.Reset();
-                GetComponent<Facility>().RemoveWorker();
+                GetComponent<IFacility>().StopWork();
+                
             }
         }
     }
+    public override void TakeDamage(int damage)
+    {
+        if (currentIntegrityPoints == maximumIntegrityPoints) { StopAllWork(); }
+        base.TakeDamage(damage);
+    }
     public void OnLevelWasLoaded(int level)
     {
-        if (level == 0)
-        { uiGridObjectFacility = SpaceShipSystem.Instance.allUiGridObjectFacilityArray[prefabIndex]; }
+        if (level == 0) { uiGridObjectFacility = SpaceShipSystem.Instance.allUiGridObjectFacilityArray[prefabIndex]; }
     }
     public void DeleteGridObjectFacility()
     {
@@ -48,5 +80,12 @@ public class GridObjectFacility : GridObject
         Instantiate(VfxSystem.Instance.vfxDestroyed, this.transform.position + Vector3.up * 0.1f, Quaternion.identity);
         PlayerSystem.Instance.gridObjectList.Remove(this);
         Destroy(this.gameObject); // Destroy the object
+    }
+    private void FixedUpdate()
+    {
+        if (currentIntegrityPoints == maximumIntegrityPoints) { return; }
+        currentIntegrityPoints += (float)integrityRegeneration * Time.fixedDeltaTime;
+        UpdateVisual();
+        if (currentIntegrityPoints >= maximumIntegrityPoints) { currentIntegrityPoints = maximumIntegrityPoints; StartAllWork(); }
     }
 }

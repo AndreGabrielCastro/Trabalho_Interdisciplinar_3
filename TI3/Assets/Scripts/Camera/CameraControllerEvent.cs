@@ -7,14 +7,14 @@ public class CameraControllerEvent : MonoBehaviour
     public static CameraControllerEvent Instance;
 
     [Header("- - - Setted during playtime - - -")]
-    public Vector3 cameraOriginalLocalPosition;
-    public Vector3 shakeDirection;
-    public sbyte shakeOriginalIntensity;
-    public float shakeCurrentIntensity;
-    public float shakeOriginalDuration;
-    public float shakeCurrentDuration;
-    public bool isShakingEnding;
-    public bool isShaking;
+    private Vector3 cameraOriginalLocalPosition;
+    private Vector3 shakeDirection;
+    private sbyte shakeOriginalIntensity;
+    private float shakeCurrentIntensity;
+    private float shakeOriginalDuration;
+    private float shakeCurrentDuration;
+    private bool isShakingEnding;
+    private bool isShaking;
 
     private void Awake()
     {

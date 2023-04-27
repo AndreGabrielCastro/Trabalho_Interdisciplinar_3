@@ -2,8 +2,8 @@
 using System.Collections.Generic;
 using UnityEngine;
 
-public interface Facility
+public interface IFacility
 {
-    void AddWorker();
-    void RemoveWorker();
+    void StartWork();
+    void StopWork();
 }

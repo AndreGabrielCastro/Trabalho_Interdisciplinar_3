@@ -44,6 +44,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 6b8972ca6a2042946aa0e75d8e5ebff6, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  worker: {fileID: 0}
   gridObject: {fileID: 0}
   gridVisual: {fileID: 0}
 --- !u!1 &4555157201992027298
@@ -57,7 +58,7 @@ GameObject:
   - component: {fileID: 1802508174927318559}
   - component: {fileID: 660939750956172712}
   - component: {fileID: 4942096558530746812}
-  m_Layer: 0
+  m_Layer: 15
   m_Name: SpriteGridVisual
   m_TagString: Untagged
   m_Icon: {fileID: 0}

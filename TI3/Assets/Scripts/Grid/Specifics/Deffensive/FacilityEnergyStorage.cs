@@ -2,15 +2,15 @@
 using System.Collections.Generic;
 using UnityEngine;
 
-public class FacilityEnergyStorage : MonoBehaviour, Facility
+public class FacilityEnergyStorage : MonoBehaviour, IFacility
 {
     [Header("Must be setted")]
     [SerializeField] private int extraEnergy;
-    public void AddWorker()
+    public void StartWork()
     {
         AlterateMaximumEnergy(+extraEnergy);
     }
-    public void RemoveWorker()
+    public void StopWork()
     {
         AlterateMaximumEnergy(-extraEnergy);
     }

@@ -20,7 +20,7 @@ public class GridVisual : MonoBehaviour
     /// </summary>
     public void Hide() { spriteRenderer.enabled = false; }
 
-    public void SetColorToGreen() { spriteRenderer.color = new Color(0.5f, 1f, 0.5f); }
+    public void SetColorToGreen() { spriteRenderer.color = new Color(0.2f, 1f, 0.2f); }
 
     public void SetColorToWhite() { spriteRenderer.color = new Color(0.75f, 0.75f, 0.75f); }
 

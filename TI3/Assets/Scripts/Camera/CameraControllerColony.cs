@@ -4,7 +4,6 @@ using UnityEngine;
 
 public class CameraControllerColony : MonoBehaviour
 {   
-    [Header("Setted during playtime - - -")]
     private Transform targetTransform;
     private bool isLerping = false;
 

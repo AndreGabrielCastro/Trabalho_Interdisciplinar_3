@@ -44,25 +44,25 @@ public class UIRouteSystem : MonoBehaviour
     }
     public void UpdateSelectedRoute(UIRoute uiRoute)
     {
-        if (currentColonyIndex != uiRoute.firstColonyIndex && currentColonyIndex != uiRoute.secondColonyIndex) // If route is out of range...
+        if (currentColonyIndex != uiRoute.GetFirstColonyIndex() && currentColonyIndex != uiRoute.GetSecondColonyIndex()) // If route is out of range...
         {
-            uiRoute.image.color = new Color(1f, 0.4f, 0.5f, 0.7f); // Sets the color of the route to red
+            uiRoute.GetImage().color = new Color(1f, 0.4f, 0.5f, 0.7f); // Sets the color of the route to red
         }
-        else if (currentColonyIndex != uiRoute.firstColonyIndex && currentColonyIndex == uiRoute.secondColonyIndex)
+        else if (currentColonyIndex != uiRoute.GetFirstColonyIndex() && currentColonyIndex == uiRoute.GetSecondColonyIndex())
         {
-            if (activeRoute != null) { activeRoute.image.color = new Color(0.3f, 1f, 0.6f, 0.7f); } // Sets the color of the previous active route to green
-            uiRoute.image.color = new Color(0.3f, 1f, 1f, 0.7f); // Sets the color of the route to cyan
+            if (activeRoute != null) { activeRoute.GetImage().color = new Color(0.3f, 1f, 0.6f, 0.7f); } // Sets the color of the previous active route to green
+            uiRoute.GetImage().color = new Color(0.3f, 1f, 1f, 0.7f); // Sets the color of the route to cyan
             activeRoute = uiRoute; // Sets the route as the new active route
-            destinationColonyIndex = uiRoute.firstColonyIndex; // Stores the route's destination index
+            destinationColonyIndex = uiRoute.GetFirstColonyIndex(); // Stores the route's destination index
         }
-        else if (currentColonyIndex == uiRoute.firstColonyIndex && currentColonyIndex != uiRoute.secondColonyIndex)
+        else if (currentColonyIndex == uiRoute.GetFirstColonyIndex() && currentColonyIndex != uiRoute.GetSecondColonyIndex())
         {
-            if (activeRoute != null) { activeRoute.image.color = new Color(0.3f, 1f, 0.6f, 0.7f); } // Sets the color of the previous active route to green
-            uiRoute.image.color = new Color(0.3f, 1f, 1f, 0.7f); // Sets the color of the route to cyan
+            if (activeRoute != null) { activeRoute.GetImage().color = new Color(0.3f, 1f, 0.6f, 0.7f); } // Sets the color of the previous active route to green
+            uiRoute.GetImage().color = new Color(0.3f, 1f, 1f, 0.7f); // Sets the color of the route to cyan
             activeRoute = uiRoute; // Sets the route as the new active route
-            destinationColonyIndex = uiRoute.secondColonyIndex; // Stores the route's destination index
+            destinationColonyIndex = uiRoute.GetSecondColonyIndex(); // Stores the route's destination index
         }
-        else if (currentColonyIndex == uiRoute.firstColonyIndex && currentColonyIndex == uiRoute.secondColonyIndex) // If route has same indexes...
+        else if (currentColonyIndex == uiRoute.GetFirstColonyIndex() && currentColonyIndex == uiRoute.GetSecondColonyIndex()) // If route has same indexes...
         {
             Debug.LogError($"One UIRoute got 2 equal colony index!!!!! ----- {uiRoute.transform.position} -----"); return;
         }
@@ -90,7 +90,7 @@ public class UIRouteSystem : MonoBehaviour
             UIUserInterface.Instance.uiFader.FadeIn(); // Activates the fade in
             isLoading = true; // Activates the timer
             PlayerSystem.Instance.SetCurrentColony(destinationColonyIndex); // Sets the current colony of the player
-            Player.Instance.SetEvent(activeRoute.spaceEvent);
+            Player.Instance.SetEvent(activeRoute.GetSpaceEvent());
             //PlayerSystem.Instance.isTravelling = true;
         }
     }
