@@ -18,6 +18,8 @@ public class EventComet : Event
     public int cometShardSpeed;
     private void Start()
     {
+        PlaySoundTrack();
+
         EventObjectComet eventObjectComet = Instantiate(eventObjectCometPrefab, new Vector3(0, 0, -30), Quaternion.identity);
         eventObjectComet.SetAttributes(this, cometMovementSpeed, cometRotationSpeed);
 

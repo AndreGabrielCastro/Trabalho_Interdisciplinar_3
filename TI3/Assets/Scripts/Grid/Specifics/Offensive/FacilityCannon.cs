@@ -4,7 +4,6 @@ using UnityEngine;
 
 public class FacilityCannon : MonoBehaviour
 {
-    private AudioSource audioSource;
     [Header("Must be setted")]
     [SerializeField] private Transform spawnPointProjectile;
     [SerializeField] private GameObject projectilePrefab;
@@ -12,10 +11,6 @@ public class FacilityCannon : MonoBehaviour
     [SerializeField] private int shootEnergyCost;
     [SerializeField] private float reloadTime;
     private float timer = 0;
-    private void Awake()
-    {
-        audioSource = GetComponent<AudioSource>();
-    }
     private void Update()
     {
         if (Player.Instance.isTravelling == false) { return; }
@@ -37,7 +32,7 @@ public class FacilityCannon : MonoBehaviour
     {
         if (Player.Instance.playerEnergy.GetCurrentEnergy() < shootEnergyCost) { return; }
         Instantiate(projectilePrefab, spawnPointProjectile.transform.position, spawnPointProjectile.transform.rotation);
-        audioSource.PlayOneShot(projectileSfxArray[Random.Range(0, 4)]);
+        Player.Instance.playerAudio.PlaySong(projectileSfxArray[Random.Range(0, 4)]);
         Player.Instance.playerEnergy.LoseEnergy(shootEnergyCost);
     }
 }

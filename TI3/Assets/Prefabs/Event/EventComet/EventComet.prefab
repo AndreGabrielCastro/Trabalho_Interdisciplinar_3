@@ -43,10 +43,13 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: ec9497e31cacb3045ab345a89eb33685, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  soundtrack: {fileID: 8300000, guid: 31e7eb41240ad544eb19779202d3fd55, type: 3}
   eventObjectCometPrefab: {fileID: 804047942201903146, guid: 0a2f57dae10739c438091125c4bb1686,
     type: 3}
   eventObjectCometShardPrefab: {fileID: 3043952086517637669, guid: 71b9966f14336da49b6f89f0eff4180f,
     type: 3}
+  vfxEventCometCoreExplosion: {fileID: 0}
+  vfxEventCometPartExplosion: {fileID: 0}
   cometPartsIntegrity: 20
   cometPartsDamage: 5
   cometMovementSpeed: 0.5

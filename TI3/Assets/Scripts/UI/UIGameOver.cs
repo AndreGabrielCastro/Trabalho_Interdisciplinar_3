@@ -38,13 +38,13 @@ public class UIGameOver : MonoBehaviour
                 break;
 
             case IsFading.IsFadingText:
-                transparency += Time.fixedDeltaTime * 0.5f;
+                transparency += Time.fixedDeltaTime * 0.25f;
                 textGameOver.color = new Color(textGameOver.color.r, textGameOver.color.g, textGameOver.color.b, transparency);
                 if (transparency >= 1) { transparency = 0; buttonQuitGame.gameObject.SetActive(true); isFading = IsFading.IsFadingButton; }
                 break;
 
             case IsFading.IsFadingButton:
-                transparency += Time.fixedDeltaTime * 0.5f;
+                transparency += Time.fixedDeltaTime * 0.25f;
                 textButtonQuitGame.color = new Color(textButtonQuitGame.color.r, textButtonQuitGame.color.g, textButtonQuitGame.color.b, transparency);
                 //if (transparency >= 1) { Time.timeScale = 0; }
                 break;
@@ -54,5 +54,14 @@ public class UIGameOver : MonoBehaviour
     /// <summary>
     /// Ends the game.
     /// </summary>
-    public void SetGameOver() { isGameOver = true;  imageGameOver.gameObject.SetActive(true); }
+    public void SetGameOver(string reason = null)
+    { 
+        isGameOver = true; 
+        imageGameOver.gameObject.SetActive(true);
+
+        if (reason != null)
+        {
+            textGameOver.text = reason;
+        }
+    }
 }

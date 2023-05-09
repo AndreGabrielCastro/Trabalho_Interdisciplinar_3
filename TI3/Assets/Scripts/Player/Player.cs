@@ -1,12 +1,16 @@
 ﻿using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using TMPro;
 
 public class Player : MonoBehaviour
 {
     public static Player Instance;
 
     [Header("Must be setted")]
+    [SerializeField] private GameObject colonyWarningText;
+    [SerializeField] private GameObject eventWarningText;
+
     public Transform playerCameraPivotTransform;
     public Transform playerCameraFakeTransform;
     public Transform playerCameraTransform;
@@ -24,8 +28,9 @@ public class Player : MonoBehaviour
     public PlayerZoom playerZoom;
     public PlayerSelection playerSelection;
     public PlayerCommand playerCommand;
+    public PlayerAudio playerAudio;
     public bool isTravelling;
-    public bool isGameOver; public void SetGameOver() { isGameOver = true; }
+    public bool isGameOver; public void SetGameOver(string reason = null) { isGameOver = true; UIGameOver.Instance.SetGameOver(reason); }
     public Event spaceEvent; public void SetEvent(Event spaceEvent) {this.spaceEvent = spaceEvent; }
 
     [Header("Por enquanto")]
@@ -72,6 +77,12 @@ public class Player : MonoBehaviour
         playerZoom = GetComponent<PlayerZoom>();
         playerSelection = GetComponent<PlayerSelection>();
         playerCommand = GetComponent<PlayerCommand>();
+        playerAudio = GetComponent<PlayerAudio>();
+
+        AudioSource[] sources = GetComponents<AudioSource>();
+        playerAudio.SetAudioRelated(sources[0]);
+        playerMovement.SetAudioSource(sources[1]);
+        playerIntegrity.SetAudioSource(sources[2]);
     }
     private void Start() { initialScreen.SetActive(true); }
     private void FixedUpdate()

@@ -31,7 +31,7 @@ public class GridObjectDelivery : GridObject
         }
         Instantiate(VfxSystem.Instance.vfxDeleted, this.transform.position + Vector3.up * 0.1f, Quaternion.identity);
         this.isPlaced = false;
-        PlayerSystem.Instance.gridObjectList.Remove(this);
+        PlayerSystem.Instance.RemoveFromGridObjectList(this);
     }
     public void DestroyGridObjectDelivery()
     {

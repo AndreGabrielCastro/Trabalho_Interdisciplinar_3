@@ -7,6 +7,7 @@ public class PlayerSelection : MonoBehaviour
 {
     [Header("Must be setted")]
     [SerializeField] private RectTransform workerSelectionArea = null;
+    [SerializeField] private AudioClip selectionSuccessClip;
 
     [Header("Setted during playtime")]
     [SerializeField] private List<Worker> selectedWorkers = new List<Worker>();
@@ -26,22 +27,7 @@ public class PlayerSelection : MonoBehaviour
     {
         selectedWorkers.Remove(worker);
     }
-    private void Update()
-    {
-        if (Input.GetMouseButtonUp(0))
-        {
-            ClearSelectionArea();
-        }
-        else if (Input.GetMouseButton(0))
-        {
-            UpdateSelectionArea();
-        }
-        if (IsMouseOverUI() == true) { return; }
-        if (Input.GetMouseButtonDown(0))
-        {
-            StartSelectionArea();
-        }
-    }
+    
     public bool IsMouseOverUI()
     {
         PointerEventData pointerEventData = new PointerEventData(EventSystem.current);
@@ -97,8 +83,8 @@ public class PlayerSelection : MonoBehaviour
     {
         if (isDrawing == false) { return; }
 
+        bool selectedSomething = false;
         isDrawing = false;
-
         workerSelectionArea.gameObject.SetActive(false); // Desativa a area de seleção
 
         if (workerSelectionArea.sizeDelta.magnitude == 0) // Se não tiver movido o mouse durante a seleção...
@@ -121,6 +107,7 @@ public class PlayerSelection : MonoBehaviour
                 {
                     selectedWorkers.Add(worker); // Adiciona a unidade à lista
                     worker.BeSelected();
+                    selectedSomething = true;
                 }
             }
 
@@ -129,6 +116,10 @@ public class PlayerSelection : MonoBehaviour
             //    selectedWorker.BeSelected(); // Ativa o highlight em todas as unidades selecionadas
             //}
 
+            if (selectedSomething == true)
+            {
+                Player.Instance.playerAudio.PlaySong(selectionSuccessClip);
+            }
             return;
         }
 
@@ -147,7 +138,29 @@ public class PlayerSelection : MonoBehaviour
             {
                 selectedWorkers.Add(worker); // Adiciona a unidade à lista
                 worker.BeSelected(); // Ativa o highlight da unidade
+                selectedSomething = true;
             }
+        }
+
+        if (selectedSomething == true)
+        {
+            Player.Instance.playerAudio.PlaySong(selectionSuccessClip);
+        }
+    }
+    private void Update()
+    {
+        if (Input.GetMouseButtonUp(0))
+        {
+            ClearSelectionArea();
+        }
+        else if (Input.GetMouseButton(0))
+        {
+            UpdateSelectionArea();
+        }
+        if (IsMouseOverUI() == true) { return; }
+        if (Input.GetMouseButtonDown(0))
+        {
+            StartSelectionArea();
         }
     }
 }

@@ -12,8 +12,8 @@ public class CameraControllerColony : MonoBehaviour
         if (isLerping == false) { return; }
         Transform playerCamera = Player.Instance.playerCameraTransform;
 
-        playerCamera.position = Vector3.Lerp(playerCamera.position, targetTransform.position, Time.fixedDeltaTime * 3);
-        playerCamera.forward = Vector3.Lerp(playerCamera.forward, targetTransform.forward, Time.fixedDeltaTime * 3);
+        playerCamera.position = Vector3.Lerp(playerCamera.position, targetTransform.position, Time.fixedDeltaTime * 6);
+        playerCamera.forward = Vector3.Lerp(playerCamera.forward, targetTransform.forward, Time.fixedDeltaTime * 6);
 
         if ((playerCamera.position - targetTransform.position).magnitude < 0.01f)
         {

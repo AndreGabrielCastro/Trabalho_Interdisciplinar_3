@@ -9,8 +9,12 @@ public class PlayerIntegrity : MonoBehaviour
     [SerializeField] private int maximumIntegrity = 100;
     [SerializeField] private int currentIntegrity = 100;
     [Header("Setted during playtime")]
+    [SerializeField] private AudioSource audioSource;
+    [SerializeField] private AudioClip alarmClip;
     [SerializeField] private Image integrityBar;
     [SerializeField] private TMP_Text integrityAmountText;
+    private float alarmTimer;
+    private bool isWarning;
     #region Getters&Setters
     public int GetMaxIntegrity() { return maximumIntegrity; }
     public int GetCurrentIntegrity() { return currentIntegrity; }
@@ -18,12 +22,25 @@ public class PlayerIntegrity : MonoBehaviour
     public void SetCurrentIntegrity(int value) { currentIntegrity = value; }
     public void SetIntegrityBar(Image image) { integrityBar = image; UpdateIntegrityBar(); }
     public void SetIntegrityAmountText(TMP_Text text) { integrityAmountText = text; UpdateIntegrityAmountText(); }
+    public void SetAudioSource(AudioSource aSource) { audioSource = aSource; audioSource.clip = alarmClip; }
     #endregion
     public void UpdateIntegrityBar() { integrityBar.fillAmount = (float)currentIntegrity / (float)maximumIntegrity; }
     public void UpdateIntegrityAmountText() { integrityAmountText.text = $"{currentIntegrity}/{maximumIntegrity}"; }
     public void AlterateMaximumIntegrity(int value) { maximumIntegrity += value; CheckMaximumIntegrity(); UpdateIntegrityBar(); UpdateIntegrityAmountText(); }
     public void CheckMaximumIntegrity() { if (currentIntegrity > maximumIntegrity) { currentIntegrity = maximumIntegrity; } }
     public void CheckMinimumIntegrity() { if (currentIntegrity <= 0) { currentIntegrity = 0; } }
+    
+    private void PlayLowIntegrityAlarm()
+    {
+        audioSource.Play();
+        alarmTimer = 30;
+        isWarning = true;
+    }
+    private void StopLowIntegrityAlarm()
+    {
+        audioSource.Stop();
+        isWarning = false;
+    }
     public void HealDamage(int heal)
     {
         if (currentIntegrity >= maximumIntegrity) { return; }
@@ -38,6 +55,10 @@ public class PlayerIntegrity : MonoBehaviour
         currentIntegrity -= damage;
         UpdateIntegrityBar();
         UpdateIntegrityAmountText();
+        if (currentIntegrity <= maximumIntegrity * 0.25)
+        {
+            PlayLowIntegrityAlarm();
+        }
         CameraControllerEvent.Instance.ShakeCamera(Vector3.zero);
         if (currentIntegrity <= 0) { Die(); }
     }
@@ -45,6 +66,11 @@ public class PlayerIntegrity : MonoBehaviour
     {
         Instantiate(VfxSystem.Instance.vfxSpaceShipDestroyed, this.transform.position + Vector3.up * 0.1f, Quaternion.identity);
         Player.Instance.SetGameOver();
-        UIGameOver.Instance.SetGameOver();
+    }
+    private void FixedUpdate()
+    {
+        if (isWarning == false) { return; }
+        alarmTimer -= Time.fixedDeltaTime;
+        if (alarmTimer < 0) { StopLowIntegrityAlarm(); }
     }
 }

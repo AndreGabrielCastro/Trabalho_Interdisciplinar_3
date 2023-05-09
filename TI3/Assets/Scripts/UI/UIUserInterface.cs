@@ -53,7 +53,7 @@ public class UIUserInterface : MonoBehaviour
     {
         if (isLerping == false) { return; }
         float distance = (targetPosition - this.transform.position).magnitude; // Calculates the distance
-        if (distance > 1) { this.transform.position = Vector3.Lerp(this.transform.position, targetPosition, 5 * Time.fixedDeltaTime); } // Lerp
+        if (distance > 1) { this.transform.position = Vector3.Lerp(this.transform.position, targetPosition, Time.fixedDeltaTime * 8); } // Lerp
         else if (distance <= 1) { this.transform.position = targetPosition; isLerping = false; } // End Lerp
     }
 

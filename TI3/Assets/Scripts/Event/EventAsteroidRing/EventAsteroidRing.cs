@@ -14,7 +14,9 @@ public class EventAsteroidRing : Event
     private int remainingAsteroids;
     private Transform spawnPointTransform;
     private void Start()
-    { 
+    {
+        PlaySoundTrack();
+
         spawnPointTransform = this.transform.Find("Spawn").transform;
         remainingAsteroids = asteroidAmount;
 

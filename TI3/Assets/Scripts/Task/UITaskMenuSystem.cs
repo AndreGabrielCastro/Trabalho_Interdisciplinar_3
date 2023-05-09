@@ -6,6 +6,8 @@ using TMPro;
 public class UITaskMenuSystem : MonoBehaviour
 {
     public static UITaskMenuSystem Instance;
+    [SerializeField] private AudioClip audioClip;
+    private AudioSource audioSource;
 
     [Header("Task related")]
     public Transform uiTasksContainer;
@@ -44,6 +46,7 @@ public class UITaskMenuSystem : MonoBehaviour
             return;
         }
         #endregion
+        audioSource = GetComponent<AudioSource>();
     }
 
     /// <summary>
@@ -59,6 +62,8 @@ public class UITaskMenuSystem : MonoBehaviour
         this.contentText.text = uiTask.task.contentDescription;
         this.rewardText.text = uiTask.task.rewardDescription;
         this.conditionText.text = "No condition";
+
+        audioSource.PlayOneShot(audioClip);
     }
     public void ResetTaskDescription()
     {

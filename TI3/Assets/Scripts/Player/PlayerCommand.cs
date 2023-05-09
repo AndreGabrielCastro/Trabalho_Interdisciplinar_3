@@ -4,15 +4,12 @@ using UnityEngine;
 
 public class PlayerCommand : MonoBehaviour
 {
+    [Header("Must be setted")]
+    [SerializeField] private AudioClip commandSuccessClip;
+    [SerializeField] private AudioClip commandFailClip;
+
     [Header("Setted during playtime")]
     [SerializeField] private List<Worker> selectedWorkers = new List<Worker>();
-    private void Update()
-    {
-        if (Input.GetMouseButtonUp(1))
-        {
-            TrySendWorkers();
-        }
-    }
     private void TrySendWorkers()
     {
         selectedWorkers = Player.Instance.playerSelection.GetSelectedWorkers();
@@ -21,18 +18,21 @@ public class PlayerCommand : MonoBehaviour
         Vector3 worldPosition = MouseSystem.Instance.GetWorldPosition();
         GridPosition localGridPosition = GridSystem.Instance.GetGridGroundPositionRelative(worldPosition);
         GridTile gridTile = GridSystem.Instance.TryGetGridTile(localGridPosition);
-        if (gridTile == null) { return; }
+        if (gridTile == null) { Player.Instance.playerAudio.PlaySong(commandFailClip); return; }
         Vector3 localPosition = GridSystem.Instance.GetWorldPositionWithoutOffset(localGridPosition);
 
         if (selectedWorkers.Count == 1)
         {
-            selectedWorkers[0].TrySetDestination(gridTile, localPosition); return;
+            selectedWorkers[0].TrySetDestination(gridTile, localPosition);
+            Player.Instance.playerAudio.PlaySong(commandSuccessClip);
+            return;
         }
         else if (selectedWorkers.Count > 1)
         {
             if (gridTile.gridObject == null)
             {
                 selectedWorkers[0].TrySetDestination(gridTile, localPosition);
+                Player.Instance.playerAudio.PlaySong(commandSuccessClip);
             }
             else if (gridTile.gridObject != null)
             {
@@ -40,7 +40,15 @@ public class PlayerCommand : MonoBehaviour
                 {
                     selectedWorkers[i].TrySetDestination(gridTile.gridObject.gridTileArray[i]);
                 }
+                Player.Instance.playerAudio.PlaySong(commandSuccessClip);
             }
+        }
+    }
+    private void Update()
+    {
+        if (Input.GetMouseButtonUp(1))
+        {
+            TrySendWorkers();
         }
     }
 }

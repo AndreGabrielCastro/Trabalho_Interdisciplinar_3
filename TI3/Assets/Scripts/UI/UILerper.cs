@@ -12,7 +12,7 @@ public class UILerper : MonoBehaviour
         Vector3 distance = targetTransform.position - this.transform.position;
         if (distance.magnitude > 0.5f)
         {
-            this.transform.position = Vector3.Lerp(this.transform.position, targetTransform.position, Time.fixedUnscaledDeltaTime * 5);
+            this.transform.position = Vector3.Lerp(this.transform.position, targetTransform.position, Time.fixedUnscaledDeltaTime * 8);
         }
         else if (distance.magnitude <= 0.5f)
         {

@@ -49,7 +49,6 @@ public class GridObjectFacility : GridObject
             {
                 gridtile.worker.Reset();
                 GetComponent<IFacility>().StopWork();
-                
             }
         }
     }
@@ -69,7 +68,7 @@ public class GridObjectFacility : GridObject
         { gridTile.SetGridObject(null); } // Set the grid tile to null
         uiGridObjectFacility.UpdateCurrentAmount(+1); // Increases +1 to the UI grid object amount
         Instantiate(VfxSystem.Instance.vfxDeleted, this.transform.position + Vector3.up * 0.1f, Quaternion.identity);
-        PlayerSystem.Instance.gridObjectList.Remove(this);
+        PlayerSystem.Instance.RemoveFromGridObjectList(this);
         Destroy(this.gameObject); // Destroy the object
     }
     public void DestroyGridObjectFacility()
