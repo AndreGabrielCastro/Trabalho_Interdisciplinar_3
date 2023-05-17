@@ -31,6 +31,8 @@ public class Colony
 
     //public int exploreLevel = 1;
 
+
+
     // Construtor
     public Colony
         (string colonyName,
