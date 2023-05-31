@@ -12,7 +12,7 @@ public class EventObjectCometShard : EventObject
     public void SetAttributes(EventComet eventComet)
     {
         this.eventComet = eventComet;
-        this.integrityPoints = eventComet.cometShardIntegrity;
+        this.integrityPoints = eventComet.GetShardIntegrity();
 
         Vector3 direction = (Player.Instance.transform.position + new Vector3(Random.Range(-15, 15), 0, 0)) - transform.position;
         transform.forward = direction.normalized;
@@ -26,7 +26,7 @@ public class EventObjectCometShard : EventObject
     {
         if (this.transform.position.z <= -25) { Destroy(this.gameObject); }
 
-        this.transform.Translate(Vector3.forward * eventComet.cometShardSpeed * Time.fixedDeltaTime);
+        this.transform.Translate(Vector3.forward * eventComet.GetShardSpeed() * Time.fixedDeltaTime);
         meshTransform.Rotate(rotationDirection * 1 * Time.fixedDeltaTime);
 
         if (this.isActive == false) { return; }
@@ -35,9 +35,18 @@ public class EventObjectCometShard : EventObject
         currentGridPosition = gridPosition;
         GridTile gridTile = GridSystem.Instance.TryGetGridTile(gridPosition);
         if (gridTile == null) { return; }
-        gridTile.TakeDamage(eventComet.cometShardDamage);
-        Player.Instance.playerIntegrity.TakeDamage(eventComet.cometShardDamage);
-        Instantiate(VfxSystem.Instance.vfxEventObjectDestroyed, this.transform.position, Quaternion.identity);
-        Destroy(this.gameObject);
+        gridTile.TakeDamage(eventComet.GetShardDamage());
+        Player.Instance.playerIntegrity.TakeDamage(eventComet.GetShardDamage());
+        BeDestroyed();
+    }
+    public override void TakeDamage(int damage, Vector3 position)
+    {
+        Instantiate(eventComet.GetVFXHitted(), position, Quaternion.identity);
+        base.TakeDamage(damage, position);
+    }
+    public override void BeDestroyed()
+    {
+        Instantiate(eventComet.GetVFXShardExplosion(), transform.position, Quaternion.identity);
+        base.BeDestroyed();
     }
 }

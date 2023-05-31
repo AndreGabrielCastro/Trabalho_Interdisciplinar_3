@@ -17,7 +17,7 @@ public class Projectile : MonoBehaviour
     {
         EventObject eventObject = collision.gameObject.GetComponent<EventObject>();
         if (eventObject.integrityPoints == 9999) { return; }
-        eventObject.TakeDamage(damage);
+        eventObject.TakeDamage(damage, transform.position);
         Destroy(this.gameObject);
     }
 }

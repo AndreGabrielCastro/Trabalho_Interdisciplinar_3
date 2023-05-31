@@ -5,14 +5,18 @@ using UnityEngine;
 public class EventAsteroidRing : Event
 {
     [Header("Must be setted")]
+    [SerializeField] private GameObject vfxAsteroidHitted;
+    [SerializeField] private GameObject vfxAsteroidDestroyed;
     [Tooltip("Must be EventObjectAsteroid")] public GameObject asteroidPrefab;
-    public int asteroidAmount = 100;
-    public float spawnTimeMax = 0.5f;
-    public float spawnTimeMin = 0.2f;
+    [SerializeField] private int asteroidAmount = 100;
+    [SerializeField] private float spawnTimeMax = 0.5f;
+    [SerializeField] private float spawnTimeMin = 0.2f;
     private float timer;
     private float spawnTime = 0;
     private int remainingAsteroids;
     private Transform spawnPointTransform;
+    public GameObject GetVFXAsteroidHitted() { return vfxAsteroidHitted; }
+    public GameObject GetVFXAsteroidDestroyed() { return vfxAsteroidDestroyed; }
     private void Start()
     {
         PlaySoundTrack();

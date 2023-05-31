@@ -11,20 +11,22 @@ public class EventObjectCometCore : EventObject
     {
         this.eventComet = eventComet;
         this.objectComet = objectComet;
-        this.integrityPoints = eventComet.cometPartsIntegrity * ((8 * 2) + 4);
+        this.integrityPoints = eventComet.GetPartsIntegrity() * ((8 * 2) + 4);
                                                         // parts doubled + extra
     }
     public void ThrowShard()
     {
-        EventObjectCometShard shard = Instantiate(eventComet.eventObjectCometShardPrefab, transform.position, Quaternion.identity);
+        EventObjectCometShard shard = Instantiate(eventComet.GetShardPrefab(), transform.position, Quaternion.identity);
         shard.SetAttributes(eventComet);
     }
-    public override void TakeDamage(int damage)
+    public override void TakeDamage(int damage, Vector3 position)
     {
-        base.TakeDamage(damage);
+        Instantiate(eventComet.GetVFXHitted(), position, Quaternion.identity);
+
+        base.TakeDamage(damage, position);
 
         int value = Random.Range(0, 101);
-        if (value <= eventComet.cometShardChancePerDamage)
+        if (value <= eventComet.GetShardChance())
         {
             ThrowShard();
         }
@@ -33,6 +35,7 @@ public class EventObjectCometCore : EventObject
     }
     public override void BeDestroyed()
     {
+        Instantiate(eventComet.GetVFXCoreExplosion(), transform.position, Quaternion.identity);
         objectComet.TakeDamage(objectComet.integrityPoints);
         Destroy(coreMesh);
         base.BeDestroyed();
@@ -41,13 +44,13 @@ public class EventObjectCometCore : EventObject
     {
         if (collision.transform.TryGetComponent<GridObject>(out GridObject gridObject) == true)
         {
-            gridObject.TakeDamage(eventComet.cometPartsDamage);
-            Player.Instance.playerIntegrity.TakeDamage(eventComet.cometPartsDamage);
+            gridObject.TakeDamage(eventComet.GetPartsDamage());
+            Player.Instance.playerIntegrity.TakeDamage(eventComet.GetPartsDamage());
             Player.Instance.transform.position += Vector3.forward * 1;
         }
         else if (collision.transform.TryGetComponent<Player>(out Player player) == true)
         {
-            Player.Instance.playerIntegrity.TakeDamage(eventComet.cometPartsDamage);
+            Player.Instance.playerIntegrity.TakeDamage(eventComet.GetPartsDamage());
             Player.Instance.transform.position += Vector3.forward * 1;
         }
     }

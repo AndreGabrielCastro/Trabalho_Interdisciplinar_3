@@ -4,18 +4,21 @@ using UnityEngine;
 
 public class EventComet : Event
 {
-    public EventObjectComet eventObjectCometPrefab;
-    public EventObjectCometShard eventObjectCometShardPrefab;
-    public GameObject vfxEventCometCoreExplosion;
-    public GameObject vfxEventCometPartExplosion;
-    public int cometPartsIntegrity;
-    public int cometPartsDamage;
-    public float cometMovementSpeed;
-    public float cometRotationSpeed;
-    public int cometShardChancePerDamage;
-    public int cometShardIntegrity;
-    public int cometShardDamage;
-    public int cometShardSpeed;
+
+    [SerializeField] private EventObjectComet eventObjectCometPrefab;
+    [SerializeField] private EventObjectCometShard eventObjectCometShardPrefab; public EventObjectCometShard GetShardPrefab() { return eventObjectCometShardPrefab; }
+    [SerializeField] private GameObject vfxEventCometCoreExplosion; public GameObject GetVFXCoreExplosion() { return vfxEventCometCoreExplosion; }
+    [SerializeField] private GameObject vfxEventCometPartExplosion; public GameObject GetVFXPartExplosion() { return vfxEventCometPartExplosion; }
+    [SerializeField] private GameObject vfxEventCometShardExplosion; public GameObject GetVFXShardExplosion() { return vfxEventCometShardExplosion; }
+    [SerializeField] private GameObject vfxEventCometHitted; public GameObject GetVFXHitted() { return vfxEventCometHitted; }
+    [SerializeField] private int cometPartsIntegrity; public int GetPartsIntegrity() { return cometPartsIntegrity; }
+    [SerializeField] private int cometPartsDamage; public int GetPartsDamage() { return cometPartsDamage; }
+    [SerializeField] private float cometMovementSpeed; public float GetMovementSpeed() { return cometMovementSpeed; }
+    [SerializeField] private float cometRotationSpeed; public float GetRotationSpeed() { return cometRotationSpeed; }
+    [SerializeField] private int cometShardChancePerDamage; public int GetShardChance() { return cometShardChancePerDamage; }
+    [SerializeField] private int cometShardIntegrity; public int GetShardIntegrity() { return cometShardIntegrity; }
+    [SerializeField] private int cometShardDamage; public int GetShardDamage() { return cometShardDamage; }
+    [SerializeField] private int cometShardSpeed; public int GetShardSpeed() { return cometShardSpeed; }
     private void Start()
     {
         PlaySoundTrack();

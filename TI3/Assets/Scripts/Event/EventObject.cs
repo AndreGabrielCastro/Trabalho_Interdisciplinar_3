@@ -28,6 +28,10 @@ public class EventObject : MonoBehaviour
             BeDestroyed();
         }
     }
+    public virtual void TakeDamage(int damage, Vector3 position)
+    {
+        TakeDamage(damage);
+    }
     public virtual void BeDestroyed()
     {
         Instantiate(VfxSystem.Instance.vfxEventObjectDestroyed, this.transform.position, this.transform.rotation);

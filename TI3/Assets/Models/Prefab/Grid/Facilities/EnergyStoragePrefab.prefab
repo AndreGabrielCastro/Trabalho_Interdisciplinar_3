@@ -12,7 +12,7 @@ GameObject:
   - component: {fileID: 412033697631995323}
   - component: {fileID: 2473357174500782449}
   m_Layer: 0
-  m_Name: ArmazemEnergiaPrefab
+  m_Name: EnergyStoragePrefab
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -58,8 +58,8 @@ MeshRenderer:
   m_RenderingLayerMask: 1
   m_RendererPriority: 0
   m_Materials:
-  - {fileID: -876546973899608171, guid: cd6583c0e50ac434a9621d468164b212, type: 3}
-  - {fileID: -5043766181317055622, guid: cd6583c0e50ac434a9621d468164b212, type: 3}
+  - {fileID: 2100000, guid: 8323bf1f48c824540b9f24315b3c7b17, type: 2}
+  - {fileID: 2100000, guid: 70c3ae7a2438f7443bd50b151e7e5e9e, type: 2}
   m_StaticBatchInfo:
     firstSubMesh: 0
     subMeshCount: 0

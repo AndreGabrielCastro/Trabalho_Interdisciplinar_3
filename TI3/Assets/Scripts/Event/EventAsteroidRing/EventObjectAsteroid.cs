@@ -4,9 +4,10 @@ using UnityEngine;
 
 public class EventObjectAsteroid : EventObject
 {
-    public int speed = 1;
-    public int backSpeed = 4;
-    public int damage = 5;
+    [SerializeField] private EventAsteroidRing eventAsteroidRing;
+    [SerializeField] private int speed = 1;
+    [SerializeField] private int backSpeed = 4;
+    [SerializeField] private int damage = 5;
     private GridPosition currentGridPosition;
     private Transform meshTransform;
     private Vector3 rotationDirection;
@@ -31,7 +32,16 @@ public class EventObjectAsteroid : EventObject
         if (gridTile == null) { return; }
         gridTile.TakeDamage(damage);
         Player.Instance.playerIntegrity.TakeDamage(damage);
-        Instantiate(VfxSystem.Instance.vfxEventObjectDestroyed, this.transform.position, Quaternion.identity);
-        Destroy(this.gameObject);
+        BeDestroyed();
+    }
+    public override void TakeDamage(int damage, Vector3 position)
+    {
+        Instantiate(eventAsteroidRing.GetVFXAsteroidHitted(), position, Quaternion.identity);
+        base.TakeDamage(damage, position);
+    }
+    public override void BeDestroyed()
+    {
+        Instantiate(eventAsteroidRing.GetVFXAsteroidDestroyed(), transform.position, Quaternion.identity);
+        base.BeDestroyed();
     }
 }
