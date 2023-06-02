@@ -171,7 +171,7 @@ MonoBehaviour:
   snapValue: 0
   gridTileArray: []
   uiGridObjectFacility: {fileID: 0}
-  hasWorker: 0
+  integrityRegeneration: 0
 --- !u!114 &-2749331367855659558
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -209,6 +209,21 @@ PrefabInstance:
         type: 3}
       propertyPath: m_RootOrder
       value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 3609650366739089950, guid: ec58234f0cdb31a448351516c54137d6,
+        type: 3}
+      propertyPath: m_LocalScale.x
+      value: 120
+      objectReference: {fileID: 0}
+    - target: {fileID: 3609650366739089950, guid: ec58234f0cdb31a448351516c54137d6,
+        type: 3}
+      propertyPath: m_LocalScale.y
+      value: 120
+      objectReference: {fileID: 0}
+    - target: {fileID: 3609650366739089950, guid: ec58234f0cdb31a448351516c54137d6,
+        type: 3}
+      propertyPath: m_LocalScale.z
+      value: 120
       objectReference: {fileID: 0}
     - target: {fileID: 3609650366739089950, guid: ec58234f0cdb31a448351516c54137d6,
         type: 3}

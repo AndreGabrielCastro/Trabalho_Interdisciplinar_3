@@ -164,11 +164,22 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: e23ae5c613ef4ea4b8daac00a1bd297f, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  origin: 
-  destination: 
+  isAccepted: 0
+  task:
+    origin: 
+    time: 0
+    destination: 
+    contentAmount: 0
+    gearcoinAmount: 0
+    informationAmount: 0
+    contentDescription: 
+    rewardDescription: 
+    isLate: 0
+    gridObjectDeliveryArray: []
+    uiGridObjectDeliveryArray: []
   imageState: {fileID: 5613575243157618862}
-  gridObjectContentArray: []
-  uiGridObjectContentArray: []
+  taskGridObjectDeliveryArray: []
+  taskUiGridObjectDeliveryArray: []
 --- !u!1 &4465385477317839846
 GameObject:
   m_ObjectHideFlags: 0
@@ -233,9 +244,9 @@ MonoBehaviour:
   m_OnCullStateChanged:
     m_PersistentCalls:
       m_Calls: []
-  m_text: 'Urgent
+  m_text: 'Task
 
-    Secondary
+    Non-Urgent
 
 '
   m_isRightToLeft: 0
@@ -282,7 +293,7 @@ MonoBehaviour:
   m_enableWordWrapping: 1
   m_wordWrappingRatios: 0.4
   m_overflowMode: 0
-  m_firstOverflowCharacterIndex: -1
+  m_firstOverflowCharacterIndex: 0
   m_linkedTextComponent: {fileID: 0}
   m_isLinkedTextComponent: 0
   m_isTextTruncated: 0
@@ -306,12 +317,12 @@ MonoBehaviour:
   m_margin: {x: 0, y: 0, z: 0, w: 0}
   m_textInfo:
     textComponent: {fileID: 4465385477317839840}
-    characterCount: 17
+    characterCount: 16
     spriteCount: 0
     spaceCount: 2
     wordCount: 2
     linkCount: 0
-    lineCount: 2
+    lineCount: 14
     pageCount: 1
     materialCount: 1
   m_isUsingLegacyAnimationComponent: 0

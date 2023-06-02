@@ -68,6 +68,7 @@ public class GridObjectFacility : GridObject
         { gridTile.SetGridObject(null); } // Set the grid tile to null
         uiGridObjectFacility.UpdateCurrentAmount(+1); // Increases +1 to the UI grid object amount
         Instantiate(Player.Instance.playerFXs.GetVFXGridObjectDeleted(), this.transform.position + Vector3.up * 0.1f, Quaternion.identity);
+        Player.Instance.playerAudio.PlaySong(Player.Instance.playerFXs.GetSFXGridObjectDeleted());
         PlayerSystem.Instance.RemoveFromGridObjectList(this);
         Destroy(this.gameObject); // Destroy the object
     }
@@ -77,7 +78,8 @@ public class GridObjectFacility : GridObject
         foreach (GridTile gridTile in gridTileArray) // Foreach grid tile it occupies...
         { gridTile.SetGridObject(null); } // Set the grid tile to null
         Instantiate(Player.Instance.playerFXs.GetVFXGridObjectDestroyed(), this.transform.position + Vector3.up * 0.1f, Quaternion.identity);
-        PlayerSystem.Instance.gridObjectList.Remove(this);
+        Player.Instance.playerAudio.PlaySong(Player.Instance.playerFXs.GetSFXGridObjectDestroyed());
+        PlayerSystem.Instance.RemoveFromGridObjectList(this);
         Destroy(this.gameObject); // Destroy the object
     }
     private void FixedUpdate()

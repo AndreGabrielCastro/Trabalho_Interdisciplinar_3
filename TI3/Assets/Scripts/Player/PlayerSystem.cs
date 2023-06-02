@@ -24,17 +24,15 @@ public class PlayerSystem : MonoBehaviour
     public sbyte sfxVolumeValue = 0;
     public sbyte uiVolumeValue = 0;
 
-    [SerializeField] private AudioClip objectAddedClip;
-    [SerializeField] private AudioClip objectRemovedClip;
     public void AddToGridObjectList(GridObject gridObject)
     {
         gridObjectList.Add(gridObject);
-        Player.Instance.playerAudio.PlaySong(objectAddedClip);
+        
     }
     public void RemoveFromGridObjectList(GridObject gridObject)
     {
         gridObjectList.Remove(gridObject);
-        Player.Instance.playerAudio.PlaySong(objectRemovedClip);
+        
     }
 
     /// <summary>

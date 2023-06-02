@@ -271,6 +271,7 @@ public class UIGridObjectDelivery : MonoBehaviour, IPointerDownHandler, IPointer
         gridObjectDelivery.isPlaced = true;
         this.gameObject.SetActive(false);
         Instantiate(Player.Instance.playerFXs.GetVFXGridObjectInstantiated(), gridObjectDelivery.transform.position + Vector3.up * 0.1f, Quaternion.identity);
+        Player.Instance.playerAudio.PlaySong(Player.Instance.playerFXs.GetSFXGridObjectInstantiated());
         PlayerSystem.Instance.AddToGridObjectList(gridObjectDelivery);
 
         #region CommentedOldCodes

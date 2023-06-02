@@ -291,6 +291,7 @@ public class UIGridObjectFacility : MonoBehaviour, IPointerDownHandler, IPointer
 
         UpdateCurrentAmount(-1);
         Instantiate(Player.Instance.playerFXs.GetVFXGridObjectInstantiated(), newGridObject.transform.position + Vector3.up * 0.1f, Quaternion.identity);
+        Player.Instance.playerAudio.PlaySong(Player.Instance.playerFXs.GetSFXGridObjectInstantiated());
         PlayerSystem.Instance.AddToGridObjectList(newGridObject);
 
         #region CommentedOldCodes

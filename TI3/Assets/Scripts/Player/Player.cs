@@ -8,6 +8,8 @@ public class Player : MonoBehaviour
     public static Player Instance;
 
     [Header("Must be setted")]
+    [SerializeField] private GameObject[] vfxTurbines;
+
     [SerializeField] private GameObject colonyWarningText;
     [SerializeField] private GameObject eventWarningText;
 
@@ -36,6 +38,8 @@ public class Player : MonoBehaviour
 
     [Header("Por enquanto")]
     public GameObject initialScreen;
+    public void TurnOnTurbines() { foreach (GameObject obj in vfxTurbines) { obj.SetActive(true); } }
+    public void TurnOffTurbines() { foreach (GameObject obj in vfxTurbines) { obj.SetActive(false); } }
     public void ResetPosition()
     { 
         this.transform.position = Vector3.zero;
@@ -50,10 +54,12 @@ public class Player : MonoBehaviour
             playerZoom.SetCameraHeight(20);
             EventHandler.Instance.SetEvent(spaceEvent);
             EventHandler.Instance.PlayEvent();
+            TurnOnTurbines();
         }
         else
         {
             playerZoom.ResetCameraHeight();
+            TurnOffTurbines();
         }
     }
     private void Awake()

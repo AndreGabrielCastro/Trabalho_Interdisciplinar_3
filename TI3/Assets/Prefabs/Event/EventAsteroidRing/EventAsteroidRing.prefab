@@ -52,7 +52,7 @@ MonoBehaviour:
   sfxAsteroidHitted: {fileID: 8300000, guid: 8ce0ab9dbec26f247a3612a9aae23427, type: 3}
   sfxAsteroidDestroyed: {fileID: 8300000, guid: e05ddaf6fbc2abe4db29d4d2a927051f,
     type: 3}
-  asteroidPrefab: {fileID: 8968569302500940392, guid: df4691d1ae5d2a844bd61bf8d47c5591,
+  asteroidPrefab: {fileID: -2643300618891169884, guid: df4691d1ae5d2a844bd61bf8d47c5591,
     type: 3}
   asteroidAmount: 100
   spawnTimeMax: 0.5

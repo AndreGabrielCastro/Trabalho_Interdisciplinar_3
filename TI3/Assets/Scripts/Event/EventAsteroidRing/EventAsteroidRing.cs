@@ -10,7 +10,7 @@ public class EventAsteroidRing : Event
     [SerializeField] private AudioClip sfxAsteroidHitted; public AudioClip GetSFXAsteroidHitted() { return sfxAsteroidHitted; }
     [SerializeField] private AudioClip sfxAsteroidDestroyed; public AudioClip GetSFXAsteroidDestroyed() { return sfxAsteroidDestroyed; }
 
-    [Tooltip("Must be EventObjectAsteroid")] public GameObject asteroidPrefab;
+    [Tooltip("Must be EventObjectAsteroid")] public EventObjectAsteroid asteroidPrefab;
     [SerializeField] private int asteroidAmount = 100;
     [SerializeField] private float spawnTimeMax = 0.5f;
     [SerializeField] private float spawnTimeMin = 0.2f;
@@ -40,7 +40,8 @@ public class EventAsteroidRing : Event
             Vector3 spawnPosition = spawnPointTransform.position;
             Vector3 spawnRange = Vector3.right * Random.Range(-40, 40);
             spawnPosition += spawnRange;
-            Instantiate(asteroidPrefab, spawnPosition, spawnPointTransform.rotation);
+            EventObjectAsteroid asteroid = Instantiate(asteroidPrefab, spawnPosition, spawnPointTransform.rotation);
+            asteroid.SetEventAsteroidRing(this);
             timer = 0;
             spawnTime = Random.Range(spawnTimeMin, spawnTimeMax);
             remainingAsteroids -= 1;

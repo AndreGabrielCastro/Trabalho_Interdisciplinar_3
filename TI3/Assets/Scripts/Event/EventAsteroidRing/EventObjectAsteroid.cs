@@ -4,7 +4,7 @@ using UnityEngine;
 
 public class EventObjectAsteroid : EventObject
 {
-    [SerializeField] private EventAsteroidRing eventAsteroidRing;
+    [SerializeField] private EventAsteroidRing eventAsteroidRing; public void SetEventAsteroidRing(EventAsteroidRing eventAsteroidRing) { this.eventAsteroidRing = eventAsteroidRing; }
     [SerializeField] private int speed = 1;
     [SerializeField] private int backSpeed = 4;
     [SerializeField] private int damage = 5;

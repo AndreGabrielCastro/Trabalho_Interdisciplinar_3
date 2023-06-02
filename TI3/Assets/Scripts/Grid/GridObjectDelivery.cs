@@ -30,6 +30,7 @@ public class GridObjectDelivery : GridObject
             this.gameObject.SetActive(false);
         }
         Instantiate(Player.Instance.playerFXs.GetVFXGridObjectDeleted(), this.transform.position + Vector3.up * 0.1f, Quaternion.identity);
+        Player.Instance.playerAudio.PlaySong(Player.Instance.playerFXs.GetSFXGridObjectDeleted());
         this.isPlaced = false;
         PlayerSystem.Instance.RemoveFromGridObjectList(this);
     }
@@ -39,7 +40,8 @@ public class GridObjectDelivery : GridObject
         { gridTile.SetGridObject(null); } // Set the grid tile to null
         if (uiGridObjectDelivery != null) { Destroy(uiGridObjectDelivery); }
         Instantiate(Player.Instance.playerFXs.GetVFXGridObjectDestroyed(), this.transform.position + Vector3.up * 0.1f, Quaternion.identity);
-        PlayerSystem.Instance.gridObjectList.Remove(this);
+        Player.Instance.playerAudio.PlaySong(Player.Instance.playerFXs.GetSFXGridObjectDestroyed());
+        PlayerSystem.Instance.RemoveFromGridObjectList(this);
         Destroy(this.gameObject);
     }
     public void DeliverGridObjectDelivery()
@@ -48,7 +50,8 @@ public class GridObjectDelivery : GridObject
         { gridTile.SetGridObject(null); } // Set the grid tile to null
         if (uiGridObjectDelivery != null) { Destroy(uiGridObjectDelivery); }
         Instantiate(Player.Instance.playerFXs.GetVFXDeliveryDelivered(), this.transform.position + Vector3.up * 0.1f, Quaternion.identity);
-        PlayerSystem.Instance.gridObjectList.Remove(this);
+        Player.Instance.playerAudio.PlaySong(Player.Instance.playerFXs.GetSFXDeliveryDelivered());
+        PlayerSystem.Instance.RemoveFromGridObjectList(this);
         Destroy(this.gameObject);
     }
 }
