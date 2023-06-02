@@ -56,7 +56,7 @@ public class PlayerSystem : MonoBehaviour
             {
                 task.isLate = true; // Set task to isLate
                 for (int i = 0; i < task.gridObjectDeliveryArray.Length; i++) // Foreach task content...
-                { Instantiate(VfxSystem.Instance.vfxIsLate, task.gridObjectDeliveryArray[i].transform.position, Quaternion.identity); } // Instantiate isLate effect
+                { Instantiate(Player.Instance.playerFXs.GetVFXDeliveryLate(), task.gridObjectDeliveryArray[i].transform.position, Quaternion.identity); } // Instantiate isLate effect
             }
         }
     }
@@ -121,7 +121,7 @@ public class PlayerSystem : MonoBehaviour
             { 
                 task.isLate = true; // Set task to isLate
                 for (int i = 0; i < task.gridObjectDeliveryArray.Length; i++) // Foreach task content...
-                { Instantiate(VfxSystem.Instance.vfxIsLate, task.gridObjectDeliveryArray[i].transform.position, Quaternion.identity); } // Instantiate isLate effect
+                { Instantiate(Player.Instance.playerFXs.GetVFXDeliveryLate(), task.gridObjectDeliveryArray[i].transform.position, Quaternion.identity); } // Instantiate isLate effect
             }
 
             if (task.destination != currentColonyName) { continue; } // If is not the task's destination, continue

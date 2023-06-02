@@ -290,7 +290,7 @@ public class UIGridObjectFacility : MonoBehaviour, IPointerDownHandler, IPointer
         newGridObject.snapValue = (int)snap;
 
         UpdateCurrentAmount(-1);
-        Instantiate(VfxSystem.Instance.vfxInstantiated, newGridObject.transform.position + Vector3.up * 0.1f, Quaternion.identity);
+        Instantiate(Player.Instance.playerFXs.GetVFXGridObjectInstantiated(), newGridObject.transform.position + Vector3.up * 0.1f, Quaternion.identity);
         PlayerSystem.Instance.AddToGridObjectList(newGridObject);
 
         #region CommentedOldCodes

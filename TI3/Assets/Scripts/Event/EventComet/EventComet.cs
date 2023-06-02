@@ -11,6 +11,10 @@ public class EventComet : Event
     [SerializeField] private GameObject vfxEventCometPartExplosion; public GameObject GetVFXPartExplosion() { return vfxEventCometPartExplosion; }
     [SerializeField] private GameObject vfxEventCometShardExplosion; public GameObject GetVFXShardExplosion() { return vfxEventCometShardExplosion; }
     [SerializeField] private GameObject vfxEventCometHitted; public GameObject GetVFXHitted() { return vfxEventCometHitted; }
+    [SerializeField] private AudioClip sfxEventCometCoreExplosion; public AudioClip GetSFXCoreExplosion() { return sfxEventCometCoreExplosion; }
+    [SerializeField] private AudioClip sfxEventCometPartExplosion; public AudioClip GetSFXPartExplosion() { return sfxEventCometPartExplosion; }
+    [SerializeField] private AudioClip sfxEventCometShardExplosion; public AudioClip GetSFXShardExplosion() { return sfxEventCometShardExplosion; }
+    [SerializeField] private AudioClip sfxEventCometHitted; public AudioClip GetSFXHitted() { return sfxEventCometHitted; }
     [SerializeField] private int cometPartsIntegrity; public int GetPartsIntegrity() { return cometPartsIntegrity; }
     [SerializeField] private int cometPartsDamage; public int GetPartsDamage() { return cometPartsDamage; }
     [SerializeField] private float cometMovementSpeed; public float GetMovementSpeed() { return cometMovementSpeed; }

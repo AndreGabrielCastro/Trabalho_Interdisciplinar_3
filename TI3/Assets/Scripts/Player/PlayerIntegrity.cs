@@ -32,6 +32,7 @@ public class PlayerIntegrity : MonoBehaviour
     
     private void PlayLowIntegrityAlarm()
     {
+        if (audioSource.isPlaying) { return; }
         audioSource.Play();
         alarmTimer = 30;
         isWarning = true;
@@ -64,7 +65,7 @@ public class PlayerIntegrity : MonoBehaviour
     }
     public void Die()
     {
-        Instantiate(VfxSystem.Instance.vfxSpaceShipDestroyed, this.transform.position + Vector3.up * 0.1f, Quaternion.identity);
+        Instantiate(Player.Instance.playerFXs.GetVFXSpaceShipDestroyed(), this.transform.position + Vector3.up * 0.1f, Quaternion.identity);
         Player.Instance.SetGameOver();
     }
     private void FixedUpdate()

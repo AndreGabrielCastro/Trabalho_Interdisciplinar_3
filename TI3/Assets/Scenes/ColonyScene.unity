@@ -36572,6 +36572,7 @@ GameObject:
   - component: {fileID: 1641159436}
   - component: {fileID: 1641159435}
   - component: {fileID: 1641159438}
+  - component: {fileID: 1641159441}
   - component: {fileID: 1641159433}
   - component: {fileID: 1641159437}
   - component: {fileID: 1641159439}
@@ -36640,6 +36641,7 @@ MonoBehaviour:
   playerSelection: {fileID: 0}
   playerCommand: {fileID: 0}
   playerAudio: {fileID: 0}
+  playerFXs: {fileID: 0}
   isTravelling: 0
   isGameOver: 0
   spaceEvent: {fileID: 0}
@@ -37064,6 +37066,30 @@ AudioSource:
     m_PreInfinity: 2
     m_PostInfinity: 2
     m_RotationOrder: 4
+--- !u!114 &1641159441
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1641159427}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 8f7d74a89333d83488a079e8252856aa, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  vfxSpaceShipDestroyed: {fileID: 0}
+  sfxSpaceShipDestroyed: {fileID: 0}
+  vfxGridObjectInstantiated: {fileID: 0}
+  vfxGridObjectDeleted: {fileID: 0}
+  vfxGridObjectDestroyed: {fileID: 0}
+  vfxDeliveryDelivered: {fileID: 0}
+  vfxDeliveryLate: {fileID: 0}
+  sfxGridObjectInstantiated: {fileID: 0}
+  sfxGridObjectDeleted: {fileID: 0}
+  sfxGridObjectDestroyed: {fileID: 0}
+  sfxDeliveryDelivered: {fileID: 0}
+  sfxDeliveryLate: {fileID: 0}
 --- !u!1 &1641412713
 GameObject:
   m_ObjectHideFlags: 0

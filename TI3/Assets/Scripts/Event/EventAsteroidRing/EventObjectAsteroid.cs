@@ -37,11 +37,13 @@ public class EventObjectAsteroid : EventObject
     public override void TakeDamage(int damage, Vector3 position)
     {
         Instantiate(eventAsteroidRing.GetVFXAsteroidHitted(), position, Quaternion.identity);
+        Player.Instance.playerAudio.PlaySong(eventAsteroidRing.GetSFXAsteroidHitted());
         base.TakeDamage(damage, position);
     }
     public override void BeDestroyed()
     {
         Instantiate(eventAsteroidRing.GetVFXAsteroidDestroyed(), transform.position, Quaternion.identity);
+        Player.Instance.playerAudio.PlaySong(eventAsteroidRing.GetSFXAsteroidDestroyed());
         base.BeDestroyed();
     }
 }

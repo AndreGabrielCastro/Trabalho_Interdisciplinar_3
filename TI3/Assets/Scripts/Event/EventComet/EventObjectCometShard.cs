@@ -42,11 +42,13 @@ public class EventObjectCometShard : EventObject
     public override void TakeDamage(int damage, Vector3 position)
     {
         Instantiate(eventComet.GetVFXHitted(), position, Quaternion.identity);
+        Player.Instance.playerAudio.PlaySong(eventComet.GetSFXHitted());
         base.TakeDamage(damage, position);
     }
     public override void BeDestroyed()
     {
         Instantiate(eventComet.GetVFXShardExplosion(), transform.position, Quaternion.identity);
+        Player.Instance.playerAudio.PlaySong(eventComet.GetSFXShardExplosion());
         base.BeDestroyed();
     }
 }

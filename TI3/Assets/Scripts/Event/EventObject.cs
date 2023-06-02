@@ -20,7 +20,6 @@ public class EventObject : MonoBehaviour
     }
     public virtual void TakeDamage(int damage)
     {
-        Instantiate(VfxSystem.Instance.vfxEventObjectHitted, this.transform.position, this.transform.rotation);
         if (integrityPoints <= 0) { return; }
         integrityPoints -= damage;
         if (integrityPoints <= 0)
@@ -34,7 +33,6 @@ public class EventObject : MonoBehaviour
     }
     public virtual void BeDestroyed()
     {
-        Instantiate(VfxSystem.Instance.vfxEventObjectDestroyed, this.transform.position, this.transform.rotation);
         Destroy(this.gameObject);
     }
 }

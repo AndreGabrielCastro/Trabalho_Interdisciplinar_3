@@ -22,7 +22,7 @@ public class EventObjectCometCore : EventObject
     public override void TakeDamage(int damage, Vector3 position)
     {
         Instantiate(eventComet.GetVFXHitted(), position, Quaternion.identity);
-
+        Player.Instance.playerAudio.PlaySong(eventComet.GetSFXHitted());
         base.TakeDamage(damage, position);
 
         int value = Random.Range(0, 101);
@@ -36,6 +36,7 @@ public class EventObjectCometCore : EventObject
     public override void BeDestroyed()
     {
         Instantiate(eventComet.GetVFXCoreExplosion(), transform.position, Quaternion.identity);
+        Player.Instance.playerAudio.PlaySong(eventComet.GetSFXCoreExplosion());
         objectComet.TakeDamage(objectComet.integrityPoints);
         Destroy(coreMesh);
         base.BeDestroyed();

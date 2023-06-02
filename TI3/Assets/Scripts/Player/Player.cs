@@ -29,6 +29,7 @@ public class Player : MonoBehaviour
     public PlayerSelection playerSelection;
     public PlayerCommand playerCommand;
     public PlayerAudio playerAudio;
+    public PlayerFXs playerFXs;
     public bool isTravelling;
     public bool isGameOver; public void SetGameOver(string reason = null) { isGameOver = true; UIGameOver.Instance.SetGameOver(reason); }
     public Event spaceEvent; public void SetEvent(Event spaceEvent) {this.spaceEvent = spaceEvent; }
@@ -78,6 +79,7 @@ public class Player : MonoBehaviour
         playerSelection = GetComponent<PlayerSelection>();
         playerCommand = GetComponent<PlayerCommand>();
         playerAudio = GetComponent<PlayerAudio>();
+        playerFXs = GetComponent<PlayerFXs>();
 
         AudioSource[] sources = GetComponents<AudioSource>();
         playerAudio.SetAudioRelated(sources[0]);

@@ -44,6 +44,14 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: e26aac726335be54882d70372cba1cab, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  soundtrack: {fileID: 8300000, guid: 4377c5c5ab8482648b8f571a2875f6a9, type: 3}
+  vfxAsteroidHitted: {fileID: 6105442221451941887, guid: 9f91010e32567d448ac191d8f09c75e2,
+    type: 3}
+  vfxAsteroidDestroyed: {fileID: 3055045169213721637, guid: 57dec2950ee06f141875e595194e5efd,
+    type: 3}
+  sfxAsteroidHitted: {fileID: 8300000, guid: 8ce0ab9dbec26f247a3612a9aae23427, type: 3}
+  sfxAsteroidDestroyed: {fileID: 8300000, guid: e05ddaf6fbc2abe4db29d4d2a927051f,
+    type: 3}
   asteroidPrefab: {fileID: 8968569302500940392, guid: df4691d1ae5d2a844bd61bf8d47c5591,
     type: 3}
   asteroidAmount: 100

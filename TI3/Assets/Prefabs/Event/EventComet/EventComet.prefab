@@ -48,8 +48,21 @@ MonoBehaviour:
     type: 3}
   eventObjectCometShardPrefab: {fileID: 3043952086517637669, guid: 71b9966f14336da49b6f89f0eff4180f,
     type: 3}
-  vfxEventCometCoreExplosion: {fileID: 0}
-  vfxEventCometPartExplosion: {fileID: 0}
+  vfxEventCometCoreExplosion: {fileID: 5206493362067895148, guid: 51e1611b638fd0546a167392befb4aab,
+    type: 3}
+  vfxEventCometPartExplosion: {fileID: 6157795073032149359, guid: c2df60a3b2407f846a45fefc09933f79,
+    type: 3}
+  vfxEventCometShardExplosion: {fileID: 3055045169213721637, guid: 57dec2950ee06f141875e595194e5efd,
+    type: 3}
+  vfxEventCometHitted: {fileID: 6105442221451941887, guid: 9f91010e32567d448ac191d8f09c75e2,
+    type: 3}
+  sfxEventCometCoreExplosion: {fileID: 8300000, guid: b22bd28e0d69a2a4497b081d68ed1353,
+    type: 3}
+  sfxEventCometPartExplosion: {fileID: 8300000, guid: 792c7696178c5bf44b35c8ce6f200805,
+    type: 3}
+  sfxEventCometShardExplosion: {fileID: 8300000, guid: f30349632c64e414dbc862c140582dfd,
+    type: 3}
+  sfxEventCometHitted: {fileID: 8300000, guid: 8ce0ab9dbec26f247a3612a9aae23427, type: 3}
   cometPartsIntegrity: 20
   cometPartsDamage: 5
   cometMovementSpeed: 0.5

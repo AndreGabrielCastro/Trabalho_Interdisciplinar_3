@@ -29,7 +29,7 @@ public class GridObjectDelivery : GridObject
             uiGridObjectDelivery.isPlaced = false;
             this.gameObject.SetActive(false);
         }
-        Instantiate(VfxSystem.Instance.vfxDeleted, this.transform.position + Vector3.up * 0.1f, Quaternion.identity);
+        Instantiate(Player.Instance.playerFXs.GetVFXGridObjectDeleted(), this.transform.position + Vector3.up * 0.1f, Quaternion.identity);
         this.isPlaced = false;
         PlayerSystem.Instance.RemoveFromGridObjectList(this);
     }
@@ -38,7 +38,7 @@ public class GridObjectDelivery : GridObject
         foreach (GridTile gridTile in gridTileArray) // Foreach grid tile it occupies...
         { gridTile.SetGridObject(null); } // Set the grid tile to null
         if (uiGridObjectDelivery != null) { Destroy(uiGridObjectDelivery); }
-        Instantiate(VfxSystem.Instance.vfxDestroyed, this.transform.position + Vector3.up * 0.1f, Quaternion.identity);
+        Instantiate(Player.Instance.playerFXs.GetVFXGridObjectDestroyed(), this.transform.position + Vector3.up * 0.1f, Quaternion.identity);
         PlayerSystem.Instance.gridObjectList.Remove(this);
         Destroy(this.gameObject);
     }
@@ -47,7 +47,7 @@ public class GridObjectDelivery : GridObject
         foreach (GridTile gridTile in gridTileArray) // Foreach grid tile it occupies...
         { gridTile.SetGridObject(null); } // Set the grid tile to null
         if (uiGridObjectDelivery != null) { Destroy(uiGridObjectDelivery); }
-        Instantiate(VfxSystem.Instance.vfxDelivered, this.transform.position + Vector3.up * 0.1f, Quaternion.identity);
+        Instantiate(Player.Instance.playerFXs.GetVFXDeliveryDelivered(), this.transform.position + Vector3.up * 0.1f, Quaternion.identity);
         PlayerSystem.Instance.gridObjectList.Remove(this);
         Destroy(this.gameObject);
     }

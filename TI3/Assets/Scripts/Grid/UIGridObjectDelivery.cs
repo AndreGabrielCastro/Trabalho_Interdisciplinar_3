@@ -270,7 +270,7 @@ public class UIGridObjectDelivery : MonoBehaviour, IPointerDownHandler, IPointer
         isPlaced = true;
         gridObjectDelivery.isPlaced = true;
         this.gameObject.SetActive(false);
-        Instantiate(VfxSystem.Instance.vfxInstantiated, gridObjectDelivery.transform.position + Vector3.up * 0.1f, Quaternion.identity);
+        Instantiate(Player.Instance.playerFXs.GetVFXGridObjectInstantiated(), gridObjectDelivery.transform.position + Vector3.up * 0.1f, Quaternion.identity);
         PlayerSystem.Instance.AddToGridObjectList(gridObjectDelivery);
 
         #region CommentedOldCodes

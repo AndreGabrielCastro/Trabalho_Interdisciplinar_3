@@ -67,7 +67,7 @@ public class GridObjectFacility : GridObject
         foreach (GridTile gridTile in gridTileArray) // Foreach grid tile it occupies...
         { gridTile.SetGridObject(null); } // Set the grid tile to null
         uiGridObjectFacility.UpdateCurrentAmount(+1); // Increases +1 to the UI grid object amount
-        Instantiate(VfxSystem.Instance.vfxDeleted, this.transform.position + Vector3.up * 0.1f, Quaternion.identity);
+        Instantiate(Player.Instance.playerFXs.GetVFXGridObjectDeleted(), this.transform.position + Vector3.up * 0.1f, Quaternion.identity);
         PlayerSystem.Instance.RemoveFromGridObjectList(this);
         Destroy(this.gameObject); // Destroy the object
     }
@@ -76,7 +76,7 @@ public class GridObjectFacility : GridObject
         RemoveAllWorkers();
         foreach (GridTile gridTile in gridTileArray) // Foreach grid tile it occupies...
         { gridTile.SetGridObject(null); } // Set the grid tile to null
-        Instantiate(VfxSystem.Instance.vfxDestroyed, this.transform.position + Vector3.up * 0.1f, Quaternion.identity);
+        Instantiate(Player.Instance.playerFXs.GetVFXGridObjectDestroyed(), this.transform.position + Vector3.up * 0.1f, Quaternion.identity);
         PlayerSystem.Instance.gridObjectList.Remove(this);
         Destroy(this.gameObject); // Destroy the object
     }
