@@ -18,6 +18,8 @@ public class PlayerData
     public sbyte sfxVolumeValue = 0;
     public sbyte uiVolumeValue = 0;
 
+    public byte[] facilitiesOwned;
+
     public int maximumIntegrity;
     public int currentIntegrity;
 }

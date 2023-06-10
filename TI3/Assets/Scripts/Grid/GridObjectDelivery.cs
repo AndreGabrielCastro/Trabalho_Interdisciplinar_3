@@ -9,9 +9,6 @@ public class GridObjectDelivery : GridObject
     public UIGridObjectDelivery uiGridObjectDelivery;
     public bool isPlaced;
 
-    [Header("Must be defined")]
-    public string description = "I should describe this delivery";
-
     public void DeleteGridObjectDelivery()
     {
         foreach (GridTile gridTile in gridTileArray) // Foreach grid tile it occupies...

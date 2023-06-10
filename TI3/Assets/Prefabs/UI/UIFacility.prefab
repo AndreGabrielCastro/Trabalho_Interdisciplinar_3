@@ -89,9 +89,8 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   gridObjectPrefab: {fileID: 0}
-  curAmountText: {fileID: 1182234401961848260}
-  maxAmount: 1
-  curAmount: 1
+  currentAmountText: {fileID: 1182234401961848260}
+  currentAmount: 1
 --- !u!1 &4417771545929211441
 GameObject:
   m_ObjectHideFlags: 0

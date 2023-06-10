@@ -14,7 +14,7 @@ public class UIRouteSystem : MonoBehaviour
     public sbyte destinationColonyIndex;
 
     private bool forceTravel;
-    private float forceTimer;
+    private float forceTimer = 5;
 
     private bool isLoading = false;
     private float timer = 1;
@@ -117,7 +117,7 @@ public class UIRouteSystem : MonoBehaviour
         if (lacks == true)
         {
             warning += "\nClick again to proceed.";
-            UIUserInterface.Instance.PopResult(warning, Color.red, 10);
+            UIUserInterface.Instance.PopResult(warning, Color.yellow, 10);
             return false;
         }
         return true;

@@ -67,7 +67,7 @@ public class GridSystem : MonoBehaviour
     }
 
     /// <summary>
-    /// INCOMPLETE Raycasts from camera to mouse position and (try to return) DELETES the grid object.
+    /// Raycasts from camera to mouse position and (try to return) the grid object.
     /// </summary>
     /// 
     public GridObject GetGridObject()

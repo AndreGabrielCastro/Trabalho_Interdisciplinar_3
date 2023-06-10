@@ -6,6 +6,7 @@ public class Projectile : MonoBehaviour
 {
     [Header("Must be setted")]
     [SerializeField] private int damage = 1;
+    [SerializeField] private int pierce = 0;
     [SerializeField] private int speed = 10;
     private float timer = 0;
     private void FixedUpdate()
@@ -18,6 +19,11 @@ public class Projectile : MonoBehaviour
         EventObject eventObject = collision.gameObject.GetComponent<EventObject>();
         if (eventObject.integrityPoints == 9999) { return; }
         eventObject.TakeDamage(damage, transform.position);
-        Destroy(this.gameObject);
+
+        if (eventObject.GetUnpierceableBool() == true) { pierce = -1; }
+        else if (eventObject.GetUnpierceableBool() == false) { pierce--; }
+
+        if (pierce < 0)
+        { Destroy(this.gameObject); }
     }
 }

@@ -12,6 +12,7 @@ public class Worker : MonoBehaviour
     [SerializeField] private bool isWorking; 
     [SerializeField] private bool isMoving;
     [SerializeField] private GameObject vfxWork;
+    [SerializeField] private GameObject vfxRepair;
 
     #region Getters&Setters
     public GridTile GetGridDestination() { return gridTileDestination; }
@@ -36,12 +37,22 @@ public class Worker : MonoBehaviour
     {
         selectedVisual.enabled = false;
     }
+    public void StartRepair()
+    {
+        vfxRepair.SetActive(true);
+    }
+    public void StopRepair()
+    {
+        vfxRepair.SetActive(false);
+    }
     public void Reset()
     {
         gridTileDestination = null;
         localGridDestination = Vector3.negativeInfinity;
         isWorking = false;
         isMoving = false;
+        vfxWork.SetActive(false);
+        vfxRepair.SetActive(false);
     }
     public void TrySetDestination(GridTile gridTile, Vector3 localPosition)
     {
@@ -77,7 +88,7 @@ public class Worker : MonoBehaviour
         if (gridTileDestination.gridObject.TryGetComponent<GridObjectFacility>(out GridObjectFacility gridObjectFacility) == true)
         {
             isWorking = true;
-            gridObjectFacility.StartWork();
+            gridObjectFacility.StartWork(this);
             vfxWork.SetActive(true);
         }
     }
@@ -92,6 +103,7 @@ public class Worker : MonoBehaviour
             isWorking = false;
             gridTileDestination.SetWorker(null);
             vfxWork.SetActive(false);
+            vfxRepair.SetActive(false);
         }
         else if (gridTileDestination.gridObject.TryGetComponent<GridObjectFacility>(out GridObjectFacility gridObjectFacility) == true)
         {
@@ -99,6 +111,7 @@ public class Worker : MonoBehaviour
             gridTileDestination.SetWorker(null);
             gridObjectFacility.StopWork();
             vfxWork.SetActive(false);
+            vfxRepair.SetActive(false);
         }
     }
     public void TryMove()

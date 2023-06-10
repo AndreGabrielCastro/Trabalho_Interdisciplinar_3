@@ -15,6 +15,9 @@ public class GridObject : MonoBehaviour
     public int maximumIntegrityPoints;
     public float currentIntegrityPoints;
 
+    public string description = " - - - ";
+    public string GetDescription() { return description; }
+
     [Header("Setted during playtime")]
     public int desiredWidth;
     public int desiredLength;

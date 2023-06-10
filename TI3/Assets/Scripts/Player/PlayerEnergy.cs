@@ -36,7 +36,7 @@ public class PlayerEnergy : MonoBehaviour
         UpdateEnergyAmountText();
     }
     
-    public void LoseEnergy(int energyLoss)
+    public void LoseEnergy(float energyLoss)
     {
         if (currentEnergy <= 0) { return; }
         currentEnergy -= energyLoss;

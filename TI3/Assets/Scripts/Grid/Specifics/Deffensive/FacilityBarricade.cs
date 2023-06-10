@@ -2,7 +2,7 @@
 using System.Collections.Generic;
 using UnityEngine;
 
-public class FacilityBlock : MonoBehaviour, IFacility
+public class FacilityBarricade : MonoBehaviour, IFacility
 {
     [Header("Must be setted")]
     [SerializeField] private int extraIntegrity;

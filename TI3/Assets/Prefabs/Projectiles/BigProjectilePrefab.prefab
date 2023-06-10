@@ -77,6 +77,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   damage: 20
+  pierce: 5
   speed: 30
 --- !u!1 &2683364935744885036
 GameObject:

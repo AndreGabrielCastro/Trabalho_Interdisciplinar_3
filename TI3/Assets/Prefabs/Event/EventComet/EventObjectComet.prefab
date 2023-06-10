@@ -124,6 +124,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   integrityPoints: 20
+  unpierceable: 1
   isActive: 0
   partMeshArray:
   - {fileID: 1899773077957372507}
@@ -252,6 +253,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   integrityPoints: 20
+  unpierceable: 1
   isActive: 0
   partMeshArray:
   - {fileID: 2563113308324630277}
@@ -379,6 +381,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   integrityPoints: 20
+  unpierceable: 1
   isActive: 0
   partMeshArray:
   - {fileID: 4423727471021029951}
@@ -507,6 +510,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   integrityPoints: 20
+  unpierceable: 1
   isActive: 0
   partMeshArray:
   - {fileID: 6211896483489116212}
@@ -674,6 +678,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   integrityPoints: 20
+  unpierceable: 1
   isActive: 0
   partMeshArray:
   - {fileID: 4248809613448798838}
@@ -802,6 +807,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   integrityPoints: 20
+  unpierceable: 1
   isActive: 0
   partMeshArray:
   - {fileID: 7203436582155259074}
@@ -931,6 +937,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   integrityPoints: 20
+  unpierceable: 1
   isActive: 0
   partMeshArray:
   - {fileID: 1376073962655227079}
@@ -1059,6 +1066,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   integrityPoints: 20
+  unpierceable: 1
   isActive: 0
   partMeshArray:
   - {fileID: 7252653297129248472}
@@ -1109,6 +1117,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   integrityPoints: 500
+  unpierceable: 0
   isActive: 0
   movementSpeed: 0.5
   rotationSpeed: 10
@@ -1237,6 +1246,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   integrityPoints: 20
+  unpierceable: 1
   isActive: 0
   coreMesh: {fileID: 3861077569030125361}
 --- !u!1001 &1638753307710421945

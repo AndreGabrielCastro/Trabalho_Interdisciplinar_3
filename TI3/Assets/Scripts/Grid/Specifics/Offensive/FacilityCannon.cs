@@ -2,37 +2,24 @@
 using System.Collections.Generic;
 using UnityEngine;
 
-public class FacilityCannon : MonoBehaviour, IFacilityOffensive
+public class FacilityCannon : MonoBehaviour, IFacility
 {
+    private FacilityOffensive facilityOffensive;
     [Header("Must be setted")]
-    [SerializeField] private Transform spawnPointProjectile;
-    [SerializeField] private GameObject projectilePrefab;
-    [SerializeField] private AudioClip[] projectileSfxArray;
-    [SerializeField] private int shootEnergyCost;
-    [SerializeField] private float reloadTime;
-    private float timer = 0;
-    private void Update()
+    [SerializeField] private float costReduction;
+    [SerializeField] private float cooldownReduction;
+    private void Awake()
     {
-        if (Player.Instance.isTravelling == false) { return; }
-        if (Player.Instance.isGameOver == true) { return; }
-        if (timer < reloadTime) { return; }
-        if (Input.GetMouseButton(1)) { timer = 0; Shoot(); }
+        facilityOffensive = GetComponent<FacilityOffensive>();
     }
-    private void FixedUpdate()
+    public void StartWork()
     {
-        if (Player.Instance.isTravelling == false) { return; }
-
-        Vector3 mousePosition = MouseSystem.Instance.GetWorldPosition();
-        mousePosition = new Vector3(mousePosition.x, this.transform.position.y, mousePosition.z);
-        this.transform.LookAt(mousePosition);
-
-        if (timer < reloadTime) { timer += Time.fixedDeltaTime; }
+        facilityOffensive.AlterateShootCost(-costReduction);
+        facilityOffensive.AlterateReloadTime(-cooldownReduction);
     }
-    private void Shoot()
+    public void StopWork()
     {
-        if (Player.Instance.playerEnergy.GetCurrentEnergy() < shootEnergyCost) { return; }
-        Instantiate(projectilePrefab, spawnPointProjectile.transform.position, spawnPointProjectile.transform.rotation);
-        Player.Instance.playerAudio.PlaySong(projectileSfxArray[Random.Range(0, 4)]);
-        Player.Instance.playerEnergy.LoseEnergy(shootEnergyCost);
+        facilityOffensive.AlterateShootCost(+costReduction);
+        facilityOffensive.AlterateReloadTime(+cooldownReduction);
     }
 }

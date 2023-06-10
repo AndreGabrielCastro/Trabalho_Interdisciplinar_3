@@ -128,19 +128,19 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   prefabIndex: 1
-  gridObjectIcon: {fileID: 21300000, guid: a905a8388548a4f4e8ff7e2013049dea, type: 3}
+  gridObjectIcon: {fileID: 21300000, guid: 3dc6c385288011848b1784b87937db9e, type: 3}
   gridObjectPrice: 0
   width: 1
   lenght: 1
-  maximumIntegrityPoints: 10
-  currentIntegrityPoints: 10
+  maximumIntegrityPoints: 6
+  currentIntegrityPoints: 6
+  description: 'DELIVERY "SMALL BOX":  Measures one meter per one meter. Fragile'
   desiredWidth: 0
   desiredLength: 0
   snapValue: 0
   gridTileArray: []
   uiGridObjectDelivery: {fileID: 0}
   isPlaced: 0
-  description: Simple box  1x1
 --- !u!65 &6659980106986122661
 BoxCollider:
   m_ObjectHideFlags: 0

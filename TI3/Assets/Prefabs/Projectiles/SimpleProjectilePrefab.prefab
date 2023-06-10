@@ -150,7 +150,7 @@ GameObject:
   - component: {fileID: 4283438179692904800}
   - component: {fileID: 2674250253937021659}
   m_Layer: 11
-  m_Name: ProjectilePrefab
+  m_Name: SimpleProjectilePrefab
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -213,4 +213,5 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   damage: 1
+  pierce: 0
   speed: 60

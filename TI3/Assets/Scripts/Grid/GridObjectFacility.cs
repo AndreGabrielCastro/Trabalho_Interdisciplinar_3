@@ -7,9 +7,15 @@ public class GridObjectFacility : GridObject
     [Header("Setted during playtime")]
     public UIGridObjectFacility uiGridObjectFacility;
     [SerializeField] private float integrityRegeneration = 0;
+    public void StartWork(Worker worker)
+    {
+        if (currentIntegrityPoints < maximumIntegrityPoints) // If the facility is damaged...
+        { integrityRegeneration++; worker.StartRepair(); return; } // Then help repair first
+        GetComponent<IFacility>().StartWork();
+    }
     public void StartWork()
     {
-        if (currentIntegrityPoints <= maximumIntegrityPoints) // If the facility is damaged...
+        if (currentIntegrityPoints < maximumIntegrityPoints) // If the facility is damaged...
         { integrityRegeneration++; return; } // Then help repair first
         GetComponent<IFacility>().StartWork();
     }
@@ -19,6 +25,7 @@ public class GridObjectFacility : GridObject
         {
             if (gridtile.worker != null)
             {
+                gridtile.worker.StopRepair();
                 GetComponent<IFacility>().StartWork();
                 integrityRegeneration = 0;
             }
@@ -36,6 +43,7 @@ public class GridObjectFacility : GridObject
         {
             if (gridtile.worker != null)
             {
+                gridtile.worker.StartRepair();
                 GetComponent<IFacility>().StopWork();
                 integrityRegeneration += 0.5f;
             }
@@ -66,7 +74,7 @@ public class GridObjectFacility : GridObject
         RemoveAllWorkers();
         foreach (GridTile gridTile in gridTileArray) // Foreach grid tile it occupies...
         { gridTile.SetGridObject(null); } // Set the grid tile to null
-        uiGridObjectFacility.UpdateCurrentAmount(+1); // Increases +1 to the UI grid object amount
+        uiGridObjectFacility.AlterateCurrentAmount(+1); // Increases +1 to the UI grid object amount
         Instantiate(Player.Instance.playerFXs.GetVFXGridObjectDeleted(), this.transform.position + Vector3.up * 0.1f, Quaternion.identity);
         Player.Instance.playerAudio.PlaySong(Player.Instance.playerFXs.GetSFXGridObjectDeleted());
         PlayerSystem.Instance.RemoveFromGridObjectList(this);

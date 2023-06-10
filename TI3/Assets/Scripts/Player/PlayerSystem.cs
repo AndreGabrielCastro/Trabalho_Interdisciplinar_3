@@ -24,6 +24,9 @@ public class PlayerSystem : MonoBehaviour
     public sbyte sfxVolumeValue = 0;
     public sbyte uiVolumeValue = 0;
 
+    [Tooltip("Corresponds to the SpaceShipSystem's GridObjectFacilities")]
+    public byte[] facilitiesStored; public byte[] GetMyFacilitiesOwned() { return facilitiesStored; } // The size of the arrays must be the exact same
+
     public void AddToGridObjectList(GridObject gridObject)
     {
         gridObjectList.Add(gridObject);
@@ -104,6 +107,7 @@ public class PlayerSystem : MonoBehaviour
 
         Player.Instance.SetTravellingState(false);
         ColonySystem.Instance.UpdateCurrentColony(currentColonyIndex);
+        SpaceShipSystem.Instance.UpdateFacilitiesStored(facilitiesStored);
         UIUserInterface.Instance.UpdateUserInterfaceResources();
 
         int totalRewardedGearcoin = 0;

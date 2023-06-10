@@ -2,7 +2,7 @@
 using System.Collections.Generic;
 using UnityEngine;
 
-public class FacilityMotor : MonoBehaviour, IFacility
+public class FacilityEngine : MonoBehaviour, IFacility
 {
     [Header("Must be setted")]
     [SerializeField] private float extraSpeed;

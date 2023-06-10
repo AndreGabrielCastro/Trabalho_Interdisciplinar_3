@@ -24,4 +24,11 @@ public class SpaceShipSystem : MonoBehaviour
         }
         #endregion
     }
+    public void UpdateFacilitiesStored(byte[] facilitiesOwned)
+    {
+        for (int i = 0; i < allUiGridObjectFacilityArray.Length; i++)
+        {
+            allUiGridObjectFacilityArray[i].UpdateCurrentAmount(facilitiesOwned[i]);
+        }
+    }
 }

@@ -43,7 +43,7 @@ GameObject:
   - component: {fileID: 4225908689338179398}
   - component: {fileID: 249942084972948766}
   m_Layer: 14
-  m_Name: GridObjectBox
+  m_Name: GridObjectWideBox
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -82,15 +82,15 @@ MonoBehaviour:
   gridObjectPrice: 0
   width: 2
   lenght: 1
-  maximumIntegrityPoints: 15
-  currentIntegrityPoints: 15
+  maximumIntegrityPoints: 11
+  currentIntegrityPoints: 11
+  description: 'DELIVERY "WIDE BOX": Measures two meters by one meter.'
   desiredWidth: 0
   desiredLength: 0
   snapValue: 0
   gridTileArray: []
   uiGridObjectDelivery: {fileID: 0}
   isPlaced: 0
-  description: Simple box  2x1
 --- !u!65 &249942084972948766
 BoxCollider:
   m_ObjectHideFlags: 0

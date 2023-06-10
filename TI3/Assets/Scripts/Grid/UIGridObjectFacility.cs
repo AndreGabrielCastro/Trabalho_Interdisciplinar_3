@@ -9,9 +9,8 @@ public class UIGridObjectFacility : MonoBehaviour, IPointerDownHandler, IPointer
 {
     [Tooltip("Must be a GridObject")]
     public GameObject gridObjectPrefab; // This thing MUST be GameObject to work with Awake(), otherwise it will log error on the first line of Awake();
-    public TMP_Text curAmountText;
-    public int maxAmount = 1;
-    public int curAmount = 1;
+    public TMP_Text currentAmountText;
+    public int currentAmount = 1;
 
     // References setted on Awake() down below
     private GameObject gameObjectPreview;
@@ -38,10 +37,15 @@ public class UIGridObjectFacility : MonoBehaviour, IPointerDownHandler, IPointer
         ToEdgeVertical,
         ToEdgeCorner,
     }
-    public void UpdateCurrentAmount(int valueToIncreaseOrDecrease)
+    public void UpdateCurrentAmount(int value)
     {
-        curAmount += valueToIncreaseOrDecrease;
-        curAmountText.text = curAmount.ToString();
+        currentAmount = value;
+        currentAmountText.text = currentAmount.ToString();
+    }
+    public void AlterateCurrentAmount(int valueToIncreaseOrDecrease)
+    {
+        currentAmount += valueToIncreaseOrDecrease;
+        currentAmountText.text = currentAmount.ToString();
     }
 
     /// <summary>
@@ -114,8 +118,8 @@ public class UIGridObjectFacility : MonoBehaviour, IPointerDownHandler, IPointer
     {
         if (pointerEventData.button != PointerEventData.InputButton.Left) { return; } // If the click isn't from left mouse button, returns
 
-        if (curAmount == 0) { return; }
-        else if (curAmount < 0) { Debug.LogWarning("Current amount below zero, something is wrong!"); }
+        if (currentAmount == 0) { return; }
+        else if (currentAmount < 0) { Debug.LogWarning("Current amount below zero, something is wrong!"); }
 
         // VERIFICAR A DISPONIBILIDADE DE RECURSO AQUI
 
@@ -147,8 +151,8 @@ public class UIGridObjectFacility : MonoBehaviour, IPointerDownHandler, IPointer
     {
         if (pointerEventData.button != PointerEventData.InputButton.Left) { return; }
 
-        if (curAmount == 0) { return; }
-        else if (curAmount < 0) { Debug.LogWarning("Current amount below zero, something is wrong!"); }
+        if (currentAmount == 0) { return; }
+        else if (currentAmount < 0) { Debug.LogWarning("Current amount below zero, something is wrong!"); }
 
         // This body of code returns the variables needed to the verification right below. It's maximum optimized, don't worry.
         Vector3 worldPosition = MouseSystem.Instance.GetWorldPosition(); // Gets the world position of the mouse
@@ -228,8 +232,8 @@ public class UIGridObjectFacility : MonoBehaviour, IPointerDownHandler, IPointer
     {
         if (pointerEventData.button != PointerEventData.InputButton.Left) { return; }
 
-        if (curAmount == 0) { return; }
-        else if (curAmount < 0) { Debug.LogWarning("Current amount below zero, something is wrong!"); }
+        if (currentAmount == 0) { return; }
+        else if (currentAmount < 0) { Debug.LogWarning("Current amount below zero, something is wrong!"); }
 
         // This body of code deactivate some functions
         isDragging = false; // Deactivates the smooth in the FixedUpdate() and disables rotations in Update();
@@ -289,7 +293,7 @@ public class UIGridObjectFacility : MonoBehaviour, IPointerDownHandler, IPointer
         newGridObject.desiredLength = desiredLength;
         newGridObject.snapValue = (int)snap;
 
-        UpdateCurrentAmount(-1);
+        AlterateCurrentAmount(-1);
         Instantiate(Player.Instance.playerFXs.GetVFXGridObjectInstantiated(), newGridObject.transform.position + Vector3.up * 0.1f, Quaternion.identity);
         Player.Instance.playerAudio.PlaySong(Player.Instance.playerFXs.GetSFXGridObjectInstantiated());
         PlayerSystem.Instance.AddToGridObjectList(newGridObject);

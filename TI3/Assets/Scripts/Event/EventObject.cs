@@ -6,8 +6,10 @@ public class EventObject : MonoBehaviour
 {
     [Header("Must be setted")]
     public int integrityPoints = 20;
+    public bool unpierceable;
     [Header("Setted during playtime")]
     public bool isActive;
+    public bool GetUnpierceableBool() { return unpierceable; }
     public void SetActive()
     {
         if (isActive == true) { return; }
