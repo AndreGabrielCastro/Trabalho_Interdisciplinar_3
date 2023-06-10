@@ -8,17 +8,17 @@ public class PlayerMovement : MonoBehaviour
     [Header("Must be setted")]
     [SerializeField] private float speed = 1;
     [Header("Setted during playtime")]
+    [SerializeField] private TMP_Text speedText;
     [SerializeField] private AudioSource audioSource;
     [SerializeField] private AudioClip alarmClip;
     [SerializeField] private TMP_Text alarmText;
     private bool isWarning;
+    public float GetSpeed() { return speed; }
+    public void SetSpeedText(TMP_Text text) { speedText = text; UpdateSpeedText(); }
     public void SetWarningText(TMP_Text text) { alarmText = text; }
-    public void AlterateSpeed(float value) { speed += value; }
-    public void SetAudioSource(AudioSource aSource)
-    {
-        audioSource = aSource;
-        audioSource.clip = alarmClip;
-    }
+    public void SetAudioSource(AudioSource aSource) { audioSource = aSource; audioSource.clip = alarmClip; }
+    public void AlterateSpeed(float value) { speed += value; UpdateSpeedText(); }
+    public void UpdateSpeedText() { speedText.text = $"{speed}m/s"; }
     private void PlayFleeingRouteAlarm()
     {
         if (isWarning == true) { return; }

@@ -9,10 +9,10 @@ public class PlayerIntegrity : MonoBehaviour
     [SerializeField] private int maximumIntegrity = 100;
     [SerializeField] private int currentIntegrity = 100;
     [Header("Setted during playtime")]
-    [SerializeField] private AudioSource audioSource;
-    [SerializeField] private AudioClip alarmClip;
     [SerializeField] private Image integrityBar;
     [SerializeField] private TMP_Text integrityAmountText;
+    [SerializeField] private AudioSource audioSource;
+    [SerializeField] private AudioClip alarmClip;
     private float alarmTimer;
     private bool isWarning;
     #region Getters&Setters

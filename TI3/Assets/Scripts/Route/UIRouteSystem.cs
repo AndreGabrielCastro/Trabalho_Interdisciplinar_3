@@ -13,6 +13,9 @@ public class UIRouteSystem : MonoBehaviour
     public sbyte currentColonyIndex;
     public sbyte destinationColonyIndex;
 
+    private bool forceTravel;
+    private float forceTimer;
+
     private bool isLoading = false;
     private float timer = 1;
     private void Awake()
@@ -38,6 +41,12 @@ public class UIRouteSystem : MonoBehaviour
     private void LateStart() { currentColonyIndex = ColonySystem.Instance.currentColonyIndex; }
     private void FixedUpdate()
     {
+        if (forceTravel == true)
+        {
+            forceTimer -= Time.fixedDeltaTime;
+            if (forceTimer <= 0) { forceTimer = 5; forceTravel = false; }
+        }
+
         if (isLoading == false) { return; }
         timer -= Time.fixedDeltaTime;
         if (timer <= 0) { UnityEngine.SceneManagement.SceneManager.LoadScene("EventScene"); }
@@ -67,31 +76,70 @@ public class UIRouteSystem : MonoBehaviour
             Debug.LogError($"One UIRoute got 2 equal colony index!!!!! ----- {uiRoute.transform.position} -----"); return;
         }
     }
-    public void OnButtonTravel()
+    public bool IsRouteValid()
     {
         if (activeRoute == null)
         {
-            UIUserInterface.Instance.PopResult("Select a valid route first!", Color.red);
+            UIUserInterface.Instance.PopResult("Select a valid route first!", Color.red); return false;
         }
-        else if (activeRoute != null)
+        return true;
+    }
+    public bool IsTaskValid()
+    {
+        foreach (Task task in PlayerSystem.Instance.taskList)
         {
-            foreach(Task task in PlayerSystem.Instance.taskList)
+            for (int i = 0; i < task.gridObjectDeliveryArray.Length; i++)
             {
-                for (int i = 0; i < task.gridObjectDeliveryArray.Length; i++)
+                if (task.gridObjectDeliveryArray[i].isPlaced == false)
                 {
-                    if (task.gridObjectDeliveryArray[i].isPlaced == false)
-                    {
-                        UIUserInterface.Instance.PopResult("Place all task's deliveries first", Color.red); return;
-                    }
+                    UIUserInterface.Instance.PopResult("Place all task's deliveries first", Color.red); return false;
                 }
             }
-
-            UIUserInterface.Instance.OnButtonLerpToDown(); // Lerps the screen back to the SpaceShip
-            UIUserInterface.Instance.uiFader.FadeIn(); // Activates the fade in
-            isLoading = true; // Activates the timer
-            PlayerSystem.Instance.SetCurrentColony(destinationColonyIndex); // Sets the current colony of the player
-            Player.Instance.SetEvent(activeRoute.GetSpaceEvent());
-            //PlayerSystem.Instance.isTravelling = true;
         }
+        return true;
+    }
+    public bool CheckMainComponents()
+    {
+        bool lacks = false;
+        string warning = "You lack essential components such as:\n";
+
+        bool lacksCannons = true;
+        foreach (GridObject obj in PlayerSystem.Instance.GetMyGridObjects())
+        { 
+            if (obj.GetComponent<IFacilityOffensive>() != null) { lacksCannons = false; }
+        }
+        if (lacksCannons == true) { lacks = true; warning += " CANNON "; }
+
+        if (Player.Instance.playerEnergy.GetEnergyGeneration() < 0.1f) { lacks = true; warning += " GENERATOR "; }
+
+        if (Player.Instance.playerMovement.GetSpeed() < 0.1f) { lacks = true; warning += " ENGINE "; }
+
+        if (lacks == true)
+        {
+            warning += "\nClick again to proceed.";
+            UIUserInterface.Instance.PopResult(warning, Color.red, 10);
+            return false;
+        }
+        return true;
+    }
+    public void OnButtonTryTravel()
+    {
+        if (IsRouteValid() == false) { return; }
+        if (IsTaskValid() == false) { return; }
+
+        if (forceTravel == true) { Travel(); }
+
+        bool value = CheckMainComponents();
+        if (value == true) { Travel(); }
+        else if (value == false) { forceTravel = true; return; }
+    }
+    public void Travel()
+    {
+        UIUserInterface.Instance.OnButtonLerpToDown(); // Lerps the screen back to the SpaceShip
+        UIUserInterface.Instance.uiFader.FadeIn(); // Activates the fade in
+        isLoading = true; // Activates the timer
+        PlayerSystem.Instance.SetCurrentColony(destinationColonyIndex); // Sets the current colony of the player
+        Player.Instance.SetEvent(activeRoute.GetSpaceEvent());
+        //PlayerSystem.Instance.isTravelling = true;
     }
 }

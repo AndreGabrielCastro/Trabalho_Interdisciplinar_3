@@ -2,7 +2,7 @@
 using System.Collections.Generic;
 using UnityEngine;
 
-public class FacilityCannon : MonoBehaviour
+public class FacilityCannon : MonoBehaviour, IFacilityOffensive
 {
     [Header("Must be setted")]
     [SerializeField] private Transform spawnPointProjectile;

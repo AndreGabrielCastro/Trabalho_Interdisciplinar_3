@@ -15,6 +15,7 @@ public class PlayerEnergy : MonoBehaviour
     [SerializeField] private Image energyBar;
     [SerializeField] private TMP_Text energyAmountText;
     [SerializeField] private TMP_Text energyRegenText; 
+    public float GetEnergyGeneration() { return energyGeneration; }
     public void SetEnergyBar(Image image) { energyBar = image; UpdateEnergyBar(); }
     public void SetEnergyAmountText(TMP_Text text) { energyAmountText = text; UpdateEnergyAmountText(); }
     public void SetEnergyRegenText(TMP_Text text) { energyRegenText = text; UpdateEnergyRegenText(); }

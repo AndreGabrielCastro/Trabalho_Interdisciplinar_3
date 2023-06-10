@@ -64,7 +64,7 @@ public class GridObject : MonoBehaviour
     public void UpdateVisual()
     {
         float value = 0.5f * ((float)currentIntegrityPoints / (float)maximumIntegrityPoints);
-        Color currentIntegrityColor = new Color(1f - value, 0.2f + value, 0.2f);
+        Color currentIntegrityColor = new Color(1f - value, value * 2, 0.2f);
         //                                           r          g          b
 
         for (int i = 0; i < gridTileArray.Length; i++)

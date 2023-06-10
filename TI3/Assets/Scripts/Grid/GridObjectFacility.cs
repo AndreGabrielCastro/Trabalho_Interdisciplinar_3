@@ -9,7 +9,7 @@ public class GridObjectFacility : GridObject
     [SerializeField] private float integrityRegeneration = 0;
     public void StartWork()
     {
-        if (integrityRegeneration != 0) // If the facility is damaged...
+        if (currentIntegrityPoints <= maximumIntegrityPoints) // If the facility is damaged...
         { integrityRegeneration++; return; } // Then help repair first
         GetComponent<IFacility>().StartWork();
     }
@@ -26,7 +26,7 @@ public class GridObjectFacility : GridObject
     }
     public void StopWork()
     {
-        if (integrityRegeneration != 0) // If the facility is damaged...
+        if (currentIntegrityPoints <= maximumIntegrityPoints) // If the facility is damaged...
         { integrityRegeneration--; return; } // Then just leave
         GetComponent<IFacility>().StopWork();
     }
@@ -87,6 +87,10 @@ public class GridObjectFacility : GridObject
         if (currentIntegrityPoints == maximumIntegrityPoints) { return; }
         currentIntegrityPoints += (float)integrityRegeneration * Time.fixedDeltaTime;
         UpdateVisual();
-        if (currentIntegrityPoints >= maximumIntegrityPoints) { currentIntegrityPoints = maximumIntegrityPoints; StartAllWork(); }
+        if (currentIntegrityPoints >= maximumIntegrityPoints)
+        { 
+            currentIntegrityPoints = maximumIntegrityPoints;
+            StartAllWork();
+        }
     }
 }

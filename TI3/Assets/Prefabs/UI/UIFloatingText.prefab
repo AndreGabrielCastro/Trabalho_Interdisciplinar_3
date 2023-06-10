@@ -36,7 +36,7 @@ RectTransform:
   m_AnchorMin: {x: 0.5, y: 0.5}
   m_AnchorMax: {x: 0.5, y: 0.5}
   m_AnchoredPosition: {x: 0, y: 0}
-  m_SizeDelta: {x: 500, y: 0}
+  m_SizeDelta: {x: 700, y: 0}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!222 &2535836402683328466
 CanvasRenderer:
@@ -140,7 +140,7 @@ MonoBehaviour:
     spaceCount: 17
     wordCount: 18
     linkCount: 0
-    lineCount: 4
+    lineCount: 3
     pageCount: 1
     materialCount: 1
   m_isUsingLegacyAnimationComponent: 0
@@ -170,3 +170,4 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 7898d3fe48f8bee4abaf8cb79e6824b7, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  fadeTime: 2

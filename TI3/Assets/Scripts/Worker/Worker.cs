@@ -11,6 +11,7 @@ public class Worker : MonoBehaviour
     [SerializeField] private Vector3 localGridDestination = Vector3.negativeInfinity; 
     [SerializeField] private bool isWorking; 
     [SerializeField] private bool isMoving;
+    [SerializeField] private GameObject vfxWork;
 
     #region Getters&Setters
     public GridTile GetGridDestination() { return gridTileDestination; }
@@ -77,6 +78,7 @@ public class Worker : MonoBehaviour
         {
             isWorking = true;
             gridObjectFacility.StartWork();
+            vfxWork.SetActive(true);
         }
     }
     public void TryStopWork()
@@ -89,12 +91,14 @@ public class Worker : MonoBehaviour
         {
             isWorking = false;
             gridTileDestination.SetWorker(null);
+            vfxWork.SetActive(false);
         }
         else if (gridTileDestination.gridObject.TryGetComponent<GridObjectFacility>(out GridObjectFacility gridObjectFacility) == true)
         {
             isWorking = false;
             gridTileDestination.SetWorker(null);
             gridObjectFacility.StopWork();
+            vfxWork.SetActive(false);
         }
     }
     public void TryMove()
