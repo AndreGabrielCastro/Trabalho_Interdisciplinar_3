@@ -33,7 +33,7 @@ public class GridObjectFacility : GridObject
     }
     public void StopWork()
     {
-        if (currentIntegrityPoints <= maximumIntegrityPoints) // If the facility is damaged...
+        if (integrityRegeneration > 0) // If the facility was being repaired...
         { integrityRegeneration--; return; } // Then just leave
         GetComponent<IFacility>().StopWork();
     }

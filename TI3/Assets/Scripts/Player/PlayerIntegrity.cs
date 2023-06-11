@@ -24,8 +24,8 @@ public class PlayerIntegrity : MonoBehaviour
     public void SetIntegrityAmountText(TMP_Text text) { integrityAmountText = text; UpdateIntegrityAmountText(); }
     public void SetAudioSource(AudioSource aSource) { audioSource = aSource; audioSource.clip = alarmClip; }
     #endregion
-    public void UpdateIntegrityBar() { integrityBar.fillAmount = (float)currentIntegrity / (float)maximumIntegrity; }
-    public void UpdateIntegrityAmountText() { integrityAmountText.text = $"{currentIntegrity}/{maximumIntegrity}"; }
+    public void UpdateIntegrityBar() { if (integrityBar == null) { return; } integrityBar.fillAmount = (float)currentIntegrity / (float)maximumIntegrity; }
+    public void UpdateIntegrityAmountText() { if (integrityAmountText == null) { return; } integrityAmountText.text = $"{currentIntegrity}/{maximumIntegrity}"; }
     public void AlterateMaximumIntegrity(int value) { maximumIntegrity += value; CheckMaximumIntegrity(); UpdateIntegrityBar(); UpdateIntegrityAmountText(); }
     public void CheckMaximumIntegrity() { if (currentIntegrity > maximumIntegrity) { currentIntegrity = maximumIntegrity; } }
     public void CheckMinimumIntegrity() { if (currentIntegrity <= 0) { currentIntegrity = 0; } }

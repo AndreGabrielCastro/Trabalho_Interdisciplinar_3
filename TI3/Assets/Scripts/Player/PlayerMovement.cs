@@ -18,7 +18,7 @@ public class PlayerMovement : MonoBehaviour
     public void SetWarningText(TMP_Text text) { alarmText = text; }
     public void SetAudioSource(AudioSource aSource) { audioSource = aSource; audioSource.clip = alarmClip; }
     public void AlterateSpeed(float value) { speed += value; UpdateSpeedText(); }
-    public void UpdateSpeedText() { speedText.text = $"{speed}m/s"; }
+    public void UpdateSpeedText() { if (speedText == null) { return; } speedText.text = $"{speed}m/s"; }
     private void PlayFleeingRouteAlarm()
     {
         if (isWarning == true) { return; }

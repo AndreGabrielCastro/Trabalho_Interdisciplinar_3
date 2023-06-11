@@ -81,6 +81,7 @@ public class GridSystem : MonoBehaviour
 
     public void DeleteGridObject(GridObject gridObject)
     {
+        if (gridObject == null) { return; }
         if (gridObject.TryGetComponent<GridObjectDelivery>(out GridObjectDelivery gridObjectDelivery)) // Tries to get the grid object
         { gridObjectDelivery.DeleteGridObjectDelivery(); } // Deletes the grid object
         else if (gridObject.TryGetComponent<GridObjectFacility>(out GridObjectFacility gridObjectFacility))
