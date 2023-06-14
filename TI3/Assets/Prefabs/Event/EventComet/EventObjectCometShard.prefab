@@ -46,8 +46,9 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   integrityPoints: 20
+  unpierceable: 0
   isActive: 0
-  speed: 1
+  speed: 2
 --- !u!65 &4951078495914411074
 BoxCollider:
   m_ObjectHideFlags: 0

@@ -18,7 +18,12 @@ public class PlayerCommand : MonoBehaviour
         Vector3 worldPosition = MouseSystem.Instance.GetWorldPosition();
         GridPosition localGridPosition = GridSystem.Instance.GetGridGroundPositionRelative(worldPosition);
         GridTile gridTile = GridSystem.Instance.TryGetGridTile(localGridPosition);
-        if (gridTile == null) { Player.Instance.playerAudio.PlaySong(commandFailClip); return; }
+        if (gridTile == null)
+        { 
+            Player.Instance.playerAudio.PlaySong(commandFailClip);
+            Player.Instance.playerSelection.ResetSelectedWorkers();
+            return;
+        }
         Vector3 localPosition = GridSystem.Instance.GetWorldPositionWithoutOffset(localGridPosition);
 
         if (selectedWorkers.Count == 1)

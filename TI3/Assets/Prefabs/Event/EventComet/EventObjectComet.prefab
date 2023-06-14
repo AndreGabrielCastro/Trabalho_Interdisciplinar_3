@@ -1117,7 +1117,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   integrityPoints: 500
-  unpierceable: 0
+  unpierceable: 1
   isActive: 0
   movementSpeed: 0.5
   rotationSpeed: 10

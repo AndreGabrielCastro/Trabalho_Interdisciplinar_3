@@ -8,7 +8,8 @@ public class GridObject : MonoBehaviour
     public int prefabIndex = -1;
 
     public Sprite gridObjectIcon;
-    public int gridObjectPrice;
+    public int gridObjectGearcoinPrice;
+    public int gridObjectInformationPrice;
     public int width = 1;
     public int lenght = 1;
 

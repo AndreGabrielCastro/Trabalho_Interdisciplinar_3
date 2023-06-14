@@ -27,6 +27,8 @@ public class PlayerIntegrity : MonoBehaviour
     public void UpdateIntegrityBar() { if (integrityBar == null) { return; } integrityBar.fillAmount = (float)currentIntegrity / (float)maximumIntegrity; }
     public void UpdateIntegrityAmountText() { if (integrityAmountText == null) { return; } integrityAmountText.text = $"{currentIntegrity}/{maximumIntegrity}"; }
     public void AlterateMaximumIntegrity(int value) { maximumIntegrity += value; CheckMaximumIntegrity(); UpdateIntegrityBar(); UpdateIntegrityAmountText(); }
+    public void AlterateCurrentIntegrity(int value) { currentIntegrity += value; CheckMaximumIntegrity(); CheckMaximumIntegrity(); UpdateIntegrityBar(); UpdateIntegrityAmountText(); }
+    public void AlterateMaximumAndCurrentIntegrity(int value) { maximumIntegrity += value; currentIntegrity += value; CheckMaximumIntegrity(); CheckMinimumIntegrity(); UpdateIntegrityBar(); UpdateIntegrityAmountText(); }
     public void CheckMaximumIntegrity() { if (currentIntegrity > maximumIntegrity) { currentIntegrity = maximumIntegrity; } }
     public void CheckMinimumIntegrity() { if (currentIntegrity <= 0) { currentIntegrity = 0; } }
     

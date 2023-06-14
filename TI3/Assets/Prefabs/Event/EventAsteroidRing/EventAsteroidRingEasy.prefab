@@ -11,7 +11,7 @@ GameObject:
   - component: {fileID: 5035833956507919263}
   - component: {fileID: 1919093352281650097}
   m_Layer: 0
-  m_Name: EventAsteroidRing
+  m_Name: EventAsteroidRingEasy
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -54,8 +54,8 @@ MonoBehaviour:
     type: 3}
   asteroidPrefab: {fileID: -2643300618891169884, guid: df4691d1ae5d2a844bd61bf8d47c5591,
     type: 3}
-  asteroidAmount: 100
-  spawnTimeMax: 0.5
+  asteroidAmount: 150
+  spawnTimeMax: 0.35
   spawnTimeMin: 0.2
 --- !u!1 &8467866306930197621
 GameObject:

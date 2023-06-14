@@ -44,7 +44,8 @@ public class DataSystem : MonoBehaviour
         saveData.playerData.sfxVolumeValue = PlayerSystem.Instance.sfxVolumeValue;
         saveData.playerData.uiVolumeValue = PlayerSystem.Instance.uiVolumeValue;
 
-        saveData.playerData.facilitiesOwned = PlayerSystem.Instance.GetMyFacilitiesOwned();
+        saveData.playerData.facilitiesStored = PlayerSystem.Instance.GetMyFacilitiesStored();
+        saveData.playerData.facilitiesResearched = PlayerSystem.Instance.GetMyFacilitiesResearched();
 
         saveData.playerData.maximumIntegrity = Player.Instance.playerIntegrity.GetMaxIntegrity();
         saveData.playerData.currentIntegrity = Player.Instance.playerIntegrity.GetCurrentIntegrity();
@@ -155,7 +156,8 @@ public class DataSystem : MonoBehaviour
         PlayerSystem.Instance.sfxVolumeValue = loadData.playerData.sfxVolumeValue;
         PlayerSystem.Instance.uiVolumeValue = loadData.playerData.uiVolumeValue;
 
-        PlayerSystem.Instance.facilitiesStored = loadData.playerData.facilitiesOwned;
+        PlayerSystem.Instance.facilitiesStored = loadData.playerData.facilitiesStored;
+        PlayerSystem.Instance.facilitiesResearched = loadData.playerData.facilitiesResearched;
 
         Player.Instance.playerIntegrity.SetMaxIntegrity(loadData.playerData.maximumIntegrity);
         Player.Instance.playerIntegrity.SetCurrentIntegrity(loadData.playerData.currentIntegrity);
@@ -338,7 +340,8 @@ public class DataSystem : MonoBehaviour
         //
 
         Player.Instance.playerSelection.ResetSelectedWorkers();
-        SpaceShipSystem.Instance.UpdateFacilitiesStored(loadData.playerData.facilitiesOwned);
+        SpaceShipSystem.Instance.UpdateFacilitiesStored(loadData.playerData.facilitiesStored);
+        SpaceShipSystem.Instance.UpdateFacilitiesResearched(loadData.playerData.facilitiesResearched);
         UIRouteSystem.Instance.currentColonyIndex = loadData.playerData.currentColonyIndex;
         UIUserInterface.Instance.PopResult("Game Loaded Successfully", Color.green, 4);
     }

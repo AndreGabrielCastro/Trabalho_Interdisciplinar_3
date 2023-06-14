@@ -8,22 +8,22 @@ public class FacilityBarricade : MonoBehaviour, IFacility
     [SerializeField] private int extraIntegrity;
     public void StartWork()
     {
-        AlterateMaximumIntegrity(+extraIntegrity);
+        AlterateMaximumAndCurrentIntegrity(+extraIntegrity);
     }
     public void StopWork()
     {
-        AlterateMaximumIntegrity(-extraIntegrity);
+        AlterateMaximumAndCurrentIntegrity(-extraIntegrity);
     }
-    private void AlterateMaximumIntegrity(int extra)
+    private void AlterateMaximumAndCurrentIntegrity(int extra)
     {
-        Player.Instance.playerIntegrity.AlterateMaximumIntegrity(extra);
+        Player.Instance.playerIntegrity.AlterateMaximumAndCurrentIntegrity(extra);
     }
     private void OnEnable()
     {
-        AlterateMaximumIntegrity(+extraIntegrity);
+        AlterateMaximumAndCurrentIntegrity(+extraIntegrity);
     }
     private void OnDisable()
     {
-        AlterateMaximumIntegrity(-extraIntegrity);
+        AlterateMaximumAndCurrentIntegrity(-extraIntegrity);
     }
 }

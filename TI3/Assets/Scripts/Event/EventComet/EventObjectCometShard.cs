@@ -35,9 +35,17 @@ public class EventObjectCometShard : EventObject
         currentGridPosition = gridPosition;
         GridTile gridTile = GridSystem.Instance.TryGetGridTile(gridPosition);
         if (gridTile == null) { return; }
-        gridTile.TakeDamage(eventComet.GetShardDamage());
-        Player.Instance.playerIntegrity.TakeDamage(eventComet.GetShardDamage());
-        BeDestroyed();
+        if (gridTile.gridObject == null)
+        {
+            Player.Instance.playerIntegrity.TakeDamage(eventComet.GetShardDamage());
+            BeDestroyed();
+        }
+        else if (gridTile.gridObject != null)
+        {
+            gridTile.TakeDamage((int)((float)eventComet.GetShardDamage() * 0.5f));
+            Player.Instance.playerIntegrity.TakeDamage((int)((float)eventComet.GetShardDamage() * 0.5f));
+            BeDestroyed();
+        }
     }
     public override void TakeDamage(int damage, Vector3 position)
     {

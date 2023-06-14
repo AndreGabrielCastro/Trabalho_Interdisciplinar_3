@@ -8,6 +8,7 @@ public class SpaceShipSystem : MonoBehaviour
     [Header("All facilities related")]
     public UIGridObjectFacility[] allUiGridObjectFacilityArray;
     public GridObjectFacility[] allGridObjectFacilityPrefabArray;
+    public UIFacilityCard[] allUIFacilityCardArray;
     public Worker workerPrefab;
     private void Awake()
     {
@@ -23,6 +24,13 @@ public class SpaceShipSystem : MonoBehaviour
             return;
         }
         #endregion
+    }
+    public void UpdateFacilitiesResearched(bool[] facilitiesResearched)
+    {
+        for (int i = 0; i < allUIFacilityCardArray.Length; i++)
+        {
+            if (facilitiesResearched[i] == true) { allUIFacilityCardArray[i].Unlock(); }
+        }
     }
     public void UpdateFacilitiesStored(byte[] facilitiesOwned)
     {

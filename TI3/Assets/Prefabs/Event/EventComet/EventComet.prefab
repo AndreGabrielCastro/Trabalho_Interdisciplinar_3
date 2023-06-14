@@ -63,11 +63,11 @@ MonoBehaviour:
   sfxEventCometShardExplosion: {fileID: 8300000, guid: f30349632c64e414dbc862c140582dfd,
     type: 3}
   sfxEventCometHitted: {fileID: 8300000, guid: 8ce0ab9dbec26f247a3612a9aae23427, type: 3}
-  cometPartsIntegrity: 20
-  cometPartsDamage: 5
+  cometPartsIntegrity: 40
+  cometPartsDamage: 30
   cometMovementSpeed: 0.5
   cometRotationSpeed: 30
-  cometShardChancePerDamage: 15
-  cometShardIntegrity: 4
-  cometShardDamage: 5
-  cometShardSpeed: 6
+  cometShardChancePerDamage: 30
+  cometShardIntegrity: 10
+  cometShardDamage: 10
+  cometShardSpeed: 10

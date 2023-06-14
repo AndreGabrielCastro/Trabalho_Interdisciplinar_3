@@ -14,6 +14,9 @@ public class PlayerSystem : MonoBehaviour
     public byte standbyEngineer;
     public int information;
 
+    public void AlterateGearcoins(int value)  { gearcoins += value; UIUserInterface.Instance.UpdateUserInterfaceResources(); }
+    public void AlterateInformation(int value) { information += value; UIUserInterface.Instance.UpdateUserInterfaceResources(); }
+
     public List<Task> taskList; public List<Task> GetMyTasks() { return taskList; }
     public List<GridObject> gridObjectList; public List<GridObject> GetMyGridObjects() { return gridObjectList; }
     public List<Worker> workerList; public List<Worker> GetMyWorkers() { return workerList; }
@@ -25,8 +28,26 @@ public class PlayerSystem : MonoBehaviour
     public sbyte uiVolumeValue = 0;
 
     [Tooltip("Corresponds to the SpaceShipSystem's GridObjectFacilities")]
-    public byte[] facilitiesStored; public byte[] GetMyFacilitiesOwned() { return facilitiesStored; } // The size of the arrays must be the exact same
-
+    public byte[] facilitiesStored; public byte[] GetMyFacilitiesStored() { return facilitiesStored; } // The size of the arrays must be the exact same
+    public bool[] facilitiesResearched; public bool[] GetMyFacilitiesResearched() { return facilitiesResearched; } // the size of the arrays must be the exact same
+    public void ResearchFacility(int index)
+    {
+        facilitiesResearched[index] = true;
+        UpdateFacilitiesResearched();
+    }
+    public void UpdateFacilitiesResearched()
+    {
+        SpaceShipSystem.Instance.UpdateFacilitiesResearched(facilitiesResearched);
+    }
+    public void AlterateFacilitiesStored(int index, byte value)
+    {
+        facilitiesStored[index] += value;
+        UpdateFacilitiesStored();
+    }
+    public void UpdateFacilitiesStored()
+    {
+        SpaceShipSystem.Instance.UpdateFacilitiesStored(facilitiesStored);
+    }
     public void AddToGridObjectList(GridObject gridObject)
     {
         gridObjectList.Add(gridObject);
@@ -98,6 +119,8 @@ public class PlayerSystem : MonoBehaviour
     {
         ColonySystem.Instance.UpdateCurrentColony(currentColonyIndex);
         UIUserInterface.Instance.UpdateUserInterfaceResources();
+        SpaceShipSystem.Instance.UpdateFacilitiesStored(facilitiesStored);
+        SpaceShipSystem.Instance.UpdateFacilitiesResearched(facilitiesResearched);
     }
     private void OnLevelWasLoaded(int level)
     {
@@ -108,6 +131,7 @@ public class PlayerSystem : MonoBehaviour
         Player.Instance.SetTravellingState(false);
         ColonySystem.Instance.UpdateCurrentColony(currentColonyIndex);
         SpaceShipSystem.Instance.UpdateFacilitiesStored(facilitiesStored);
+        SpaceShipSystem.Instance.UpdateFacilitiesResearched(facilitiesResearched);
         UIUserInterface.Instance.UpdateUserInterfaceResources();
 
         int totalRewardedGearcoin = 0;

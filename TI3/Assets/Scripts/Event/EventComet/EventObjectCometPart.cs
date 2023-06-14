@@ -45,8 +45,8 @@ public class EventObjectCometPart : EventObject
     {
         if (collision.transform.TryGetComponent<GridObject>(out GridObject gridObject) == true)
         {
-            gridObject.TakeDamage(eventComet.GetPartsDamage());
-            Player.Instance.playerIntegrity.TakeDamage(eventComet.GetPartsDamage());
+            gridObject.TakeDamage((int)((float)eventComet.GetPartsDamage() * 0.5f));
+            Player.Instance.playerIntegrity.TakeDamage((int)((float)eventComet.GetPartsDamage() * 0.5f));
             Player.Instance.transform.position += Vector3.forward * 1;
         }
         else if (collision.transform.TryGetComponent<Player>(out Player player) == true)

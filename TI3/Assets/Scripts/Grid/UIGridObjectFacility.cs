@@ -44,8 +44,7 @@ public class UIGridObjectFacility : MonoBehaviour, IPointerDownHandler, IPointer
     }
     public void AlterateCurrentAmount(int valueToIncreaseOrDecrease)
     {
-        currentAmount += valueToIncreaseOrDecrease;
-        currentAmountText.text = currentAmount.ToString();
+        PlayerSystem.Instance.AlterateFacilitiesStored(gridObjectPrefabScript.prefabIndex, (byte)valueToIncreaseOrDecrease);
     }
 
     /// <summary>

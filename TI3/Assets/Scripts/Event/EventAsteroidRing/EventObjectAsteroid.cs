@@ -30,9 +30,17 @@ public class EventObjectAsteroid : EventObject
         currentGridPosition = gridPosition;
         GridTile gridTile = GridSystem.Instance.TryGetGridTile(gridPosition);
         if (gridTile == null) { return; }
-        gridTile.TakeDamage(damage);
-        Player.Instance.playerIntegrity.TakeDamage(damage);
-        BeDestroyed();
+        if (gridTile.gridObject == null)
+        {
+            Player.Instance.playerIntegrity.TakeDamage(damage);
+            BeDestroyed();
+        }
+        else if (gridTile.gridObject != null)
+        {
+            gridTile.TakeDamage((int)((float)damage * 0.5f));
+            Player.Instance.playerIntegrity.TakeDamage((int)((float)damage * 0.5f));
+            BeDestroyed();
+        }
     }
     public override void TakeDamage(int damage, Vector3 position)
     {

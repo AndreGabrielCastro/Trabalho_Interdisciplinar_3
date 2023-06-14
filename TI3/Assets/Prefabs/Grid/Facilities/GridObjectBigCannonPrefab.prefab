@@ -206,13 +206,14 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   prefabIndex: 5
   gridObjectIcon: {fileID: 21300000, guid: 58e87bedb539e114ebeec25adf28af73, type: 3}
-  gridObjectPrice: 22
+  gridObjectGearcoinPrice: 40
+  gridObjectInformationPrice: 100
   width: 2
   lenght: 2
   maximumIntegrityPoints: 31
   currentIntegrityPoints: 31
-  description: 'FACILITY "BIG BANG CANNON": Two meters per two meters. Costs 5 energy
-    per shoot and reloads every 5 seconds. High damage'
+  description: 'FACILITY "BIG BANG CANNON": Two meters per two meters. Resistant.
+    High damage. Costs 10 energy per shoot and reloads every 5 seconds.'
   desiredWidth: 0
   desiredLength: 0
   snapValue: 0
@@ -239,7 +240,7 @@ MonoBehaviour:
   - {fileID: 8300000, guid: 73b0e478c9b0c4242bc3c687a6869e81, type: 3}
   - {fileID: 8300000, guid: e87fb2e782bcac14d82191fa02c2c841, type: 3}
   - {fileID: 8300000, guid: 25d8a6b3073dcbf40b0133fdbfeb55ce, type: 3}
-  shootEnergyCost: 5
+  shootEnergyCost: 10
   reloadTime: 5
 --- !u!82 &1609501196159209713
 AudioSource:

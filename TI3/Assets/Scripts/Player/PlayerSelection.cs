@@ -21,6 +21,7 @@ public class PlayerSelection : MonoBehaviour
     }
     public void ResetSelectedWorkers()
     {
+        foreach (Worker worker in selectedWorkers) { worker.BeDeselected(); }
         selectedWorkers = new List<Worker>();
     }
     public void RemoveSelectedWorker(Worker worker)
@@ -102,7 +103,6 @@ public class PlayerSelection : MonoBehaviour
                 if (selectedWorkers.Contains(worker)) { continue; }
 
                 Vector3 screenPosition = Camera.main.WorldToScreenPoint(worker.transform.position);
-
                 if ((screenPosition - Input.mousePosition).magnitude < 12)
                 {
                     selectedWorkers.Add(worker); // Adiciona a unidade à lista

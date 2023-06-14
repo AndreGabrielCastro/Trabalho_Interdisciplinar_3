@@ -99,7 +99,7 @@ public class UIUserInterface : MonoBehaviour
     public void UpdateUserInterfaceResources()
     {
         gearcoinText.text = PlayerSystem.Instance.gearcoins.ToString();
-        informationText.text = PlayerSystem.Instance.gearcoins.ToString();
+        informationText.text = PlayerSystem.Instance.information.ToString();
     }
 
     /// <summary>
