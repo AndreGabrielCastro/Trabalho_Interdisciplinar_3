@@ -46,6 +46,7 @@ public class DataSystem : MonoBehaviour
 
         saveData.playerData.facilitiesStored = PlayerSystem.Instance.GetMyFacilitiesStored();
         saveData.playerData.facilitiesResearched = PlayerSystem.Instance.GetMyFacilitiesResearched();
+        saveData.playerData.workersStored = PlayerSystem.Instance.GetMyWorkersStored();
 
         saveData.playerData.maximumIntegrity = Player.Instance.playerIntegrity.GetMaxIntegrity();
         saveData.playerData.currentIntegrity = Player.Instance.playerIntegrity.GetCurrentIntegrity();
@@ -158,6 +159,7 @@ public class DataSystem : MonoBehaviour
 
         PlayerSystem.Instance.facilitiesStored = loadData.playerData.facilitiesStored;
         PlayerSystem.Instance.facilitiesResearched = loadData.playerData.facilitiesResearched;
+        PlayerSystem.Instance.workersStored = loadData.playerData.workersStored;
 
         Player.Instance.playerIntegrity.SetMaxIntegrity(loadData.playerData.maximumIntegrity);
         Player.Instance.playerIntegrity.SetCurrentIntegrity(loadData.playerData.currentIntegrity);

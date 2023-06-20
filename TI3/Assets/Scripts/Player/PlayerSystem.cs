@@ -20,6 +20,21 @@ public class PlayerSystem : MonoBehaviour
     public List<Task> taskList; public List<Task> GetMyTasks() { return taskList; }
     public List<GridObject> gridObjectList; public List<GridObject> GetMyGridObjects() { return gridObjectList; }
     public List<Worker> workerList; public List<Worker> GetMyWorkers() { return workerList; }
+    public void AddToWorkerList(Worker worker)
+    {
+        workerList.Add(worker);
+    }
+
+    public int workersStored; public int GetMyWorkersStored() { return workersStored; }
+    public void AlterateWorkersStored(int value)
+    {
+        workersStored += value;
+        UpdateWorkersStored();
+    }
+    public void UpdateWorkersStored()
+    {
+        SpaceShipSystem.Instance.UpdateWorkersStored(workersStored);
+    }
 
     public sbyte masterVolumeValue = 0;
     public sbyte environmentVolumeValue = 0;
@@ -121,6 +136,7 @@ public class PlayerSystem : MonoBehaviour
         UIUserInterface.Instance.UpdateUserInterfaceResources();
         SpaceShipSystem.Instance.UpdateFacilitiesStored(facilitiesStored);
         SpaceShipSystem.Instance.UpdateFacilitiesResearched(facilitiesResearched);
+        SpaceShipSystem.Instance.UpdateWorkersStored(workersStored);
     }
     private void OnLevelWasLoaded(int level)
     {
@@ -132,6 +148,7 @@ public class PlayerSystem : MonoBehaviour
         ColonySystem.Instance.UpdateCurrentColony(currentColonyIndex);
         SpaceShipSystem.Instance.UpdateFacilitiesStored(facilitiesStored);
         SpaceShipSystem.Instance.UpdateFacilitiesResearched(facilitiesResearched);
+        SpaceShipSystem.Instance.UpdateWorkersStored(workersStored);
         UIUserInterface.Instance.UpdateUserInterfaceResources();
 
         int totalRewardedGearcoin = 0;
@@ -141,6 +158,21 @@ public class PlayerSystem : MonoBehaviour
 
         foreach (Task task in taskList)
         {
+            bool failed = false;
+            foreach(GridObject gridObject in task.gridObjectDeliveryArray)
+            {
+                if (gridObject == null)
+                {
+                    failed = true; break;
+                }
+            }
+            if (failed == true)
+            {
+                accomplishedTaskList.Add(task);
+                totalRewardedGearcoin -= task.gearcoinAmount;
+                return;
+            }
+
             task.time -= 1;
 
             if (task.time <= 0) // If task time expired...
@@ -180,9 +212,11 @@ public class PlayerSystem : MonoBehaviour
 
         if (totalRewardedGearcoin != 0)
         {
+            char sign = '+';
+            if (totalRewardedGearcoin < 0) { sign = '-'; }
             this.gearcoins += totalRewardedGearcoin;
             UIUserInterface.Instance.gearcoinText.text = gearcoins.ToString();
-            UIUserInterface.Instance.PopResult($"+{totalRewardedGearcoin}",
+            UIUserInterface.Instance.PopResult($"{sign}{totalRewardedGearcoin}",
                                                new Color(1f, 0.5f, 0f, 1f), 5,
                                                UIUserInterface.Instance.gearcoinPopUpTransform);
         }

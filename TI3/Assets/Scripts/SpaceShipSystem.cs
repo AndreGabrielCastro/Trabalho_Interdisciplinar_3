@@ -10,6 +10,7 @@ public class SpaceShipSystem : MonoBehaviour
     public GridObjectFacility[] allGridObjectFacilityPrefabArray;
     public UIFacilityCard[] allUIFacilityCardArray;
     public Worker workerPrefab;
+    public UIWorker uiWorker;
     private void Awake()
     {
         #region ErrorTreatment
@@ -32,11 +33,15 @@ public class SpaceShipSystem : MonoBehaviour
             if (facilitiesResearched[i] == true) { allUIFacilityCardArray[i].Unlock(); }
         }
     }
-    public void UpdateFacilitiesStored(byte[] facilitiesOwned)
+    public void UpdateFacilitiesStored(byte[] facilitiesStored)
     {
         for (int i = 0; i < allUiGridObjectFacilityArray.Length; i++)
         {
-            allUiGridObjectFacilityArray[i].UpdateCurrentAmount(facilitiesOwned[i]);
+            allUiGridObjectFacilityArray[i].UpdateCurrentAmount(facilitiesStored[i]);
         }
+    }
+    public void UpdateWorkersStored(int workersStored)
+    {
+        uiWorker.UpdateCurrentAmount(workersStored);
     }
 }

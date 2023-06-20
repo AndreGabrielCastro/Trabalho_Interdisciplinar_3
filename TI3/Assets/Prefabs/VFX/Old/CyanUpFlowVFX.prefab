@@ -12,7 +12,7 @@ GameObject:
   - component: {fileID: 9074966579465996807}
   - component: {fileID: 7433828586432867426}
   m_Layer: 0
-  m_Name: RedUpFlowVFX 1
+  m_Name: CyanUpFlowVFX
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -56,7 +56,7 @@ ParticleSystem:
   startDelay:
     serializedVersion: 2
     minMaxState: 0
-    scalar: 0
+    scalar: 1
     minScalar: 0
     maxCurve:
       serializedVersion: 2

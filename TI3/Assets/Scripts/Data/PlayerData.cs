@@ -20,6 +20,7 @@ public class PlayerData
 
     public byte[] facilitiesStored;
     public bool[] facilitiesResearched;
+    public int workersStored;
 
     public int maximumIntegrity;
     public int currentIntegrity;

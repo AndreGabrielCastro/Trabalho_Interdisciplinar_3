@@ -16,6 +16,9 @@ public class Colony
     public int contentMaxAmountPerTask = 1;
     public int contentMinAmountPerTask = 1;
 
+    public int colonyMaxPayment = 20;
+    public int colonyMinPayment = 10;
+
     //public int workerEngineerLevel = 1;
     //public int workerEngineerMaxAmount = 0;
     //public int workerEngineerMinAmount = 0;

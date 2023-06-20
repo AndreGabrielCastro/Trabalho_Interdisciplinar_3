@@ -10,7 +10,7 @@ GameObject:
   m_Component:
   - component: {fileID: 940849522265425841}
   m_Layer: 13
-  m_Name: PivotModel
+  m_Name: Mesh
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
