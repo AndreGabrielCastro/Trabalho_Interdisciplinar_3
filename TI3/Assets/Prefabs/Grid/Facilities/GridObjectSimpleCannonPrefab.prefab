@@ -173,7 +173,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   prefabIndex: 3
-  gridObjectIcon: {fileID: 21300000, guid: 5118a7dee7dcf9f408a36fecb5413c94, type: 3}
+  gridObjectIcon: {fileID: 21300000, guid: 69953e205ca370e4aae4a6bf2d3db243, type: 3}
   gridObjectGearcoinPrice: 30
   gridObjectInformationPrice: 50
   width: 1

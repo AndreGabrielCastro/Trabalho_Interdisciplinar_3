@@ -15,7 +15,7 @@ public class UIWorkerCard : MonoBehaviour
         if (PlayerSystem.Instance.gearcoins < gearcoinPrice)
         { UIUserInterface.Instance.PopResult("Not enough gearcoins!", Color.red); return; }
         PlayerSystem.Instance.AlterateWorkersStored(+1);
-        PlayerSystem.Instance.AlterateGearcoins(gearcoinPrice);
+        PlayerSystem.Instance.AlterateGearcoins(-gearcoinPrice);
         UIUserInterface.Instance.PopResult("Facility sucessfully created!", Color.green);
     }
 }

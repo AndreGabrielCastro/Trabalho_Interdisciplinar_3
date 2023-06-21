@@ -12,6 +12,8 @@ public class DataSystem : MonoBehaviour
     {
         if (isFadingIn == true) { UIUserInterface.Instance.PopResult("Can't do this now!", Color.red); return; }
 
+        if (UIRouteSystem.Instance.IsTaskValid() == false) { UIUserInterface.Instance.PopResult("Place all task's deliveries first", Color.red); return; }
+
         falseSave_TrueLoad = false;
         isFadingIn = true;
         time = Time.time + 1.5f;
